@@ -3,6 +3,7 @@ package com.springboot.app.springbootbackend.model;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Data
 @Entity
@@ -10,7 +11,7 @@ import javax.persistence.*;
 public class AnimalMedicalIssues {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer medicalIssueID;
+    private Integer issueID;
 
     @Column(name="animalID", nullable = false)
     private Integer animalID;
@@ -29,5 +30,8 @@ public class AnimalMedicalIssues {
 
     @Column(name = "description")
     private String description;
+
+    @OneToMany(mappedBy = "issueID")
+    List<Treatment> treatments;
 
 }
