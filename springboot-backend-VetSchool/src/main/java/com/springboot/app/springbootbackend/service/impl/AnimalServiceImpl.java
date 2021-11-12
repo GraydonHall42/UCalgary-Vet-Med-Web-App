@@ -47,7 +47,7 @@ public class AnimalServiceImpl implements AnimalService {
 		Animal existingAnimal = animalRepository.findById(id).orElseThrow(
 				() -> new ResourceNotFoundException("Animal", "Id", id));
 
-		existingAnimal.setName(animal.getName());
+		existingAnimal.setAnimalName(animal.getAnimalName());
 		existingAnimal.setAnimalType(animal.getAnimalType());
 		// save existing employee to DB
 		animalRepository.save(existingAnimal);

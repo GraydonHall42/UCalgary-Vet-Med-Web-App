@@ -3,6 +3,7 @@ package com.springboot.app.springbootbackend.model;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Data
 @Entity
@@ -10,13 +11,16 @@ import javax.persistence.*;
 public class Animal {
 	
 	@Id
-//	@GeneratedValue(strategy = GenerationType.IDENTITY)  for now we set this manually
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer animalID;
 	
-	@Column(name = "Name", nullable = false)
-	private String name;
+	@Column(name = "animalName", nullable = false)
+	private String animalName;
 	
-	@Column(name = "Animal_Type", nullable = false)
+	@Column(name = "animalType", nullable = false)
 	private String animalType;
+
+	@OneToMany(mappedBy = "animalID")
+	List<AnimalWeight> weights;
 
 }
