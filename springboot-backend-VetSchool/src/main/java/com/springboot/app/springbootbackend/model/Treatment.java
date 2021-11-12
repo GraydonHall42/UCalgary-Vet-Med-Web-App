@@ -31,4 +31,8 @@ public class Treatment {
     @OneToMany(mappedBy = "treatmentID")
     List<TreatmentImages> treatmentImages;
 
+    @ManyToOne()
+    @JoinColumn(name = "userID")
+    User author;
+
 }
