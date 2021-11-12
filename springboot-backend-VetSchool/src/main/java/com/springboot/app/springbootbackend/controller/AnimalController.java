@@ -12,51 +12,60 @@ import java.util.List;
 @RequestMapping("/api/animals")
 public class AnimalController {
 	
-	private AnimalService employeeService;
+	private AnimalService animalService;
 
 	public AnimalController(AnimalService employeeService) {
 		super();
-		this.employeeService = employeeService;
+		this.animalService = employeeService;
 	}
 	
 	// build create employee REST API
 	@PostMapping()
-	public ResponseEntity<Animal> saveEmployee(@RequestBody Animal animal){
-		return new ResponseEntity<Animal>(employeeService.saveAnimal(animal), HttpStatus.CREATED);
+	public ResponseEntity<Animal> saveAnimal(@RequestBody Animal animal){
+		return new ResponseEntity<Animal>(animalService.saveAnimal(animal), HttpStatus.CREATED);
 	}
 	
-	// build get all employees REST API
+	// build get all animals REST API
 	// http://localhost:8080/api/animals
 	@GetMapping
 	public List<Animal> getAllAnimals(){
-		return employeeService.getAllAnimals();
+		return animalService.getAllAnimals();
 	}
 	
-	// build get employee by id REST API
+	// build get animals by id REST API
 	// http://localhost:8080/api/animals/1
 	@GetMapping("{id}")
-	public ResponseEntity<Animal> getEmployeeById(@PathVariable("id") int animalID){
-		return new ResponseEntity<Animal>(employeeService.getAnimalById(animalID), HttpStatus.OK);
+	public ResponseEntity<Animal> getAnimalByID(@PathVariable("id") int animalID){
+		return new ResponseEntity<Animal>(animalService.getAnimalById(animalID), HttpStatus.OK);
 	}
+
+	// build get animal by type REST API
+	// http://localhost:8080/api/animals/dog
+	@GetMapping("/byType/{type}")
+	public List<Animal> getAnimalByType(@PathVariable("type") String type){
+		return animalService.getAnimalByType(type);
+	}
+
 
 
 	// build update employee REST API
 	// http://localhost:8080/api/animals/1
 	@PutMapping("{id}")
-	public ResponseEntity<Animal> updateEmployee(@PathVariable("id") int id
+	public ResponseEntity<Animal> updateAnimal(@PathVariable("id") int id
 												  , @RequestBody Animal animal){
-		return new ResponseEntity<Animal>(employeeService.updateAnimal(animal, id), HttpStatus.OK);
+		return new ResponseEntity<Animal>(animalService.updateAnimal(animal, id), HttpStatus.OK);
 	}
 
 	// build delete employee REST API
 	// http://localhost:8080/api/employees/1
 	@DeleteMapping("{id}")
-	public ResponseEntity<String> deleteEmployee(@PathVariable("id") int id){
+	public ResponseEntity<String> deleteAnimal(@PathVariable("id") int id){
 
 		// delete employee from DB
-		employeeService.deleteAnimal(id);
+		animalService.deleteAnimal(id);
 
 		return new ResponseEntity<String>("Animal deleted successfully!.", HttpStatus.OK);
 	}
-	
+
+
 }

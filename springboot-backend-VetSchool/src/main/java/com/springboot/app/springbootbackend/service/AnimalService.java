@@ -10,4 +10,5 @@ public interface AnimalService {
 	Animal getAnimalById(int id);
 	Animal updateAnimal(Animal employee, int id);
 	void deleteAnimal(int id);
+	List<Animal> getAnimalByType(String type);
 }

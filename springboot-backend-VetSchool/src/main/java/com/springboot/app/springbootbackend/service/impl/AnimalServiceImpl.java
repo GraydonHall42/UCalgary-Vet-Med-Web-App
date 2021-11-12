@@ -36,6 +36,11 @@ public class AnimalServiceImpl implements AnimalService {
 	}
 
 	@Override
+	public List<Animal> getAnimalByType(String type) {
+		return animalRepository.findByAnimalType(type);
+	}
+
+	@Override
 	public Animal updateAnimal(Animal animal, int id) {
 
 		// we need to check whether employee with given id is exist in DB or not
@@ -43,7 +48,7 @@ public class AnimalServiceImpl implements AnimalService {
 				() -> new ResourceNotFoundException("Animal", "Id", id));
 
 		existingAnimal.setName(animal.getName());
-		existingAnimal.setType(animal.getType());
+		existingAnimal.setAnimalType(animal.getAnimalType());
 		// save existing employee to DB
 		animalRepository.save(existingAnimal);
 		return existingAnimal;
@@ -57,5 +62,7 @@ public class AnimalServiceImpl implements AnimalService {
 								new ResourceNotFoundException("Employee", "Id", id));
 		animalRepository.deleteById(id);
 	}
-	
+
+
+
 }

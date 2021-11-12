@@ -11,12 +11,12 @@ public class Animal {
 	
 	@Id
 //	@GeneratedValue(strategy = GenerationType.IDENTITY)  for now we set this manually
-	private Integer AnimalID;
+	private Integer animalID;
 	
 	@Column(name = "Name", nullable = false)
-	private String Name;
+	private String name;
 	
-	@Column(name = "Type")
-	private String Type;
+	@Column(name = "Animal_Type", nullable = false)
+	private String animalType;
 
 }
