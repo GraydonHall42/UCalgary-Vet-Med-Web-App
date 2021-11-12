@@ -3,6 +3,7 @@ package com.springboot.app.springbootbackend.model;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Data
 @Entity
@@ -26,5 +27,8 @@ public class Treatment {
 
     @Column(name = "description")
     private String description;
+
+    @OneToMany(mappedBy = "treatmentID")
+    List<TreatmentImages> treatmentImages;
 
 }
