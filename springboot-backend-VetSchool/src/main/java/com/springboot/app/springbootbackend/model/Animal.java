@@ -23,7 +23,10 @@ public class Animal {
 	@OneToMany(mappedBy = "animalID")  // this is the name in the corresponding table
 	List<AnimalWeight> weights;
 
-	@OneToMany(mappedBy = "animalID")  // this is the name in the corresponding table
+	@OneToMany(mappedBy = "animalID")
 	List<AnimalProfileImages> images;
+
+	@OneToMany(mappedBy = "animalID")
+	List<AnimalMedicalIssues> medicalIssues;
 
 }
