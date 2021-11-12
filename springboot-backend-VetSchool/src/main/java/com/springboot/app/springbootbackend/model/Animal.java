@@ -20,7 +20,7 @@ public class Animal {
 	@Column(name = "animalType", nullable = false)
 	private String animalType;
 
-	@OneToMany(mappedBy = "animalID")
+	@OneToMany(mappedBy = "animalID")  // this is the name in the corresponding table
 	List<AnimalWeight> weights;
 
 }
