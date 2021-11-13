@@ -32,7 +32,7 @@ public class Treatment {
     List<TreatmentImages> treatmentImages;
 
     @ManyToOne()
-    @JoinColumn(name = "userID")
-    User author;
+    @JoinColumn(name = "authorID")  // give the name in this table
+    private User author;
 
 }
