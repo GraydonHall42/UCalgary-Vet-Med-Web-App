@@ -1,7 +1,7 @@
 package com.springboot.app.springbootbackend.controller;
 
 import com.springboot.app.springbootbackend.model.ClassroomBooking;
-import com.springboot.app.springbootbackend.service.ClassroomBookingsService;
+import com.springboot.app.springbootbackend.service.ClassroomBookingService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -10,11 +10,11 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/bookings")
-public class ClassroomBookingsController {
+public class ClassroomBookingController {
 
-	private ClassroomBookingsService bookingService;
+	private ClassroomBookingService bookingService;
 
-	public ClassroomBookingsController(ClassroomBookingsService bookingService) {
+	public ClassroomBookingController(ClassroomBookingService bookingService) {
 		super();
 		this.bookingService = bookingService;
 	}

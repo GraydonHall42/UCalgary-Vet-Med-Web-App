@@ -2,18 +2,18 @@ package com.springboot.app.springbootbackend.service.impl;
 
 import com.springboot.app.springbootbackend.exception.ResourceNotFoundException;
 import com.springboot.app.springbootbackend.model.ClassroomBooking;
-import com.springboot.app.springbootbackend.repository.ClassroomBookingsRepository;
-import com.springboot.app.springbootbackend.service.ClassroomBookingsService;
+import com.springboot.app.springbootbackend.repository.ClassroomBookingRepository;
+import com.springboot.app.springbootbackend.service.ClassroomBookingService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class ClassroomBookingsServiceImpl implements ClassroomBookingsService {
+public class ClassroomBookingServiceImpl implements ClassroomBookingService {
 
-	private ClassroomBookingsRepository bookingRepository;
+	private ClassroomBookingRepository bookingRepository;
 
-	public ClassroomBookingsServiceImpl(ClassroomBookingsRepository bookingsRepository) {
+	public ClassroomBookingServiceImpl(ClassroomBookingRepository bookingsRepository) {
 		super();
 		this.bookingRepository = bookingsRepository;
 	}

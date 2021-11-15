@@ -4,7 +4,7 @@ import com.springboot.app.springbootbackend.model.ClassroomBooking;
 
 import java.util.List;
 
-public interface ClassroomBookingsService {
+public interface ClassroomBookingService {
 	ClassroomBooking saveBooking(ClassroomBooking user);
 	List<ClassroomBooking> getAllBookings();
 	ClassroomBooking getBookingById(int id);
