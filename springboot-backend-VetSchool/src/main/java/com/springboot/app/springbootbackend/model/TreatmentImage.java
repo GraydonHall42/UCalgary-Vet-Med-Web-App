@@ -10,10 +10,11 @@ import javax.persistence.*;
 public class TreatmentImage {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer treatmentphotoID;
+    @Column(name="treatment_photo_id", nullable = false)
+    private Integer treatmentphotoId;
 
-    @Column(name="treatmentID", nullable = false)
-    private Integer treatmentID;
+    @Column(name="treatment_id", nullable = false)
+    private Integer treatmentId;
 
     @Column(name = "image")
     private String image;

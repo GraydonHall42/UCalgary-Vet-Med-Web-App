@@ -11,13 +11,11 @@ import java.util.List;
 public class Treatment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer treatmentID;
+    @Column(name="treatment_id", nullable = false)
+    private Integer treatmentId;
 
-    @Column(name="MedicalIssueId", nullable = false)
-    private Integer MedicalIssueId;
-
-    @Column(name="animalID", nullable = false)
-    private Integer animalID;
+    @Column(name="medical_issue_id", nullable = false)
+    private Integer medicalIssueId;
 
     @Column(name = "title")
     private String title;
@@ -28,11 +26,11 @@ public class Treatment {
     @Column(name = "description")
     private String description;
 
-    @OneToMany(mappedBy = "treatmentID")
+    @OneToMany(mappedBy = "treatmentId")
     List<TreatmentImage> treatmentImages;
 
     @ManyToOne()
-    @JoinColumn(name = "authorID")  // give the name in this table
+    @JoinColumn(name = "author_id")  // give the name in this table
     private User author;
 
 }

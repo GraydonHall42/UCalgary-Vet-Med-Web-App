@@ -4,12 +4,12 @@ USE vet_db_group248;
 
 DROP TABLE IF EXISTS USER;
 CREATE TABLE USER (
-	userID				int not null auto_increment,
+	user_id				int not null auto_increment,
 	name				varchar(25) not null,
     email				varchar(25) not null,
     password			varchar(25) not null,
     user_type			varchar(25) not null,
-	primary key (userID)
+	primary key (user_id)
 );
 
 INSERT INTO USER (name, email, password, user_type)
@@ -22,10 +22,10 @@ VALUES ('John', 'John@gmail.com', '1234', 'Vet'),
 DROP TABLE IF EXISTS ANIMAL;
 create table ANIMAL
 (
-	animalID int not null auto_increment,
+	animal_id int not null auto_increment,
 	animal_name varchar(25) not null,
 	animal_type varchar(25) not null,
-	primary key (animalID)
+	primary key (animal_id)
 );
 
 
@@ -38,15 +38,15 @@ VALUES ('Sally', 'Dog'),
 
 DROP TABLE IF EXISTS ANIMAL_WEIGHT;
 CREATE TABLE ANIMAL_WEIGHT(
-    weightID        int auto_increment,
-    animalID        int not null,
+    weight_id        int auto_increment,
+    animal_id        int not null,
     date            datetime,
     weight          double,
-    primary key (weightID),
-    foreign key (animalID) references ANIMAL(animalID)
+    primary key (weight_id),
+    foreign key (animal_id) references ANIMAL(animal_id)
 );
 
-INSERT INTO ANIMAL_WEIGHT (animalID, date, weight)
+INSERT INTO ANIMAL_WEIGHT (animal_id, date, weight)
 VALUES (1, '2021-09-01', 25),
        (1, '2021-10-01', 26),
        (1, '2021-11-01', 27),
@@ -66,15 +66,15 @@ VALUES (1, '2021-09-01', 25),
 
 DROP TABLE IF EXISTS ANIMAL_PROFILE_IMAGES;
 CREATE TABLE ANIMAL_PROFILE_IMAGES(
-    photoID         int auto_increment,
-    animalID        int not null,
+    photo_id         int auto_increment,
+    animal_id        int not null,
     date            datetime,
     image          varchar(10) not null,
-    primary key (photoID),
-    foreign key (animalID) references ANIMAL(animalID)
+    primary key (photo_id),
+    foreign key (animal_id) references ANIMAL(animal_id)
 );
 
-INSERT INTO ANIMAL_PROFILE_IMAGES (animalID, date, image)
+INSERT INTO ANIMAL_PROFILE_IMAGES (animal_id, date, image)
 VALUES (1, '2021-09-01', 'img1.jpg'),
        (1, '2021-09-01', 'img2.jpg'),
        (1, '2021-09-01', 'img3.jpg'),
@@ -95,18 +95,18 @@ VALUES (1, '2021-09-01', 'img1.jpg'),
 
 DROP TABLE IF EXISTS ANIMAL_MEDICAL_ISSUES;
 CREATE TABLE ANIMAL_MEDICAL_ISSUES(
-    issueID          int auto_increment,
-    animalID                int not null,
+    issue_id          int auto_increment,
+    animal_id                int not null,
     issue_name               varchar(25),
     current_status           varchar(10),
     open_date                datetime,
     close_date               datetime,
     description             varchar(500),
-    primary key (issueID),
-    foreign key (animalID) references ANIMAL(animalID)
+    primary key (issue_id),
+    foreign key (animal_id) references ANIMAL(animal_id)
 );
 
-INSERT INTO ANIMAL_MEDICAL_ISSUES (animalID, issue_name, current_status, open_date, close_date, description)
+INSERT INTO ANIMAL_MEDICAL_ISSUES (animal_id, issue_name, current_status, open_date, close_date, description)
 VALUES (1, 'Scratched Ear', 'Green', '2020-09-01', '2020-09-05', 'Sally Cut her ear and it was bleeding'),
        (1, 'Broken Leg', 'Yellow', '2021-09-01', NULL, 'Sally broke leg running'),
        (2, 'Upset Stomach', 'Green', '2020-12-01', '2020-12-01', 'Jimmy had upset stomach issues'),
@@ -116,21 +116,21 @@ VALUES (1, 'Scratched Ear', 'Green', '2020-09-01', '2020-09-05', 'Sally Cut her 
 
 DROP TABLE IF EXISTS TREATMENT;
 CREATE TABLE TREATMENT(
-    treatmentID             int auto_increment,
-    issueID          int not null,
-    animalID                int not null,
-    authorID                int not null,  # COMMENTIN THIS OUT FOR NOW
+    treatment_id            int auto_increment,
+    issue_id	            int not null,
+    animal_id               int not null,
+    author_id                int not null,  # COMMENTIN THIS OUT FOR NOW
     title                   varchar(30),
     date                    datetime,
     description             varchar(500),
-    primary key (treatmentID),
-    foreign key (animalID) references ANIMAL(animalID),
-    foreign key (authorID) references USER(UserID),
-    foreign key (issueID) references ANIMAL_MEDICAL_ISSUES(issueID)
+    primary key (treatment_id),
+    foreign key (animal_id) references ANIMAL(animal_id),
+    foreign key (author_id) references USER(user_id),
+    foreign key (issue_id) references ANIMAL_MEDICAL_ISSUES(issue_id)
 );
 
 # INSERT INTO TREATMENT (animalID, medicalIssueID, authorID, title, date, description)
-INSERT INTO TREATMENT (animalID, issueID, authorID, title, date, description)
+INSERT INTO TREATMENT (animal_id, issue_id, author_id, title, date, description)
 VALUES (1, 1, 1, 'Give Stiches', '2020-09-01', 'Gave sally stitches for her cut ear'),
        (1, 1, 1, 'Remove Stiches', '2020-09-05', 'Took out stitches for sally, issue resolved'),
        (1, 2, 1, 'Splint broken leg', '2021-09-01', 'Gave sally splint for leg. Follow up to check healing in 2 months'),
@@ -142,14 +142,14 @@ VALUES (1, 1, 1, 'Give Stiches', '2020-09-01', 'Gave sally stitches for her cut 
 
 DROP TABLE IF EXISTS TREATMENT_IMAGES;
 CREATE TABLE TREATMENT_IMAGES(
-    treatmentphotoID        int auto_increment,
-    treatmentID             int not null,
-    image                   varchar(10) not null,
-    primary key (treatmentphotoID),
-    foreign key (treatmentID) references TREATMENT(treatmentID)
+    treatment_photo_id        int auto_increment,
+    treatment_id              int not null,
+    image                     varchar(10) not null,
+    primary key (treatment_photo_id),
+    foreign key (treatment_id) references TREATMENT(treatment_id)
 );
 
-INSERT INTO TREATMENT_IMAGES (treatmentID, image)
+INSERT INTO TREATMENT_IMAGES (treatment_id, image)
 VALUES (1, 'img13.jpg'),
        (1, 'img14.jpg'),
        (2, 'img15.jpg'),
@@ -165,21 +165,21 @@ VALUES (1, 'img13.jpg'),
 
 DROP TABLE IF EXISTS ANIMAL_CLASSROOM_BOOKINGS;
 CREATE TABLE ANIMAL_CLASSROOM_BOOKINGS(
-    bookingID                   int auto_increment,
-    animalID                    int not null,
-    teacherID                   int not null,
-    approveeID                  int,
+    booking_id                   int auto_increment,
+    animal_id                    int not null,
+    teacher_id                   int not null,
+    approvee_id                  int,
     booking_date                DATE,
     start_time                  TIME,
     return_time                 TIME,
     approval_status             varchar(10) not null,
-    primary key (bookingID),
-    foreign key (animalID) references ANIMAL(animalID),
-    foreign key (teacherID) references USER(userID),
-    foreign key (approveeID) references USER(userID)
+    primary key (booking_id),
+    foreign key (animal_id) references ANIMAL(animal_id),
+    foreign key (teacher_id) references USER(user_id),
+    foreign key (approvee_id) references USER(user_id)
 );
 
-INSERT INTO ANIMAL_CLASSROOM_BOOKINGS (animalID, teacherID, approveeID, booking_date, start_time, return_time, approval_status)
+INSERT INTO ANIMAL_CLASSROOM_BOOKINGS (animal_id, teacher_id, approvee_id, booking_date, start_time, return_time, approval_status)
 VALUES (3, 4, 1, '2021-11-15', '12:00:00', '13:00:00', 'Approved'),
        (4, 4, NULL, '2021-11-16', '12:00:00', '13:00:00', 'Pending')
 

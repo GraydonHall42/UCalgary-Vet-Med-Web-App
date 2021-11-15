@@ -12,21 +12,22 @@ public class Animal {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer animalID;
+	@Column(name="animal_id")
+	private Integer animalId;
 	
-	@Column(name = "animalName", nullable = false)
+	@Column(name = "animal_name", nullable = false)
 	private String animalName;
 	
-	@Column(name = "animalType", nullable = false)
+	@Column(name = "animal_type", nullable = false)
 	private String animalType;
 
-	@OneToMany(mappedBy = "animalID")  // this is the name in the corresponding table
+	@OneToMany(mappedBy = "animalId")  // this is the name in the corresponding table
 	List<AnimalWeight> weights;
 
-	@OneToMany(mappedBy = "animalID")
+	@OneToMany(mappedBy = "animalId")
 	List<AnimalProfileImage> images;
 
-	@OneToMany(mappedBy = "animalID")
+	@OneToMany(mappedBy = "animalId")
 	List<MedicalIssue> medicalIssues;
 
 }

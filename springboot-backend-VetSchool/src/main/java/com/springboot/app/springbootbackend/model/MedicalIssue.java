@@ -7,32 +7,32 @@ import java.util.List;
 
 @Data
 @Entity
-@Table(name="animal_medical_issues")
+@Table(name="medical_issues")
 public class MedicalIssue {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="medical_issue_id")
     private Integer medicalIssueId;
 
-    @Column(name="AnimalID", nullable = false)
-    private Integer animalID;
+    @Column(name="animal_id", nullable = false)
+    private Integer animalId;
 
-    @Column(name="IssueName")
+    @Column(name="issue_name")
     private String issueName;
 
-    @Column(name="CurrentStatus")
+    @Column(name="current_status")
     private String currentStatus;
 
-    @Column(name="OpenDate")
+    @Column(name="open_date")
     private String openDate;
 
-    @Column(name="CloseDate")
+    @Column(name="close_date")
     private String closeDate;
 
-    @Column(name="Description")
+    @Column(name="description")
     private String description;
 
-    @OneToMany(mappedBy = "MedicalIssueId")
+    @OneToMany(mappedBy = "medicalIssueId")
     List<Treatment> treatments;
 
 }

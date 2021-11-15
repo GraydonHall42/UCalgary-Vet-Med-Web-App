@@ -6,14 +6,15 @@ import javax.persistence.*;
 
 @Data
 @Entity
-@Table(name="animal_profile_images")
+@Table(name="profile_images")
 public class AnimalProfileImage {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer photoID;
+    @Column(name="photo_id", nullable = false)
+    private Integer photoId;
 
-    @Column(name="animalID", nullable = false)
-    private Integer animalID;
+    @Column(name="animal_id", nullable = false)
+    private Integer animalId;
 
     @Column(name = "date")
     private String date;

@@ -6,14 +6,15 @@ import javax.persistence.*;
 
 @Data
 @Entity
-@Table(name="animal_weight")
+@Table(name="weight")
 public class AnimalWeight {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer weightID;
+    @Column(name="weight_id", nullable = false)
+    private Integer weightId;
 
-    @Column(name="animalID", nullable = false)
-    private Integer animalID;
+    @Column(name="animal_id", nullable = false)
+    private Integer animalId;
 
     @Column(name = "date")
     private String date;
