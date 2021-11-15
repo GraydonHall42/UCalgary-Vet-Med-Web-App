@@ -6,12 +6,12 @@ import javax.persistence.*;
 
 @Data
 @Entity
-@Table(name="weight")
-public class AnimalWeight {
+@Table(name="profile_images")
+public class ProfileImage {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="weight_id", nullable = false)
-    private Integer weightId;
+    @Column(name="photo_id", nullable = false)
+    private Integer photoId;
 
     @Column(name="animal_id", nullable = false)
     private Integer animalId;
@@ -19,7 +19,7 @@ public class AnimalWeight {
     @Column(name = "date")
     private String date;
 
-    @Column(name = "weight")
-    private String weight;
+    @Column(name = "image")
+    private String image;
 
 }

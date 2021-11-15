@@ -36,8 +36,8 @@ VALUES ('Sally', 'Dog'),
        ('Buttercup', 'Cat');
 
 
-DROP TABLE IF EXISTS ANIMAL_WEIGHT;
-CREATE TABLE ANIMAL_WEIGHT(
+DROP TABLE IF EXISTS WEIGHT;
+CREATE TABLE WEIGHT(
     weight_id        int auto_increment,
     animal_id        int not null,
     date            datetime,
@@ -46,7 +46,7 @@ CREATE TABLE ANIMAL_WEIGHT(
     foreign key (animal_id) references ANIMAL(animal_id)
 );
 
-INSERT INTO ANIMAL_WEIGHT (animal_id, date, weight)
+INSERT INTO WEIGHT (animal_id, date, weight)
 VALUES (1, '2021-09-01', 25),
        (1, '2021-10-01', 26),
        (1, '2021-11-01', 27),
@@ -64,8 +64,8 @@ VALUES (1, '2021-09-01', 25),
        (4, '2021-11-01', 18),
        (4, '2021-12-01', 19);
 
-DROP TABLE IF EXISTS ANIMAL_PROFILE_IMAGES;
-CREATE TABLE ANIMAL_PROFILE_IMAGES(
+DROP TABLE IF EXISTS PROFILE_IMAGES;
+CREATE TABLE PROFILE_IMAGES(
     photo_id         int auto_increment,
     animal_id        int not null,
     date            datetime,
@@ -74,7 +74,7 @@ CREATE TABLE ANIMAL_PROFILE_IMAGES(
     foreign key (animal_id) references ANIMAL(animal_id)
 );
 
-INSERT INTO ANIMAL_PROFILE_IMAGES (animal_id, date, image)
+INSERT INTO PROFILE_IMAGES (animal_id, date, image)
 VALUES (1, '2021-09-01', 'img1.jpg'),
        (1, '2021-09-01', 'img2.jpg'),
        (1, '2021-09-01', 'img3.jpg'),
@@ -93,20 +93,20 @@ VALUES (1, '2021-09-01', 'img1.jpg'),
        (4, '2021-09-01', 'img16.jpg');
 
 
-DROP TABLE IF EXISTS ANIMAL_MEDICAL_ISSUES;
-CREATE TABLE ANIMAL_MEDICAL_ISSUES(
-    issue_id          int auto_increment,
+DROP TABLE IF EXISTS MEDICAL_ISSUES;
+CREATE TABLE MEDICAL_ISSUES(
+    medical_issue_id          int auto_increment,
     animal_id                int not null,
     issue_name               varchar(25),
     current_status           varchar(10),
     open_date                datetime,
     close_date               datetime,
     description             varchar(500),
-    primary key (issue_id),
+    primary key (medical_issue_id),
     foreign key (animal_id) references ANIMAL(animal_id)
 );
 
-INSERT INTO ANIMAL_MEDICAL_ISSUES (animal_id, issue_name, current_status, open_date, close_date, description)
+INSERT INTO MEDICAL_ISSUES (animal_id, issue_name, current_status, open_date, close_date, description)
 VALUES (1, 'Scratched Ear', 'Green', '2020-09-01', '2020-09-05', 'Sally Cut her ear and it was bleeding'),
        (1, 'Broken Leg', 'Yellow', '2021-09-01', NULL, 'Sally broke leg running'),
        (2, 'Upset Stomach', 'Green', '2020-12-01', '2020-12-01', 'Jimmy had upset stomach issues'),
@@ -117,26 +117,24 @@ VALUES (1, 'Scratched Ear', 'Green', '2020-09-01', '2020-09-05', 'Sally Cut her 
 DROP TABLE IF EXISTS TREATMENT;
 CREATE TABLE TREATMENT(
     treatment_id            int auto_increment,
-    issue_id	            int not null,
-    animal_id               int not null,
+    medical_issue_id	            int not null,
     author_id                int not null,  # COMMENTIN THIS OUT FOR NOW
     title                   varchar(30),
     date                    datetime,
     description             varchar(500),
     primary key (treatment_id),
-    foreign key (animal_id) references ANIMAL(animal_id),
     foreign key (author_id) references USER(user_id),
-    foreign key (issue_id) references ANIMAL_MEDICAL_ISSUES(issue_id)
+    foreign key (medical_issue_id) references MEDICAL_ISSUES(medical_issue_id)
 );
 
 # INSERT INTO TREATMENT (animalID, medicalIssueID, authorID, title, date, description)
-INSERT INTO TREATMENT (animal_id, issue_id, author_id, title, date, description)
-VALUES (1, 1, 1, 'Give Stiches', '2020-09-01', 'Gave sally stitches for her cut ear'),
-       (1, 1, 1, 'Remove Stiches', '2020-09-05', 'Took out stitches for sally, issue resolved'),
-       (1, 2, 1, 'Splint broken leg', '2021-09-01', 'Gave sally splint for leg. Follow up to check healing in 2 months'),
-       (1, 2, 1, 'Change splint dressing', '2021-10-01', 'Changed dressing for Sallys splint'),
-       (2, 3, 1, 'Administer stomach medication', '2020-12-01', 'Gave Jimmy stomach meds to ease stomach issues'),
-       (2, 4, 1, 'Pull tooth', '2020-11-10', 'Pulled Jimmys infected tooth. Follow up in one week');
+INSERT INTO TREATMENT (medical_issue_id, author_id, title, date, description)
+VALUES (1, 1, 'Give Stiches', '2020-09-01', 'Gave sally stitches for her cut ear'),
+       (1, 1, 'Remove Stiches', '2020-09-05', 'Took out stitches for sally, issue resolved'),
+       (2, 1, 'Splint broken leg', '2021-09-01', 'Gave sally splint for leg. Follow up to check healing in 2 months'),
+       (2, 1, 'Change splint dressing', '2021-10-01', 'Changed dressing for Sallys splint'),
+       (3, 1, 'Administer stomach medication', '2020-12-01', 'Gave Jimmy stomach meds to ease stomach issues'),
+       (4, 1, 'Pull tooth', '2020-11-10', 'Pulled Jimmys infected tooth. Follow up in one week');
         # going to leave out last 2 issues... we will assume the issue has been created, but the animals have not yet been seen.
 
 
@@ -163,8 +161,8 @@ VALUES (1, 'img13.jpg'),
        (6, 'img23.jpg'),
        (6, 'img24.jpg');
 
-DROP TABLE IF EXISTS ANIMAL_CLASSROOM_BOOKINGS;
-CREATE TABLE ANIMAL_CLASSROOM_BOOKINGS(
+DROP TABLE IF EXISTS CLASSROOM_BOOKINGS;
+CREATE TABLE CLASSROOM_BOOKINGS(
     booking_id                   int auto_increment,
     animal_id                    int not null,
     teacher_id                   int not null,
@@ -179,7 +177,7 @@ CREATE TABLE ANIMAL_CLASSROOM_BOOKINGS(
     foreign key (approvee_id) references USER(user_id)
 );
 
-INSERT INTO ANIMAL_CLASSROOM_BOOKINGS (animal_id, teacher_id, approvee_id, booking_date, start_time, return_time, approval_status)
+INSERT INTO CLASSROOM_BOOKINGS (animal_id, teacher_id, approvee_id, booking_date, start_time, return_time, approval_status)
 VALUES (3, 4, 1, '2021-11-15', '12:00:00', '13:00:00', 'Approved'),
        (4, 4, NULL, '2021-11-16', '12:00:00', '13:00:00', 'Pending')
 

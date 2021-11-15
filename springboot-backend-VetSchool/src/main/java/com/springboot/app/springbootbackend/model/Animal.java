@@ -22,10 +22,10 @@ public class Animal {
 	private String animalType;
 
 	@OneToMany(mappedBy = "animalId")  // this is the name in the corresponding table
-	List<AnimalWeight> weights;
+	List<Weight> weights;
 
 	@OneToMany(mappedBy = "animalId")
-	List<AnimalProfileImage> images;
+	List<ProfileImage> images;
 
 	@OneToMany(mappedBy = "animalId")
 	List<MedicalIssue> medicalIssues;
