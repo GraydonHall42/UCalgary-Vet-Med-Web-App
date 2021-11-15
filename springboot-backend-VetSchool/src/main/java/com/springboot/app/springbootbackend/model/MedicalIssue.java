@@ -11,27 +11,28 @@ import java.util.List;
 public class MedicalIssue {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer issueID;
+    @Column(name="medical_issue_id")
+    private Integer medicalIssueId;
 
-    @Column(name="animalID", nullable = false)
+    @Column(name="AnimalID", nullable = false)
     private Integer animalID;
 
-    @Column(name = "issueName")
+    @Column(name="IssueName")
     private String issueName;
 
-    @Column(name = "currentStatus")
+    @Column(name="CurrentStatus")
     private String currentStatus;
 
-    @Column(name = "openDate")
+    @Column(name="OpenDate")
     private String openDate;
 
-    @Column(name = "closeDate")
+    @Column(name="CloseDate")
     private String closeDate;
 
-    @Column(name = "description")
+    @Column(name="Description")
     private String description;
 
-    @OneToMany(mappedBy = "issueID")
+    @OneToMany(mappedBy = "MedicalIssueId")
     List<Treatment> treatments;
 
 }

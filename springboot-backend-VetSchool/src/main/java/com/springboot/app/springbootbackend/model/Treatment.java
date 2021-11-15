@@ -13,8 +13,8 @@ public class Treatment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer treatmentID;
 
-    @Column(name="issueID", nullable = false)
-    private Integer issueID;
+    @Column(name="MedicalIssueId", nullable = false)
+    private Integer MedicalIssueId;
 
     @Column(name="animalID", nullable = false)
     private Integer animalID;

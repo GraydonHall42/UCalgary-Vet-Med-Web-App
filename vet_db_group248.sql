@@ -92,28 +92,28 @@ VALUES (1, '2021-09-01', 'img1.jpg'),
 DROP TABLE IF EXISTS ANIMAL_MEDICAL_ISSUES;
 CREATE TABLE ANIMAL_MEDICAL_ISSUES(
     AnimalID                int not null,
-    MedicalIssueID          varchar(10) not null,
-    IssueName               varchar(25),
-    CurrentStatus           varchar(10),
-    OpenDate                datetime,
-    CloseDate               datetime,
-    Description             varchar(500),
-    primary key (MedicalIssueID),
+    medical_issue_id          int AUTO_INCREMENT,
+    issue_name               varchar(25),
+    current_status           varchar(10),
+    open_date                datetime,
+    close_date               datetime,
+    description             varchar(500),
+    primary key (medical_issue_id),
     foreign key (AnimalID) references ANIMAL(AnimalID)
 );
 
-INSERT INTO ANIMAL_MEDICAL_ISSUES (AnimalID, MedicalIssueID, IssueName, CurrentStatus, OpenDate, CloseDate, Description)
-VALUES (1, '1', 'Scratched Ear', 'Green', '2020-09-01', '2020-09-05', 'Sally Cut her ear and it was bleeding'),
-       (1, '2', 'Broken Leg', 'Yellow', '2021-09-01', NULL, 'Sally broke leg running'),
-       (2, '3', 'Upset Stomach', 'Green', '2020-12-01', '2020-12-01', 'Jimmy had upset stomach issues'),
-       (2, '4', 'Infected Tooth', 'Yellow', '2021-11-10', NULL, 'Jimmy has a tooth that has become infected'),
-       (3, '5', 'Broken Ankle', 'Red', '2021-11-10', NULL, 'Ralph has broken his ankle and needs surgery'),
-       (4, '6', 'Ingrown claw', 'Yellow', '2021-11-10', NULL, 'Buttercup has an ingrown claw on her right paw')
+INSERT INTO ANIMAL_MEDICAL_ISSUES (AnimalID, medical_issue_id, issue_name, current_status, open_date, close_date, description)
+VALUES (1, 1, 'Scratched Ear', 'Green', '2020-09-01', '2020-09-05', 'Sally Cut her ear and it was bleeding'),
+       (1, 2, 'Broken Leg', 'Yellow', '2021-09-01', NULL, 'Sally broke leg running'),
+       (2, 3, 'Upset Stomach', 'Green', '2020-12-01', '2020-12-01', 'Jimmy had upset stomach issues'),
+       (2, 4, 'Infected Tooth', 'Yellow', '2021-11-10', NULL, 'Jimmy has a tooth that has become infected'),
+       (3, 5, 'Broken Ankle', 'Red', '2021-11-10', NULL, 'Ralph has broken his ankle and needs surgery'),
+       (4, 6, 'Ingrown claw', 'Yellow', '2021-11-10', NULL, 'Buttercup has an ingrown claw on her right paw');
 
 DROP TABLE IF EXISTS TREATMENT;
 CREATE TABLE TREATMENT(
     AnimalID                int not null,
-    MedicalIssueID          varchar(10) not null,
+    MedicalIssueID          int not null,
     TreatmentID             varchar(10) not null,
     AuthorID                varchar(10) not null,
     Title                   varchar(30),
@@ -122,7 +122,7 @@ CREATE TABLE TREATMENT(
     primary key (TreatmentID),
     foreign key (AnimalID) references ANIMAL(AnimalID),
     foreign key (AuthorID) references USER(UserID),
-    foreign key (MedicalIssueID) references ANIMAL_MEDICAL_ISSUES(MedicalIssueID)
+    foreign key (MedicalIssueID) references ANIMAL_MEDICAL_ISSUES(medical_issue_id)
 );
 
 INSERT INTO TREATMENT (AnimalID, MedicalIssueID, TreatmentID, AuthorID, Title, Date, Description)
@@ -175,11 +175,11 @@ CREATE TABLE ANIMAL_CLASSROOM_BOOKINGS(
 
 INSERT INTO ANIMAL_CLASSROOM_BOOKINGS (BookingID, AnimalID, TeacherID, ApproveeID, BookingDate, StartTime, ReturnTime, ApprovalStatus)
 VALUES ('1', 3, '4', '1', '2021-11-15', '12:00:00', '13:00:00', 'Approved'),
-       ('2', 4, '4', NULL, '2021-11-16', '12:00:00', '13:00:00', 'Pending')
+       ('2', 4, '4', NULL, '2021-11-16', '12:00:00', '13:00:00', 'Pending');
 
-SELECT a.Name, ams.IssueName, ams.CurrentStatus, ams.OpenDate, ams.CloseDate
+SELECT a.Name, ams.issue_name, ams.current_status, ams.open_date, ams.close_date
 FROM ANIMAL_MEDICAL_ISSUES AS ams
 LEFT JOIN ANIMAL as a
     ON ams.AnimalID = a.AnimalID
-WHERE ams.CurrentStatus != 'Green'
+WHERE ams.current_status != 'Green'
 
