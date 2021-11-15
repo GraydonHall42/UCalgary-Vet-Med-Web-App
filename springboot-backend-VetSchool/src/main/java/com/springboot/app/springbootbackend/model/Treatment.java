@@ -29,7 +29,7 @@ public class Treatment {
     private String description;
 
     @OneToMany(mappedBy = "treatmentID")
-    List<TreatmentImages> treatmentImages;
+    List<TreatmentImage> treatmentImages;
 
     @ManyToOne()
     @JoinColumn(name = "authorID")  // give the name in this table

@@ -7,7 +7,7 @@ import javax.persistence.*;
 @Data
 @Entity
 @Table(name="animal_profile_images")
-public class AnimalProfileImages {
+public class AnimalProfileImage {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer photoID;

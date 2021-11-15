@@ -8,7 +8,7 @@ import java.util.List;
 @Data
 @Entity
 @Table(name="animal_medical_issues")
-public class AnimalMedicalIssues {
+public class MedicalIssue {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer issueID;

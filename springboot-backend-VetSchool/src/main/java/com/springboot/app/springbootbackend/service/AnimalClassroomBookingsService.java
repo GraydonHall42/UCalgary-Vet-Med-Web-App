@@ -1,14 +1,13 @@
 package com.springboot.app.springbootbackend.service;
 
-import com.springboot.app.springbootbackend.model.AnimalClassroomBookings;
-import com.springboot.app.springbootbackend.model.User;
+import com.springboot.app.springbootbackend.model.AnimalClassroomBooking;
 
 import java.util.List;
 
 public interface AnimalClassroomBookingsService {
-	AnimalClassroomBookings saveBooking(AnimalClassroomBookings user);
-	List<AnimalClassroomBookings> getAllBookings();
-	AnimalClassroomBookings getBookingById(int id);
-	AnimalClassroomBookings updateBooking(AnimalClassroomBookings user, int id);
+	AnimalClassroomBooking saveBooking(AnimalClassroomBooking user);
+	List<AnimalClassroomBooking> getAllBookings();
+	AnimalClassroomBooking getBookingById(int id);
+	AnimalClassroomBooking updateBooking(AnimalClassroomBooking user, int id);
 	void deleteBooking(int id);
 }

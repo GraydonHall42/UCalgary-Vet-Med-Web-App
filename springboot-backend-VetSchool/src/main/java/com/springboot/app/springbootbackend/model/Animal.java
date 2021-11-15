@@ -24,9 +24,9 @@ public class Animal {
 	List<AnimalWeight> weights;
 
 	@OneToMany(mappedBy = "animalID")
-	List<AnimalProfileImages> images;
+	List<AnimalProfileImage> images;
 
 	@OneToMany(mappedBy = "animalID")
-	List<AnimalMedicalIssues> medicalIssues;
+	List<MedicalIssue> medicalIssues;
 
 }
