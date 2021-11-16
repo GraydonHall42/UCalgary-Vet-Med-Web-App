@@ -1,9 +1,13 @@
 package com.springboot.app.springbootbackend.controller;
 
+import com.fasterxml.jackson.databind.ser.FilterProvider;
+import com.fasterxml.jackson.databind.ser.impl.SimpleBeanPropertyFilter;
+import com.fasterxml.jackson.databind.ser.impl.SimpleFilterProvider;
 import com.springboot.app.springbootbackend.model.Animal;
 import com.springboot.app.springbootbackend.service.AnimalService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.json.MappingJacksonValue;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -30,6 +34,20 @@ public class AnimalController {
     @GetMapping
     public List<Animal> getAllAnimals(){
         return animalService.getAllAnimals();
+    }
+
+    // build get animal by id, eight only REST API
+    // http://localhost:8080/animals/1/weights
+    @GetMapping("{id}/weights")
+    public MappingJacksonValue getAnimalWeightOnly(@PathVariable("id") int id) {
+
+        SimpleBeanPropertyFilter simpleBeanPropertyFilter = SimpleBeanPropertyFilter.serializeAllExcept("images", "medicalIssues");
+        FilterProvider filterProvider = new SimpleFilterProvider().addFilter("weightFilter", simpleBeanPropertyFilter);
+        Animal selected = animalService.getAnimalById(id);
+        MappingJacksonValue mappingJacksonValue = new MappingJacksonValue(selected);
+        mappingJacksonValue.setFilters(filterProvider);
+
+        return mappingJacksonValue;
     }
 
     // build get animals by id REST API

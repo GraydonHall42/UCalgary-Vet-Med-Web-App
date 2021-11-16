@@ -1,5 +1,6 @@
 package com.springboot.app.springbootbackend.service.impl;
 
+import com.fasterxml.jackson.annotation.JsonFilter;
 import com.springboot.app.springbootbackend.exception.ResourceNotFoundException;
 import com.springboot.app.springbootbackend.model.Animal;
 import com.springboot.app.springbootbackend.repository.AnimalRepository;

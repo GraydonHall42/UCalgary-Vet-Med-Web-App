@@ -1,5 +1,6 @@
 package com.springboot.app.springbootbackend.model;
 
+import com.fasterxml.jackson.annotation.JsonFilter;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -7,6 +8,7 @@ import java.util.List;
 
 @Data
 @Entity
+@JsonFilter("weightFilter")
 @Table(name="animal")
 public class Animal {
 	
