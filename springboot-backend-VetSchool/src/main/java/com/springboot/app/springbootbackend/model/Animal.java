@@ -1,7 +1,11 @@
 package com.springboot.app.springbootbackend.model;
 
 import com.fasterxml.jackson.annotation.JsonFilter;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ser.impl.SimpleFilterProvider;
 import lombok.Data;
+import org.springframework.beans.factory.annotation.Configurable;
+import org.springframework.context.annotation.Configuration;
 
 import javax.persistence.*;
 import java.util.List;
