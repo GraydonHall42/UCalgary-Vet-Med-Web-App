@@ -27,6 +27,7 @@ public class AnimalController {
     // build create employee REST API
     @PostMapping()
     public ResponseEntity<Animal> saveAnimal(@RequestBody Animal animal){
+
         return new ResponseEntity<Animal>(animalService.saveAnimal(animal), HttpStatus.CREATED);
     }
 
