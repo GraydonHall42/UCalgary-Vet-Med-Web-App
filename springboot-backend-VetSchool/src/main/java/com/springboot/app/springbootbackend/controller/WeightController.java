@@ -58,4 +58,14 @@ public class WeightController {
         return new ResponseEntity<String>("Weight deleted successfully!", HttpStatus.OK);
     }
 
+    @GetMapping("/animalid/{id}")
+    public List<Weight> getWeightByAnimalID(@PathVariable("id") int id) {
+        return weightService.getWeightByAnimalId(id);
+    }
+
+    @GetMapping("/animalid2/{id}/{date}")
+    public List<Weight> nativeQueryTest(@PathVariable("id") int id, @PathVariable("date") String date) {
+        return weightService.nativeQueryTest(id, date);
+    }
+
 }

@@ -59,4 +59,16 @@ public class WeightServiceImpl implements WeightService {
 
         weightRepository.deleteById(id);
     }
+
+    @Override
+    public List<Weight> getWeightByAnimalId(int id) {
+        return weightRepository.findAllByAnimalId(id).orElseThrow(() ->
+                new ResourceNotFoundException("Weight", "AnimalId", id));
+    }
+
+    @Override
+    public List<Weight> nativeQueryTest(int id, String date) {
+        return weightRepository.loggers(id, date).orElseThrow(() ->
+                new ResourceNotFoundException("Weight", "AnimalId", id));
+    }
 }
