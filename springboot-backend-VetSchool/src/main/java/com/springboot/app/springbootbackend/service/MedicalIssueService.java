@@ -9,6 +9,6 @@ public interface MedicalIssueService {
 
     MedicalIssue saveMedicalIssue(MedicalIssue issue);
     List<MedicalIssue> getAllMedicalIssues();
-    MedicalIssue getIssueById(Integer id);
+    MedicalIssue getMedicalIssueById(Integer medicalIssueId);
 
 }

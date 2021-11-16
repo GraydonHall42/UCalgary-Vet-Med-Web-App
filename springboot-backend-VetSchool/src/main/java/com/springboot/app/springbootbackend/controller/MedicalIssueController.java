@@ -34,4 +34,9 @@ public class MedicalIssueController {
         return medicalIssueService.getAllMedicalIssues();
     }
 
+    @GetMapping("{id}")
+    public ResponseEntity<MedicalIssue> getMedicalIssueByID(@PathVariable("id") int medicalIssueId){
+        return new ResponseEntity<MedicalIssue>(medicalIssueService.getMedicalIssueById(medicalIssueId), HttpStatus.OK);
+    }
+
 }

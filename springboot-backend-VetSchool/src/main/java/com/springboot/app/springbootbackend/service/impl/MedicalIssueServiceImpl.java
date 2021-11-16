@@ -1,5 +1,7 @@
 package com.springboot.app.springbootbackend.service.impl;
 
+import com.springboot.app.springbootbackend.exception.ResourceNotFoundException;
+import com.springboot.app.springbootbackend.model.ClassroomBooking;
 import com.springboot.app.springbootbackend.model.MedicalIssue;
 import com.springboot.app.springbootbackend.repository.MedicalIssueRepository;
 import com.springboot.app.springbootbackend.service.MedicalIssueService;
@@ -28,9 +30,9 @@ public class MedicalIssueServiceImpl implements MedicalIssueService {
     }
 
     @Override
-    public MedicalIssue getIssueById(Integer id) {
-        return null;
+    public MedicalIssue getMedicalIssueById(Integer medicalIssueId) {
+        return medicalIssueRepository.findById(medicalIssueId).orElseThrow(() ->
+                new ResourceNotFoundException("Employee", "Id", medicalIssueId));
     }
-
 
 }
