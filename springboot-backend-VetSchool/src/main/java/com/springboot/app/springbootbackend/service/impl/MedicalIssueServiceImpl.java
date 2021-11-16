@@ -5,6 +5,8 @@ import com.springboot.app.springbootbackend.repository.MedicalIssueRepository;
 import com.springboot.app.springbootbackend.service.MedicalIssueService;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class MedicalIssueServiceImpl implements MedicalIssueService {
 
@@ -18,6 +20,11 @@ public class MedicalIssueServiceImpl implements MedicalIssueService {
     @Override
     public MedicalIssue saveMedicalIssue(MedicalIssue issue){
         return medicalIssueRepository.save(issue);
+    }
+
+    @Override
+    public List<MedicalIssue> getAllMedicalIssues() {
+        return medicalIssueRepository.findAll();
     }
 
     @Override
