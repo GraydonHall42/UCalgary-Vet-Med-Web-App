@@ -1,9 +1,11 @@
 package com.springboot.app.springbootbackend.controller;
 
+import com.fasterxml.jackson.databind.ser.impl.SimpleBeanPropertyFilter;
 import com.springboot.app.springbootbackend.model.Animal;
 import com.springboot.app.springbootbackend.service.AnimalService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.json.MappingJacksonValue;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
