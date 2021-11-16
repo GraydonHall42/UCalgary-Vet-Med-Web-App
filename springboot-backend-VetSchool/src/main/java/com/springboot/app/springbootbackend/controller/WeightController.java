@@ -1,6 +1,5 @@
 package com.springboot.app.springbootbackend.controller;
 
-import com.springboot.app.springbootbackend.model.TreatmentImage;
 import com.springboot.app.springbootbackend.model.Weight;
 import com.springboot.app.springbootbackend.service.WeightService;
 import org.springframework.http.HttpStatus;

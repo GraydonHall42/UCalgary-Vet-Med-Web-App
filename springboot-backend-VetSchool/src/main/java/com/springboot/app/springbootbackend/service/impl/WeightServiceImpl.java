@@ -53,9 +53,9 @@ public class WeightServiceImpl implements WeightService {
     @Override
     public void deleteWeight(int id) {
 
-        // check whether weight with given id exists in DB or not
-        Weight existingWeight = weightRepository.findById(id).orElseThrow(
-                () -> new ResourceNotFoundException("Weight", "Id", id));
+        // check whether a weight exist in a DB or not
+        weightRepository.findById(id).orElseThrow(() ->
+                new ResourceNotFoundException("Weight", "Id", id));
 
         weightRepository.deleteById(id);
     }
