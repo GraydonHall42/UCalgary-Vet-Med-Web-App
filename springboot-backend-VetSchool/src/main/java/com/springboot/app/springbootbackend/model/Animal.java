@@ -8,7 +8,7 @@ import java.util.List;
 
 @Data
 @Entity
-@JsonFilter("weightFilter")
+@JsonFilter("Filter")
 @Table(name="animal")
 public class Animal {
 	

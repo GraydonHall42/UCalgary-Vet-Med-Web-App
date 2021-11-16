@@ -33,29 +33,45 @@ public class AnimalController {
     // build get all animals REST API
     // http://localhost:8080/api/animals
     @GetMapping
-    public List<Animal> getAllAnimals(){
-        return animalService.getAllAnimals();
+    public MappingJacksonValue getAllAnimals(@RequestParam(required = false) String fields){
+        SimpleBeanPropertyFilter simpleBeanPropertyFilter;
+        if(fields.length() == 0){
+            simpleBeanPropertyFilter = SimpleBeanPropertyFilter.serializeAll();
+        }
+        else {
+            simpleBeanPropertyFilter = SimpleBeanPropertyFilter.serializeAllExcept(fields.split(","));
+        }
+
+        FilterProvider filterProvider = new SimpleFilterProvider().addFilter("Filter", simpleBeanPropertyFilter);
+        List<Animal> selected = animalService.getAllAnimals();
+        MappingJacksonValue mappingJacksonValue = new MappingJacksonValue(selected);
+        mappingJacksonValue.setFilters(filterProvider);
+
+        return mappingJacksonValue;
+
     }
 
     // build get animal by id, eight only REST API
     // http://localhost:8080/animals/1/weights
-    @GetMapping("{id}/weights")
-    public MappingJacksonValue getAnimalWeightOnly(@PathVariable("id") int id) {
+    @GetMapping("{id}")
+    public MappingJacksonValue getAnimalById(
+            @PathVariable("id") int id,
+            @RequestParam(required = false) String fields
+    ) {
+        SimpleBeanPropertyFilter simpleBeanPropertyFilter;
+        if(fields.length() == 0){
+            simpleBeanPropertyFilter = SimpleBeanPropertyFilter.serializeAll();
+        }
+        else {
+            simpleBeanPropertyFilter = SimpleBeanPropertyFilter.serializeAllExcept(fields.split(","));
+        }
 
-        SimpleBeanPropertyFilter simpleBeanPropertyFilter = SimpleBeanPropertyFilter.serializeAllExcept("images", "medicalIssues");
-        FilterProvider filterProvider = new SimpleFilterProvider().addFilter("weightFilter", simpleBeanPropertyFilter);
+        FilterProvider filterProvider = new SimpleFilterProvider().addFilter("Filter", simpleBeanPropertyFilter);
         Animal selected = animalService.getAnimalById(id);
         MappingJacksonValue mappingJacksonValue = new MappingJacksonValue(selected);
         mappingJacksonValue.setFilters(filterProvider);
 
         return mappingJacksonValue;
-    }
-
-    // build get animals by id REST API
-    // http://localhost:8080/api/animals/1
-    @GetMapping("{id}")
-    public ResponseEntity<Animal> getAnimalByID(@PathVariable("id") int animalID){
-        return new ResponseEntity<Animal>(animalService.getAnimalById(animalID), HttpStatus.OK);
     }
 
     // build get animal by type REST API
