@@ -9,5 +9,8 @@ public interface WeightService {
 
     Weight saveWeight(Weight weight);
     List<Weight> getAllWeights();
+    Weight getWeightById(int id);
+    Weight updateWeight(Weight weight, int id);
+    void deleteWeight(int id);
 
 }

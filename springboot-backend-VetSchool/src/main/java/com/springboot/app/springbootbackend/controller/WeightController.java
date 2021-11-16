@@ -33,4 +33,30 @@ public class WeightController {
     public List<Weight> getAllWeights(){
         return weightService.getAllWeights();
     }
+
+    // build get weight by id REST API
+    // http://localhost:8080/api/weight/1
+    @GetMapping("{id}")
+    public ResponseEntity<Weight> getWeightByID(@PathVariable("id") int weightID) {
+        return new ResponseEntity<Weight>(weightService.getWeightById(weightID), HttpStatus.OK);
+    }
+
+    // build update weight REST API
+    // http://localhost:8080/api/weight/1
+    @PutMapping("{id}")
+    public ResponseEntity<Weight> updateWeight(@PathVariable("id") int id
+                                                    , @RequestBody Weight weight){
+        return new ResponseEntity<Weight>(weightService.updateWeight(weight, id), HttpStatus.OK);
+    }
+
+    // build delete weight REST API
+    // http://localhost:8080/api/weight/1
+    @DeleteMapping("{id}")
+    public ResponseEntity<String> deleteWeight(@PathVariable("id") int id) {
+
+        weightService.deleteWeight(id);
+
+        return new ResponseEntity<String>("Weight deleted successfully!", HttpStatus.OK);
+    }
+
 }
