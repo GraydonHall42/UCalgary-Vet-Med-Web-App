@@ -60,4 +60,10 @@ public class ProfileImageServiceImpl implements ProfileImageService {
 
         profileImageRepository.deleteById(id);
     }
+
+    @Override
+    public List<ProfileImage> getAllProfileImagesByAnimalId(int id) {
+        return profileImageRepository.findProfileImagesByAnimalId(id).orElseThrow(() ->
+                new ResourceNotFoundException("ProfileImage", "Id", id));
+    }
 }

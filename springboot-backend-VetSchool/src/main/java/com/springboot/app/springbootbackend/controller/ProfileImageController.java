@@ -35,14 +35,21 @@ public class ProfileImageController {
         return profileImageService.getAllProfileImages();
     }
 
-    // build get weight by id REST API
+    // build get profile image by id REST API
     // http://localhost:8080/api/profile-image/1
     @GetMapping("{id}")
     public ResponseEntity<ProfileImage> getProfileImageByID(@PathVariable("id") int profileImagesID) {
         return new ResponseEntity<ProfileImage>(profileImageService.getProfileImageById(profileImagesID), HttpStatus.OK);
     }
 
-    // build update weight REST API
+    // build get profile image by animal id REST API
+    // http://localhost:8080/api/profile-image/1
+    @GetMapping("/animalId/{id}")
+    public List<ProfileImage> getProfileImageByAnimalID(@PathVariable("id") int id) {
+        return profileImageService.getAllProfileImagesByAnimalId(id);
+    }
+
+    // build update profile image REST API
     // http://localhost:8080/api/profile-image/1
     @PutMapping("{id}")
     public ResponseEntity<ProfileImage> updateProfileImage(@PathVariable("id") int id
@@ -50,7 +57,7 @@ public class ProfileImageController {
         return new ResponseEntity<ProfileImage>(profileImageService.updateProfileImage(profileImage, id), HttpStatus.OK);
     }
 
-    // build delete weight REST API
+    // build delete profile image REST API
     // http://localhost:8080/api/profile-image/1
     @DeleteMapping("{id}")
     public ResponseEntity<String> deleteProfileImage(@PathVariable("id") int id) {

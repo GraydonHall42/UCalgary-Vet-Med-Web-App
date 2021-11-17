@@ -42,6 +42,7 @@ public class TreatmentImageController {
                         treatmentImageService.getTreatmentImageById(treatmentImageID), HttpStatus.OK);
     }
 
+
     // build update treatmentImage REST API
     // http://localhost:8080/api/treatment-images/1
     @PutMapping("{id}")

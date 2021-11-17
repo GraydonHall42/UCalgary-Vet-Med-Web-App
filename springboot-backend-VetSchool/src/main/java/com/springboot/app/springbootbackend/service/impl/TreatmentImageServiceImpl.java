@@ -59,4 +59,5 @@ public class TreatmentImageServiceImpl implements TreatmentImageService {
 
         treatmentImageRepository.deleteById(id);
     }
+
 }
