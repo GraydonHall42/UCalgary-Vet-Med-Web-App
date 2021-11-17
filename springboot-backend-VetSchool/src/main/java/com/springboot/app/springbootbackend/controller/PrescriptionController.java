@@ -60,7 +60,7 @@ public class PrescriptionController {
     }
 
     @GetMapping("/animalid/{id}")
-    public List<Prescription> getWeightByAnimalID(@PathVariable("id") int id) {
+    public List<Prescription> getPrescriptionByAnimalID(@PathVariable("id") int id) {
         return prescriptionService.getPrescriptionByAnimalId(id);
     }
 
