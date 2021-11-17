@@ -13,4 +13,5 @@ public interface ProfileImageService {
     ProfileImage getProfileImageById(int id);
     ProfileImage updateProfileImage(ProfileImage profileImage, int id);
     void deleteProfileImage(int id);
+    List<ProfileImage> getAllProfileImagesByAnimalId(int id);
 }
