@@ -36,4 +36,7 @@ public class Animal {
 	@OneToMany(mappedBy = "animalId")
 	List<MedicalIssue> medicalIssues;
 
+	@OneToMany(mappedBy = "animalId")
+	List<Prescription> prescriptions;
+
 }

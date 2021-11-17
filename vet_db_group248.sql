@@ -46,8 +46,27 @@ CREATE TABLE WEIGHT(
     foreign key (animal_id) references ANIMAL(animal_id)
 );
 
-DROP TABLE IF EXISTS PRESCRIPTON;
-CREATE TABLE PRESCRIPTON(
+INSERT INTO WEIGHT (animal_id, date, weight)
+VALUES (1, '2021-09-01', 25),
+       (1, '2021-10-01', 26),
+       (1, '2021-11-01', 27),
+       (1, '2021-12-01', 28),
+       (2, '2021-09-01', 22),
+       (2, '2021-10-01', 23),
+       (2, '2021-11-01', 24),
+       (2, '2021-12-01', 25),
+       (3, '2021-09-01', 15),
+       (3, '2021-10-01', 16),
+       (3, '2021-11-01', 17),
+       (3, '2021-12-01', 18),
+       (4, '2021-09-01', 16),
+       (4, '2021-10-01', 17),
+       (4, '2021-11-01', 18),
+       (4, '2021-12-01', 19);
+
+
+DROP TABLE IF EXISTS PRESCRIPTION;
+CREATE TABLE PRESCRIPTION(
     prescription_id         int auto_increment,
     animal_id               int not null,
     date                    datetime,
@@ -57,7 +76,7 @@ CREATE TABLE PRESCRIPTON(
     foreign key (animal_id) references ANIMAL(animal_id)
 );
 
-INSERT INTO PRESCRIPTON (animal_id, date, medicine, directions)
+INSERT INTO PRESCRIPTION (animal_id, date, medicine, directions)
 VALUES (1, '2021-10-01', 'Advil', '1 month, daily'),
        (1, '2021-10-11', 'Tylenol', '2 months, 3x daily'),
        (2, '2021-11-01', 'Penicillan', '1 week, 2x daily'),
