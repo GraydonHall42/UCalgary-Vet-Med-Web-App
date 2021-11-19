@@ -7,7 +7,7 @@ ensf 607 and 608 project
 
 Path: "http://localhost:8080/api/weight/animalid/2" <br>
 Verb: GET <br>
-Request: weight by animal Id <br>
+Request: N/A <br>
 Response: <br>
 ```
 [
