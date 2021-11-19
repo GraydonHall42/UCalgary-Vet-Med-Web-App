@@ -39,16 +39,19 @@ Response: <br>
 ```
 #### POST User (E248-66)
 
-Path: http://localhost:8080/api/users
-Verb: POST
-Request:
+Path: http://localhost:8080/api/users<br>
+Verb: POST<br>
+Request:<br>
+```
 {
     "name": "Janet",
     "email": "Janet@gmail.com",
     "password": "3456",
     "userType": "Animal Health Technician"
 }
-Response:
+```
+Response:<br>
+```
 {
     "userId": 6,
     "name": "Janet",
@@ -56,26 +59,29 @@ Response:
     "password": "3456",
     "userType": "Animal Health Technician"
 }
-
+```
 #### DELETE Animal (E248-90)
 
-Path: http://localhost:8080/api/animals/5
-Verb: DELETE
-Request: N/A
-Response: "Animal deleted successfully!."
+Path: http://localhost:8080/api/animals/5<br>
+Verb: DELETE<br>
+Request: N/A<br>
+Response: "Animal deleted successfully!."<br>
 
 #### PUT User (E248-65)
 
-Path: http://localhost:8080/api/users/6
-Verb: PUT
-Request:
+Path: http://localhost:8080/api/users/6<br>
+Verb: PUT<br>
+Request:<br>
+```
 {
     "name": "Janet",
     "email": "Janet@gmail.com",
     "password": "1234",
     "userType": "Animal Health Technician"
 }
-Response:
+```
+Response:<br>
+```
 {
     "userId": 6,
     "name": "Janet",
@@ -83,14 +89,15 @@ Response:
     "password": "1234",
     "userType": "Animal Health Technician"
 }
-
+```
 
 #### GET Animal Medical Issues (E248-75)
 
-Path: http://localhost:8080/api/animals/1?fields=weights,images,prescriptions
-Verb: GET
-Request: N/A
-Response:
+Path: http://localhost:8080/api/animals/1?fields=weights,images,prescriptions<br>
+Verb: GET<br>
+Request: N/A<br>
+Response:<br>
+```
 {
     "animalId": 1,
     "animalName": "Sally",
@@ -224,3 +231,4 @@ Response:
         }
     ]
 }
+```
