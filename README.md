@@ -241,3 +241,11 @@ Response:<br>
     ]
 }
 ```
+
+## Other API related tasks completed
+The following image gives a list of the other tasks completed during this sprint.
+These task represent other API endpoints which we have created. 
+Testing of all endpoints can be conducted by importing the file `SpringBootAPI-VetSchool.postman_collection.json`
+into Postman.<br>
+![](images/Sprint3CompletedTasks1.png)<br>
+![](images/Sprint3CompletedTasks2.png)<br>
