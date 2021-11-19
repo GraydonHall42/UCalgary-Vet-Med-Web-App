@@ -47,10 +47,12 @@ public class UserServiceImpl implements UserService {
 
 		// we need to check whether employee with given id is exist in DB or not
 		User existingUser = userRepository.findById(id).orElseThrow(
-				() -> new ResourceNotFoundException("Animal", "Id", id));
+				() -> new ResourceNotFoundException("User", "Id", id));
 
 		existingUser.setName(user.getName());
 		existingUser.setUserType(user.getUserType());
+		existingUser.setPassword(user.getPassword());
+		existingUser.setEmail(user.getEmail());
 		// save existing employee to DB
 		userRepository.save(existingUser);
 		return existingUser;
