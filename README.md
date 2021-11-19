@@ -1,7 +1,16 @@
 # group248
 ensf 607 and 608 project
 
-## Project Sprint 3 - API
+# Project Sprint 3 - API
+### Instrutions to run API
+
+#### Step 1: change your username and password for MySQL in this file here
+![](images/runningAPIChangePasswordInstructions.png)
+
+#### Step 2: Run vet_db_gropu248.sql file to populate database
+
+## Endpoint Examples
+Below, you can find 4 test endpoints, with their Path, Verb, Request, and Response (in JSON)
 
 #### GET Animal Weight (E248-72)
 
@@ -39,7 +48,7 @@ Response: <br>
 ```
 #### POST User (E248-66)
 
-Path: http://localhost:8080/api/users<br>
+Path: http://localhost:8080/api/users <br>
 Verb: POST<br>
 Request:<br>
 ```
@@ -62,7 +71,7 @@ Response:<br>
 ```
 #### DELETE Animal (E248-90)
 
-Path: http://localhost:8080/api/animals/5<br>
+Path: http://localhost:8080/api/animals/5 <br>
 Verb: DELETE<br>
 Request: N/A<br>
 Response: "Animal deleted successfully!."<br>
@@ -93,7 +102,7 @@ Response:<br>
 
 #### GET Animal Medical Issues (E248-75)
 
-Path: http://localhost:8080/api/animals/1?fields=weights,images,prescriptions<br>
+Path: http://localhost:8080/api/animals/1?fields=weights,images,prescriptions <br>
 Verb: GET<br>
 Request: N/A<br>
 Response:<br>
