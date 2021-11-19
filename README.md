@@ -5,10 +5,11 @@ ensf 607 and 608 project
 
 #### GET Animal Weight (E248-72)
 
-Path: "http://localhost:8080/api/weight/animalid/2"
-Verb: GET
-Request: weight by animal Id
-Response:
+Path: "http://localhost:8080/api/weight/animalid/2" <br>
+Verb: GET <br>
+Request: weight by animal Id <br>
+Response: <br>
+```
 [
     {
         "weightId": 5,
@@ -35,7 +36,7 @@ Response:
         "weight": "25.0"
     }
 ]
-
+```
 #### POST User (E248-66)
 
 Path: http://localhost:8080/api/users
