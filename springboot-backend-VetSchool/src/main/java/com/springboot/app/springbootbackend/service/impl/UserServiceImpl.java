@@ -63,7 +63,7 @@ public class UserServiceImpl implements UserService {
 
 		// check whether a employee exist in a DB or not
 		userRepository.findById(id).orElseThrow(() ->
-								new ResourceNotFoundException("Employee", "Id", id));
+								new ResourceNotFoundException("User", "Id", id));
 		userRepository.deleteById(id);
 	}
 

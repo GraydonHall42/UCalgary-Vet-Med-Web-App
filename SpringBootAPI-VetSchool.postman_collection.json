@@ -15,7 +15,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"animalName\": \"Spud\",\r\n    \"animalType\": \"Dog\"\r\n}",
+							"raw": "{\r\n    \"animalName\": \"Spud3\",\r\n    \"animalType\": \"Dog\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -125,8 +125,12 @@
 					"request": {
 						"method": "DELETE",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
-							"raw": "http://localhost:8080/api/animals/5",
+							"raw": "http://localhost:8080/api/animals/9",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -135,7 +139,7 @@
 							"path": [
 								"api",
 								"animals",
-								"5"
+								"9"
 							]
 						}
 					},
@@ -363,6 +367,32 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "GetAnimalMedicalIssues",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/animals?fields=images, prescriptions,weights",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"animals"
+							],
+							"query": [
+								{
+									"key": "fields",
+									"value": "images, prescriptions,weights"
+								}
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -376,7 +406,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"animalId\": 2,\r\n    \"issueName\": \"illness\",\r\n    \"currentStatus\": \"Green\",\r\n    \"openDate\": \"2021-11-15\",\r\n    \"closeDate\": null,\r\n    \"description\": \"animal has a cold\"\r\n}",
+							"raw": "{\r\n    \"animalId\": 2,\r\n    \"issueName\": \"sick\",\r\n    \"currentStatus\": \"Green\",\r\n    \"openDate\": \"2021-11-15\",\r\n    \"closeDate\": null,\r\n    \"description\": \"animal has a cold\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -393,6 +423,57 @@
 							"path": [
 								"api",
 								"medical"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PutMedicalIssue",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"animalId\": 1,\r\n        \"issueName\": \"Scratched Ear\",\r\n        \"currentStatus\": \"Yellow\",\r\n        \"openDate\": \"2020-09-01 00:00:00\",\r\n        \"closeDate\": \"2020-09-05 00:00:00\",\r\n        \"description\": \"Sally Cut her ear and it was bleeding\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/medical/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"medical",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteMedicalIssue",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/medical/7",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"medical",
+								"7"
 							]
 						}
 					},
@@ -634,12 +715,71 @@
 			]
 		},
 		{
-			"name": "Treatment",
+			"name": "Comments",
 			"item": [
 				{
-					"name": "PostTreatment",
+					"name": "PostComment",
 					"request": {
 						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"medicalIssueId\": 2,\r\n    \"title\": \"4 Advils\",\r\n    \"date\": \"2021-11-15\",\r\n    \"description\": \"gave animal 2 advil for cold\",\r\n    \"author\": \r\n    {\r\n        \"userId\": 3,\r\n        \"name\": \"Jane\",\r\n        \"email\": \"Jane@gmail.com\",\r\n        \"password\": \"3456\",\r\n        \"userType\": \"Animal Health Technician\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/comments",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"comments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PutComment",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"medicalIssueId\": 1,\r\n    \"title\": \"Gave Stiches\",\r\n    \"date\": \"2020-09-01 00:00:00\",\r\n    \"description\": \"Gave sally stitches for her cut ear\",\r\n    \"commentImages\": []\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/comments/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"comments",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteComment",
+					"request": {
+						"method": "DELETE",
 						"header": [],
 						"body": {
 							"mode": "raw",
@@ -651,7 +791,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/treatments",
+							"raw": "http://localhost:8080/api/comments/8",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -659,14 +799,15 @@
 							"port": "8080",
 							"path": [
 								"api",
-								"treatments"
+								"comments",
+								"8"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "GetAllTreatments",
+					"name": "GetAllComments",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -678,7 +819,7 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/treatments",
+							"raw": "http://localhost:8080/api/comments",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -686,7 +827,7 @@
 							"port": "8080",
 							"path": [
 								"api",
-								"treatments"
+								"comments"
 							]
 						}
 					},
@@ -1056,41 +1197,6 @@
 				},
 				{
 					"name": "GetWeightByAnimalIDandDate",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8080/api/weight/animalid2/2/2021-09-01 00:00:00",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"weight",
-								"animalid2",
-								"2",
-								"2021-09-01 00:00:00"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "GetWeightByAnimalIDandDate Copy",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
