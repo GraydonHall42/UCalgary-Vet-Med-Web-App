@@ -133,21 +133,21 @@ VALUES (1, 'Scratched Ear', 'Green', '2020-09-01', '2020-09-05', 'Sally Cut her 
        (3, 'Broken Ankle', 'Red', '2021-11-10', NULL, 'Ralph has broken his ankle and needs surgery'),
        (4, 'Ingrown claw', 'Yellow', '2021-11-10', NULL, 'Buttercup has an ingrown claw on her right paw');
 
-DROP TABLE IF EXISTS TREATMENT;
-CREATE TABLE TREATMENT(
-    treatment_id            int auto_increment,
+DROP TABLE IF EXISTS COMMENT;
+CREATE TABLE COMMENT(
+    comment_id            int auto_increment,
     medical_issue_id	            int not null,
     author_id                int not null,  # COMMENTIN THIS OUT FOR NOW
     title                   varchar(30),
     date                    datetime,
     description             varchar(500),
-    primary key (treatment_id),
+    primary key (comment_id),
     foreign key (author_id) references USER(user_id),
     foreign key (medical_issue_id) references MEDICAL_ISSUES(medical_issue_id)
 );
 
 # INSERT INTO TREATMENT (animalID, medicalIssueID, authorID, title, date, description)
-INSERT INTO TREATMENT (medical_issue_id, author_id, title, date, description)
+INSERT INTO COMMENT (medical_issue_id, author_id, title, date, description)
 VALUES (1, 1, 'Give Stiches', '2020-09-01', 'Gave sally stitches for her cut ear'),
        (1, 1, 'Remove Stiches', '2020-09-05', 'Took out stitches for sally, issue resolved'),
        (2, 1, 'Splint broken leg', '2021-09-01', 'Gave sally splint for leg. Follow up to check healing in 2 months'),
@@ -157,16 +157,16 @@ VALUES (1, 1, 'Give Stiches', '2020-09-01', 'Gave sally stitches for her cut ear
         # going to leave out last 2 issues... we will assume the issue has been created, but the animals have not yet been seen.
 
 
-DROP TABLE IF EXISTS TREATMENT_IMAGES;
-CREATE TABLE TREATMENT_IMAGES(
-    treatment_photo_id        int auto_increment,
-    treatment_id              int not null,
+DROP TABLE IF EXISTS COMMENT_IMAGES;
+CREATE TABLE COMMENT_IMAGES(
+    comment_photo_id        int auto_increment,
+    comment_id              int not null,
     image                     varchar(10) not null,
-    primary key (treatment_photo_id),
-    foreign key (treatment_id) references TREATMENT(treatment_id)
+    primary key (comment_photo_id),
+    foreign key (comment_id) references COMMENT(comment_id)
 );
 
-INSERT INTO TREATMENT_IMAGES (treatment_id, image)
+INSERT INTO COMMENT_IMAGES (comment_id, image)
 VALUES (1, 'img13.jpg'),
        (1, 'img14.jpg'),
        (2, 'img15.jpg'),

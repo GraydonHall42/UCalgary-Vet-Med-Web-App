@@ -33,6 +33,6 @@ public class MedicalIssue {
     private String description;
 
     @OneToMany(mappedBy = "medicalIssueId")
-    List<Treatment> treatments;
+    List<Comment> comments;
 
 }

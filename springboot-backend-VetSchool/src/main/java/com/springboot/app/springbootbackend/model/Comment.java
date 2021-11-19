@@ -7,12 +7,12 @@ import java.util.List;
 
 @Data
 @Entity
-@Table(name="treatment")
-public class Treatment {
+@Table(name="comment")
+public class Comment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="treatment_id", nullable = false)
-    private Integer treatmentId;
+    @Column(name="comment_id", nullable = false)
+    private Integer commentId;
 
     @Column(name="medical_issue_id", nullable = false)
     private Integer medicalIssueId;
@@ -26,8 +26,8 @@ public class Treatment {
     @Column(name = "description")
     private String description;
 
-    @OneToMany(mappedBy = "treatmentId")
-    List<TreatmentImage> treatmentImages;
+    @OneToMany(mappedBy = "commentId")
+    List<CommentImage> commentImages;
 
     @ManyToOne()
     @JoinColumn(name = "author_id")  // give the name in this table
