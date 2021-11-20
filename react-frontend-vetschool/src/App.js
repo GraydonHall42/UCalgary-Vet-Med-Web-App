@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import "./App.css";
 //import pages
@@ -8,11 +8,18 @@ import Login from "./pages/Login";
 
 
 function App() {
-    let loggedIn = true;
+    const validUser = {username: "group248", password: "password"};
+    const [loggedIn, setLoggedIn] = useState(false);
+
+    const Authenticate = cred => {
+        if(cred.username == validUser.username && cred.password == validUser.password){
+            setLoggedIn(true);
+        }
+    }
 
     if(loggedIn){
         return (
-            <div className="App">
+            <div className="auth">
                 <Router>
                     <Navbar />
                     <Routes>
@@ -25,8 +32,8 @@ function App() {
     }
     else{
         return (
-            <div className="App">
-                <Login />
+            <div className="not-auth">
+                <Login Authenticate={Authenticate} />
             </div>
         )
     }

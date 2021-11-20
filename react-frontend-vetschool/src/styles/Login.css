@@ -1,5 +1,98 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 .login {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   background-color: #b82424;
   height: 100%;
   width: 100%;
+}
+
+.vet-building {
+  height: 100%;
+}
+
+input,
+button {
+  appearance: none;
+  background: none;
+  border: none;
+  outline: none;
+}
+
+.form {
+  display: block;
+  position: absolute;
+  margin-left: 50%;
+}
+
+.form-inner {
+  flex: 1;
+  position: relative;
+  display: block;
+  background: rgba(234, 172, 53);
+  padding: 40px 50px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.4);
+}
+
+.form-inner h2 {
+  color: #b82424;
+  font-size: 40px;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.form-inner .form-group {
+  display: block;
+  width: 300px;
+  margin-bottom: 25px;
+}
+
+.form-inner .form-group label {
+  display: block;
+  color: #666;
+  font-size: 20px;
+  margin-bottom: 5px;
+  transition: 0.4s;
+}
+
+.form-inner .form-group:focus-within label {
+  color: #b82424;
+}
+
+.form-inner .form-group input {
+  display: block;
+  width: 100%;
+  padding: 10px 15px;
+  background-color: #f8f8f8;
+  border-radius: 8px;
+  transition: 0.4s;
+}
+
+.form-inner .form-group:focus input {
+  box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.2);
+}
+
+.form-inner .submit-button {
+  display: inline-block;
+  padding: 10px 30px;
+  border-radius: 8px;
+  background-color: #b82424;
+  background-size: 200%;
+  background-position: 0%;
+  transition: 0.4s;
+  font-size: 15px;
+  color: #fff;
+  cursor: pointer;
+}
+
+.form-inner .submit-button:hover {
+  background-color: #f16666;
 }

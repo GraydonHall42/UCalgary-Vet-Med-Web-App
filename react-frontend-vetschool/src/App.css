@@ -1,3 +1,20 @@
+html,
+body,
+#root,
 .App {
+  height: 100%;
+  margin: 0;
+}
+
+.auth {
   text-align: center;
+}
+
+.not-auth {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
 }
