@@ -3,8 +3,10 @@ import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import "./App.css";
 //import pages
 import Home from "./pages/Home";
+import Weight from "./pages/Weight";
 import Navbar from "./components/Navbar";
 import Login from "./pages/Login";
+import WeightGraph from "./components/WeightGraph";
 
 
 function App() {
@@ -24,6 +26,7 @@ function App() {
                     <Navbar />
                     <Routes>
                         <Route exact path="/" element={<Home />} />
+                        <Route exact path="/weight" element={<Weight />} />
                     </Routes>
                 </Router>
                 
