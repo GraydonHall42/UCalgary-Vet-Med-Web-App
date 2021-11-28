@@ -3,6 +3,7 @@ import WeightGraph from "../components/WeightGraph";
 import AddWeightForm from "../components/AddWeightForm";
 import {Col, Container, Row} from "react-bootstrap";
 import AnimalProfileCard from "../components/AnimalProfileCard";
+import ProfileNavigation from "../components/ProfileNavigation";
 
 
 
@@ -49,6 +50,12 @@ function Weight() {
                     status="Healthy"
                     lastCheckup="2021-10-01"
                 />
+                <Row>
+                    <Col>
+                        <ProfileNavigation/>
+                    </Col>
+                </Row>
+
                 <Row className="align-items-center justify-content-center p-3">
                     <Col lg={9}>
                         <WeightGraph weightData={{weightData}}/>
