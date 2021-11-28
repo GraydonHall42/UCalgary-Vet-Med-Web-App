@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import WeightGraph from "../components/WeightGraph";
-import WeightAdder from "../components/WeightAdder";
+import AddWeightForm from "../components/AddWeightForm";
 import {Col, Container, Row} from "react-bootstrap";
 
 
@@ -46,7 +46,7 @@ function Weight() {
                         <WeightGraph weightData={{weightData}}/>
                     </Col>
                     <Col sm={4} class = 'card p-3 bg-light' >
-                        <WeightAdder addWeightData={addWeightData}/>
+                        <AddWeightForm addWeightData={addWeightData}/>
                     </Col>
                 </Row>
             </Container>

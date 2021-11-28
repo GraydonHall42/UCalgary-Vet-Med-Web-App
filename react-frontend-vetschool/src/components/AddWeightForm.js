@@ -4,7 +4,7 @@ import {Button, Card, Form} from "react-bootstrap";
 import "../styles/Weight.css"
 
 
-const WeightAdder = (props) => {
+const AddWeightForm = (props) => {
 
     const [weight, setWeight] = useState(null)
     const [date, setDate] = useState(null)
@@ -53,4 +53,4 @@ const WeightAdder = (props) => {
     )
 }
 
-export default WeightAdder;
+export default AddWeightForm;
