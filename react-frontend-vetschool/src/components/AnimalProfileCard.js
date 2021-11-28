@@ -7,7 +7,7 @@ import ForestImage from '../assets/forestbackground.jpg';
 const AnimalProfileCard = (props) =>  {
 
     return (
-        <div className="p-5">
+        <div className="p-2">
             <Card className="p-2 AnimalProfileCard" bg={'#e63946'}>
             <Container>
                 <Row >

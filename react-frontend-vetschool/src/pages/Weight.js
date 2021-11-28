@@ -49,7 +49,7 @@ function Weight() {
                     status="Healthy"
                     lastCheckup="2021-10-01"
                 />
-                <Row className="align-items-center justify-content-center p-5">
+                <Row className="align-items-center justify-content-center p-3">
                     <Col lg={9}>
                         <WeightGraph weightData={{weightData}}/>
                     </Col>
