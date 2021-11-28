@@ -6,7 +6,8 @@ import Home from "./pages/Home";
 import Weight from "./pages/Weight";
 import Navbar from "./components/Navbar";
 import Login from "./pages/Login";
-import WeightGraph from "./components/WeightGraph";
+import MedicalIssueList from "./pages/MedicalIssueList";
+import StatusDashboard from "./pages/StatusDashboard";
 
 
 function App() {
@@ -24,9 +25,11 @@ function App() {
             <div className="auth">
                 <Router>
                     <Navbar />
-                    <Routes>
+                    <Routes className="routes">
                         <Route exact path="/" element={<Home />} />
                         <Route exact path="/weight" element={<Weight />} />
+                        <Route exact path="/medical" element={<MedicalIssueList />} />
+                        <Route exact path="/status" element={<StatusDashboard />} />
                     </Routes>
                 </Router>
                 

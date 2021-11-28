@@ -8,6 +8,7 @@ body,
 
 .auth {
   text-align: center;
+  height: calc(100% - 80px);
 }
 
 .not-auth {
@@ -19,6 +20,11 @@ body,
   width: 100%;
 }
 
-body{
-  background-color: #EEEBDD;
+.routes {
+  overflow-y: auto;
+  height: 100%;
+}
+
+body {
+  background-color: #eeebdd;
 }
