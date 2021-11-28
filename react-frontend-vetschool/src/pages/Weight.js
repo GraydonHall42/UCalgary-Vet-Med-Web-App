@@ -2,6 +2,8 @@ import React, {useState} from 'react'
 import WeightGraph from "../components/WeightGraph";
 import AddWeightForm from "../components/AddWeightForm";
 import {Col, Container, Row} from "react-bootstrap";
+import AnimalProfileCard from "../components/AnimalProfileCard";
+
 
 
 function Weight() {
@@ -41,11 +43,17 @@ function Weight() {
     return (
         <div className="WeightsContainer">
             <Container>
+                <AnimalProfileCard
+                    name="Spud"
+                    type="Dog"
+                    status="Healthy"
+                    lastCheckup="2021-10-01"
+                />
                 <Row className="align-items-center justify-content-center p-5">
-                    <Col sm={8}>
+                    <Col lg={9}>
                         <WeightGraph weightData={{weightData}}/>
                     </Col>
-                    <Col sm={4} class = 'card p-3 bg-light' >
+                    <Col lg={3} class = 'card p-3 bg-light' >
                         <AddWeightForm addWeightData={addWeightData}/>
                     </Col>
                 </Row>
