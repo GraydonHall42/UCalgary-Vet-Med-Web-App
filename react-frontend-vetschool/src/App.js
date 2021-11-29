@@ -8,6 +8,7 @@ import Navbar from "./components/Navbar";
 import Login from "./pages/Login";
 import MedicalIssueList from "./pages/MedicalIssueList";
 import StatusDashboard from "./pages/StatusDashboard";
+import AnimalInfo from "./pages/AnimalInfo";
 
 
 function App() {
@@ -30,6 +31,7 @@ function App() {
                         <Route exact path="/weight" element={<Weight />} />
                         <Route exact path="/medical" element={<MedicalIssueList />} />
                         <Route exact path="/status" element={<StatusDashboard />} />
+                        <Route exact path="/animal-info" element={<AnimalInfo />} />
                     </Routes>
                 </Router>
                 

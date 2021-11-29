@@ -43,7 +43,7 @@ function Weight() {
 
     return (
         <div className="WeightsContainer">
-            <Container>
+            <Container fluid>
                 <AnimalProfileCard
                     name="Spud"
                     type="Dog"
@@ -55,7 +55,8 @@ function Weight() {
                         <ProfileNavigation/>
                     </Col>
                 </Row>
-
+            </Container>
+            <Container>
                 <Row className="align-items-center justify-content-center p-3">
                     <Col lg={9}>
                         <WeightGraph weightData={{weightData}}/>
