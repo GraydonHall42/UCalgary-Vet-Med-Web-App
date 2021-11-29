@@ -6,17 +6,25 @@ import {
     Container,
     Dropdown,
     DropdownButton,
-    FormControl,
+    FormControl, Image,
     InputGroup,
     Row
 } from "react-bootstrap";
 import "../styles/AnimalSearchBar.css"
 
-const AnimalSearchBar = (props) => {
+const SearchBarWithCriteria = (props) => {
 
-    const [value,setValue]=useState('Animal Name');
+    const [value,setValue]=useState(props.searchOptions[0]);
     const handleSelect=(e)=>{
         setValue(e)
+    }
+
+    function renderSearchCriteria() {
+        return props.searchOptions.map((criteria, index) => {
+            return (
+                <Dropdown.Item eventKey={criteria}>{criteria}</Dropdown.Item>
+            )
+        })
     }
 
     return (
@@ -31,8 +39,9 @@ const AnimalSearchBar = (props) => {
                         id="dropdown-menu-align-right"
                         onSelect={handleSelect}
                     >
-                        <Dropdown.Item eventKey="Animal Name">Animal Name</Dropdown.Item>
-                        <Dropdown.Item eventKey="Animal Type">Animal Type</Dropdown.Item>
+                        {renderSearchCriteria()}
+                        {/*<Dropdown.Item eventKey="Animal Name">Animal Name</Dropdown.Item>*/}
+                        {/*<Dropdown.Item eventKey="Animal Type">Animal Type</Dropdown.Item>*/}
                     </DropdownButton>
                     <FormControl
                         aria-label="Text input with dropdown button"
@@ -48,4 +57,4 @@ const AnimalSearchBar = (props) => {
     )
 }
 
-export default AnimalSearchBar;
+export default SearchBarWithCriteria;

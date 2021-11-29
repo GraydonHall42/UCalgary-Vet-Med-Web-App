@@ -7,6 +7,7 @@ import Navbar from "./components/Navbar";
 import Login from "./pages/Login";
 import StatusDashboard from "./pages/StatusDashboard";
 import AnimalProfilePage from "./pages/AnimalProfilePage";
+import UserManagement from "./pages/UserManagement";
 
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
                         <Route exact path="/" element={<Home />} />
                         <Route exact path="/status" element={<StatusDashboard />} />
                         <Route exact path="/animal-profile" element={<AnimalProfilePage />} />
+                        <Route exact path="/user-management" element={<UserManagement />} />
                     </Routes>
                 </Router>
                 
