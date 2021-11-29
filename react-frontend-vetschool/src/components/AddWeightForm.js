@@ -1,7 +1,7 @@
 import React, {useRef, useState} from 'react'
 import WeightGraph from "../components/WeightGraph";
 import {Button, Card, Form} from "react-bootstrap";
-import "../styles/Weight.css"
+import "../styles/AddWeightForm.css"
 
 
 const AddWeightForm = (props) => {

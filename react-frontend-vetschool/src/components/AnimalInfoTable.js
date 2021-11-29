@@ -1,6 +1,5 @@
 import React from 'react'
 import {Col, Container, Row, Table} from "react-bootstrap";
-import ProfileNavigation from "../components/ProfileNavigation";
 import AnimalProfileCard from "../components/AnimalProfileCard";
 
 const AnimalInfoTable = (props) => {

@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 import {Tabs, Tab, Container, Row, Col} from "react-bootstrap";
 import WeightGraph from './WeightGraph';
 import AddWeightForm from './AddWeightForm';
-import MedicalIssues from './MedicalIssues';
+import MedicalIssueList from './MedicalIssueList';
 import AnimalInfoTable from './AnimalInfoTable';
 import '../styles/AnimalProfileContent.css';
 
@@ -14,7 +14,7 @@ function AnimalProfileContent(props) {
         <Container>
             <Tabs fill justify activeKey={key} onSelect={(k) => setKey(k)} className="mb-3">
                 <Tab className="profileTab" eventKey="medical" title="Medical Issues">
-                    <MedicalIssues medicalData={props.medicalData}/>
+                    <MedicalIssueList medicalData={props.medicalData}/>
                 </Tab>
                 <Tab className="profileTab" eventKey="animalInfo" title="Animal Info">
                     <Container className="p-2">

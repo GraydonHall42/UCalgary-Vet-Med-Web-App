@@ -2,7 +2,7 @@ import React from 'react'
 import {Tabs, Tab, Container, Row, Col, Button, ButtonGroup} from "react-bootstrap";
 import '../styles/MedicalIssues.css';
 
-function MedicalIssues(props) {
+function MedicalIssueList(props) {
     
 
     function Item(issue){
@@ -46,4 +46,4 @@ function MedicalIssues(props) {
     )
 }
 
-export default MedicalIssues
+export default MedicalIssueList

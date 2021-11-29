@@ -3,12 +3,9 @@ import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import "./App.css";
 //import pages
 import Home from "./pages/Home";
-import Weight from "./pages/Weight";
 import Navbar from "./components/Navbar";
 import Login from "./pages/Login";
-import MedicalIssueList from "./pages/MedicalIssueList";
 import StatusDashboard from "./pages/StatusDashboard";
-import AnimalInfo from "./pages/AnimalInfo";
 import AnimalProfilePage from "./pages/AnimalProfilePage";
 
 
@@ -29,10 +26,7 @@ function App() {
                     <Navbar />
                     <Routes className="routes">
                         <Route exact path="/" element={<Home />} />
-                        <Route exact path="/weight" element={<Weight />} />
-                        <Route exact path="/medical" element={<MedicalIssueList />} />
                         <Route exact path="/status" element={<StatusDashboard />} />
-                        <Route exact path="/animal-info" element={<AnimalInfo />} />
                         <Route exact path="/animal-profile" element={<AnimalProfilePage />} />
                     </Routes>
                 </Router>
