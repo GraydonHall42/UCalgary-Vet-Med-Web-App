@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import {Col, Container, Row} from "react-bootstrap";
-import AnimalSearchBar from "../components/AnimalSearchBar";
+import SearchBarWithCriteria from "../components/SearchBarWithCriteria";
 import AnimalSearchResults from "../components/AnimalSearchResult";
 
 function Home() {
@@ -34,7 +34,7 @@ function Home() {
             <Container className="p-2">
                 <Row>
                     <Col>
-                        <AnimalSearchBar/>
+                        <SearchBarWithCriteria searchOptions ={["Animal Name", "Animal Type"]} />
                     </Col>
                 </Row>
                 <Row>
