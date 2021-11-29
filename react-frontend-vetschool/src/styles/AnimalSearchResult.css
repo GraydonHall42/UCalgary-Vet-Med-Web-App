@@ -1,0 +1,16 @@
+.AnimalSearchResult{
+    background-color: lightgray;
+    color: black;
+}
+
+.animalSearchImage{
+    height: 100px;
+    width: 100px;
+    border: 5px solid white;
+    overflow: hidden;
+    background-color: white;
+}
+
+.searchResultBtn{
+    margin: 2px;
+}

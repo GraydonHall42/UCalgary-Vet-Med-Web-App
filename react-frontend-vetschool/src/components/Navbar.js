@@ -10,7 +10,7 @@ function Navbar() {
                 <img src={Logo} />
             </div>
             <div className="links">
-                <Link to="/home">Home</Link>
+                <Link to="/">Home</Link>
                 <Link to="/booking">Animal Booking</Link>
                 <Link to="/status">Animal Status</Link>
                 <Link to="/profile">Profile</Link>    
