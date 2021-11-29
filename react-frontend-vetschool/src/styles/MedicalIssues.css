@@ -1,0 +1,31 @@
+.MedicalListContainer1 {
+  background-color: lightgray;
+  padding: 10px;
+  overflow-y: auto;
+}
+
+.medicalIssueItem1 {
+  width: 100%;
+  background-color: white;
+  height: 70px;
+  margin-top: 5px;
+}
+
+.medicalIssueItemLeft {
+  text-align: left;
+  font-size: 20px;
+}
+
+.medicalIssueItemRight {
+  text-align: right;
+  font-size: 20px;
+}
+
+.closed1 {
+  display: inline;
+  padding-right: 10px;
+}
+
+.closed2 {
+  display: inline;
+}

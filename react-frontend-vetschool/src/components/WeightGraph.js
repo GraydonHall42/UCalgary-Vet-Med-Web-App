@@ -7,8 +7,8 @@ const WeightGraph = (props) => {
   const [chartData, setChartData] = useState({});
 
   const chart = (weightData) => {
-    let weights = weightData.weightData.map(w => w.weight)
-    let dates = weightData.weightData.map(w => w.date)
+    let weights = weightData.map(w => w.weight)
+    let dates = weightData.map(w => w.date)
 
 
     setChartData({

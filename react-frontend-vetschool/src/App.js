@@ -9,6 +9,7 @@ import Login from "./pages/Login";
 import MedicalIssueList from "./pages/MedicalIssueList";
 import StatusDashboard from "./pages/StatusDashboard";
 import AnimalInfo from "./pages/AnimalInfo";
+import AnimalProfilePage from "./pages/AnimalProfilePage";
 
 
 function App() {
@@ -32,6 +33,7 @@ function App() {
                         <Route exact path="/medical" element={<MedicalIssueList />} />
                         <Route exact path="/status" element={<StatusDashboard />} />
                         <Route exact path="/animal-info" element={<AnimalInfo />} />
+                        <Route exact path="/animal-profile" element={<AnimalProfilePage />} />
                     </Routes>
                 </Router>
                 
