@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import '../styles/StatusDashboard.css';
-import {Tabs, Tab, Container, Row, Col, Button, ButtonGroup} from "react-bootstrap";
+import {Container, Row, Col, Button, Image } from "react-bootstrap";
+import PuppyImage from '../assets/puppy.jpg';
 
 function StatusDashboard() {
 
@@ -413,9 +414,16 @@ function StatusDashboard() {
             <Row className="statusRow">
                 <Col>
                     <Button variant="light" className="animalItem">
-                        <p className="animalAtt">{name ? name : "Unknown"}</p>
-                        <p> the </p>
-                        <p className="animalAtt">{type ? type : ""}</p>
+                        <Row>
+                            <Col>
+                                <Image className="animalImage" src={PuppyImage} rounded />
+                            </Col>
+                            <Col>
+                                <p className="animalAtt">{name ? name : "Unknown"}</p>
+                                <p> the </p>
+                                <p className="animalAtt">{type ? type : ""}</p>
+                            </Col>
+                        </Row>
                     </Button>
                 </Col>
                 <Col xs={8}>

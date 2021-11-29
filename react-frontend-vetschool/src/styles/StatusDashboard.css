@@ -11,7 +11,7 @@
 
 .filterRow {
   padding: 15px 0px;
-  height: 70px;
+  height: 80px;
   border-bottom-style: solid;
   border-bottom-width: 1px;
 }
@@ -52,6 +52,10 @@
   background-color: white;
 }
 
+.statusRow .animalItem .animalImage {
+  width: 60px;
+  height: 50px;
+}
 .statusRow .animalItem:hover {
   background-color: #fff4e0;
 }
