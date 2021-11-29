@@ -1,13 +1,13 @@
 import React from 'react'
 import {Tabs, Tab, Container, Row, Col, Button, ButtonGroup} from "react-bootstrap";
-import '../styles/MedicalIssues.css';
+import '../styles/MedicalIssuesList.css';
 
 function MedicalIssueList(props) {
     
 
     function Item(issue){
         return (
-            <Button variant="light" className="medicalIssueItem1">
+            <Button variant="light" className="medicalIssueItem">
                 <Row>
                     <Col className="medicalIssueItemLeft">
                         {issue.issueName}
@@ -35,13 +35,9 @@ function MedicalIssueList(props) {
             {               
                 props.medicalData.map( (issue) => Item(issue))
             }
-            <Row>
-                <Col>
-                    <Button className="">
-                        Create a new Medical Issue
-                    </Button>
-                </Col>
-            </Row>
+            <Button variant="warning" className="addIssueButton">
+                Create a new Medical Issue
+            </Button>
         </Container>
     )
 }

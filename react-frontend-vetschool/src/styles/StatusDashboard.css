@@ -1,131 +1,65 @@
-.dashboardContainerS {
-  text-align: center;
-  height: 100%;
-  background-color: white;
-  padding-top: 20px;
+.dashboardContainer {
+  background-color: rgb(238, 238, 238);
 }
 
-.titleContainerS {
-  display: inline-block;
-  background-color: #b82424;
-  height: 100px;
-  padding-top: 12px;
-  width: 80%;
-}
-.statusListContainerS {
-  display: inline-block;
-  background-color: lightgray;
-  width: 80%;
+.titleRow {
+  background-color: #e63946;
+  color: white;
+  padding: 5px;
+  margin-top: 20px;
 }
 
-.filterContainerS {
-  display: inline-block;
-  height: 50px;
-  width: 80%;
-  background-color: lightgray;
+.filterRow {
+  padding: 15px 0px;
+  height: 70px;
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
 }
 
-.titleS {
-  color: #eaac35;
-  font-size: 50px;
-}
-
-.filterPanelS {
-  display: inline-block;
-  text-align: center;
-  height: 50px;
-  width: 39%;
-  margin-top: 10px;
-}
-.buttonPanelS {
-  display: inline-block;
-  text-align: center;
-  height: 50px;
-  width: 19%;
-  margin-top: 10px;
-}
-.filterLabelS {
-  margin-right: 15px;
+.filterRow label {
   font-size: 20px;
+  padding-right: 15px;
+  padding-top: 4px;
 }
-.filterInputS {
+
+.filterRow input {
   background-color: white;
-  width: 50%;
   height: 30px;
-  border-width: 1px;
   border-style: solid;
+  border-width: 1px;
   padding-left: 5px;
-  font-size: 18px;
 }
 
-.filterButtonS {
-  background-color: #eaac35;
-  width: 80%;
-  height: 30px;
-  border-radius: 25px;
-  font-size: 18px;
+.filterRow Button {
+  width: 150px;
+  height: 40px;
 }
 
-.medicalIssueListS {
-  text-align: center;
-  display: inline-block;
-  background-color: lightgray;
-  width: 100%;
-  height: 370px;
+.statusContainer {
   overflow-y: auto;
+  margin-top: 10px;
+  padding-bottom: 10px;
 }
 
-.animalItemContainerS {
-  display: inline-block;
-  align-items: center;
-  width: 20%;
-  height: 80px;
-}
-.medicalItemContainerS {
-  display: inline-block;
-  align-items: center;
-  width: 70%;
-  height: 80px;
+.statusRow {
+  margin-top: 5px;
 }
 
-.animalItemS {
+.statusRow .animalItem {
+  width: 80%;
+  height: 70px;
+  margin-top: 5px;
   background-color: white;
-  width: 95%;
 }
 
-.medicalIssueItemS {
-  background-color: white;
-  width: 95%;
+.statusRow .animalItem:hover {
+  background-color: #fff4e0;
 }
-.itemTopS {
-  display: block;
-  width: 100%;
+
+.statusRow .animalItem p {
+  display: inline;
 }
-.itemTopLeftS {
-  display: inline-block;
-  width: 48%;
-  text-align: left;
-}
-.itemTopRightS {
-  display: inline-block;
-  width: 48%;
-  text-align: right;
-}
-.issueNameS {
+
+.statusRow .animalItem .animalAtt {
   font-size: 20px;
-}
-
-.itemBottomS {
-  text-align: right;
-  display: block;
-  width: 98%;
-}
-.closedS {
-  display: inline-block;
-  width: 50px;
-  margin-right: 5px;
-}
-.issueCloseDateS {
-  display: inline-block;
-  width: 100px;
 }

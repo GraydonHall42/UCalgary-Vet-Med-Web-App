@@ -4,11 +4,15 @@
   overflow-y: auto;
 }
 
-.medicalIssueItem1 {
+.medicalIssueItem {
   width: 100%;
   background-color: white;
   height: 70px;
   margin-top: 5px;
+}
+
+.medicalIssueItem:hover {
+  background-color: #fff4e0;
 }
 
 .medicalIssueItemLeft {
@@ -28,4 +32,16 @@
 
 .closed2 {
   display: inline;
+}
+
+.addIssueButton {
+  margin-top: 10px;
+  width: 50%;
+  border-width: 0;
+  color: black;
+  font-size: 20px;
+}
+
+.addIssueButton:hover {
+  background-color: #fada9e;
 }
