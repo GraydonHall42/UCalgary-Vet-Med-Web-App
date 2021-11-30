@@ -1,0 +1,8 @@
+.darkGray {
+    background-color: lightgray;
+}
+
+.scrollable {
+    overflow: scroll;
+    height:64vh
+}
