@@ -9,6 +9,7 @@ import StatusDashboard from "./pages/StatusDashboard";
 import AnimalProfilePage from "./pages/AnimalProfilePage";
 import UserManagement from "./pages/UserManagement";
 import AnimalBooking from './pages/AnimalBooking'
+import UserProfilePage from "./pages/UserProfilePage";
 
 
 function App() {
@@ -32,7 +33,7 @@ function App() {
                         <Route exact path="/animal-profile" element={<AnimalProfilePage />} />
                         <Route exact path="/user-management" element={<UserManagement />} />
                         <Route exact path="/booking" element={<AnimalBooking />} />
-                        
+                        <Route exact path="/user-profile" element={<UserProfilePage />} />
                     </Routes>
                 </Router>
                 
