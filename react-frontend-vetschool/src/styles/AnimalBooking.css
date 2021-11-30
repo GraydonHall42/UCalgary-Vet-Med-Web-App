@@ -1,0 +1,48 @@
+.titleContainer {
+  margin-top: 15px;
+  height: 80px;
+  margin-bottom: 10px;
+  padding-top: 12px;
+  background-color: #e63946;
+  color: white;
+}
+
+.booking .actions .approveButton {
+  width: 60px;
+  background-color: rgb(180, 253, 180);
+  color: black;
+  border-style: solid;
+  border-width: 1px;
+  border-color: green;
+  margin: 0px 5px;
+}
+.booking .actions .approveButton:hover {
+  background-color: rgb(151, 248, 151);
+}
+
+.booking .actions .deleteButton {
+  width: 60px;
+  background-color: rgb(255, 151, 166);
+  color: black;
+  border-style: solid;
+  border-width: 1px;
+  border-color: darkred;
+  margin: 0px 5px;
+}
+
+.booking .actions .deleteButton:hover {
+  background-color: rgb(253, 112, 133);
+}
+
+.booking .actions .editButton {
+  width: 60px;
+  background-color: rgb(255, 234, 113);
+  color: black;
+  border-style: solid;
+  border-width: 1px;
+  border-color: goldenrod;
+  margin: 0px 5px;
+}
+.booking .actions .editButton:hover {
+  background-color: gold;
+}
