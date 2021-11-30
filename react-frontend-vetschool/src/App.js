@@ -3,11 +3,12 @@ import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import "./App.css";
 //import pages
 import Home from "./pages/Home";
-import Navbar from "./components/Navbar";
+import NavigationBar from "./components/NavigationBar";
 import Login from "./pages/Login";
 import StatusDashboard from "./pages/StatusDashboard";
 import AnimalProfilePage from "./pages/AnimalProfilePage";
 import UserManagement from "./pages/UserManagement";
+import AnimalBooking from './pages/AnimalBooking'
 
 
 function App() {
@@ -24,12 +25,14 @@ function App() {
         return (
             <div className="auth">
                 <Router>
-                    <Navbar />
+                    <NavigationBar />
                     <Routes className="routes">
                         <Route exact path="/" element={<Home />} />
                         <Route exact path="/status" element={<StatusDashboard />} />
                         <Route exact path="/animal-profile" element={<AnimalProfilePage />} />
                         <Route exact path="/user-management" element={<UserManagement />} />
+                        <Route exact path="/booking" element={<AnimalBooking />} />
+                        
                     </Routes>
                 </Router>
                 
