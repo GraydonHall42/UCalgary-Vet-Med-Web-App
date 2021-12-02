@@ -5,6 +5,7 @@ import WeightGraph from './WeightGraph';
 import AddWeightForm from './AddWeightForm';
 import MedicalIssueList from './MedicalIssueList';
 import AnimalInfoTable from './AnimalInfoTable';
+import ImageSet from "./ImageSet";
 import '../styles/AnimalProfileContent.css';
 
 function AnimalProfileContent(props) {
@@ -44,7 +45,7 @@ function AnimalProfileContent(props) {
                     </Row>
                 </Tab>
                 <Tab className="profileTab" eventKey="images" title="Images">
-                    <Link to="/images" />
+                    <ImageSet />
                 </Tab>
             </Tabs>
         </Container>
