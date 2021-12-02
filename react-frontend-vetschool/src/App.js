@@ -11,14 +11,35 @@ import UserManagement from "./pages/UserManagement";
 import AnimalBooking from './pages/AnimalBooking'
 import UserProfilePage from "./pages/UserProfilePage";
 
-
 function App() {
-    const validUser = {username: "group248", password: "password"};
+    const validUsers = [
+        {
+            username: "Instructor_1", 
+            password: "pt@123"
+        },
+        {
+            username: "Admin_1", 
+            password: "pa"
+        },
+        {
+            username: "Technician", 
+            password: "pe"
+        }
+    ];
+
     const [loggedIn, setLoggedIn] = useState(true);
+    const [userType, setUserType] = useState(null);
 
     const Authenticate = cred => {
-        if(cred.username === validUser.username && cred.password === validUser.password){
-            setLoggedIn(true);
+        for (let user of validUsers) {
+            console.log(cred.username + "    " + cred.password);
+            console.log(user.username + "    " + user.password);
+            if(cred.username === user.username && cred.password === user.password){
+                setLoggedIn(true);
+                if(cred.username.startsWith("Instructor")) setUserType("instructor");
+                if(cred.username.startsWith("Admin")) setUserType("admin");
+                if(cred.username.startsWith("Technician")) setUserType("technician");
+            }   
         }
     }
 
@@ -46,9 +67,7 @@ function App() {
                 <Login exact path="/" Authenticate={Authenticate} />
             </div>
         )
-    }
-
-    
+    }    
 }
 
 export default App;

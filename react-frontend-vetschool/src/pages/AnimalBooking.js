@@ -10,45 +10,103 @@ function AnimalBooking() {
             "animalName": "Spud",
             "visitDate": "2020-11-29",
             "requestingUser": "Dr. Grady",
-            "approvalStatus": "Approved (Dr. Deylin)"
+            "adminApproval": "Approved (Dr. Deylin)",
+            "techApproval": "Rejected (Dr. Moshirpour)"
+
         },
         {
             "healthStatus": "Yellow",
             "animalName": "Greg",
             "visitDate": "2020-10-29",
             "requestingUser": "Dr. Jared",
-            "approvalStatus": "Approved (Dr. Deylin)"
+            "adminApproval": null,
+            "techApproval": null
         },
         {
             "healthStatus": "Red",
             "animalName": "Doggo",
             "visitDate": "2020-09-19",
             "requestingUser": "Dr. Alex",
-            "approvalStatus": "Approved (Dr. Deylin)"
+            "adminApproval": "Approved (Dr. Deylin)",
+            "techApproval": "Approved (Dr. Moshirpour)"
         },
         {
             "healthStatus": "Red",
             "animalName": "Spud",
             "visitDate": "2020-11-29",
             "requestingUser": "Dr. Grady",
-            "approvalStatus": "Approved (Dr. Deylin)"
+            "adminApproval": "Rejected (Dr. Deylin)",
+            "techApproval": null
         },
         {
             "healthStatus": "Yellow",
             "animalName": "Greg",
             "visitDate": "2020-10-29",
             "requestingUser": "Dr. Jared",
-            "approvalStatus": "Approved (Dr. Deylin)"
+            "adminApproval": "Approved (Dr. Deylin)",
+            "techApproval": "Approved (Dr. Moshirpour)"
         },
         {
             "healthStatus": "Red",
             "animalName": "Doggo",
             "visitDate": "2020-09-19",
             "requestingUser": "Dr. Alex",
-            "approvalStatus": "Approved (Dr. Deylin)"
+            "adminApproval": "Approved (Dr. Deylin)",
+            "techApproval": null
         }
     ])
 
+    const [user, setUser] = useState({name: "Dr. Majid", type: "technician"})
+
+    function getActionButtons({adminApproval, techApproval}) 
+    {
+        console.log(techApproval + " | " + adminApproval);
+        if(user.type === "instructor"){
+            if(!techApproval || techApproval.startsWith("Rej")){
+                return <Button className="deleteButton" >Del</Button>
+            }
+            if(techApproval.startsWith("Approved")){
+                return <Button className="deleteButton" disabled>Del</Button>
+            }
+        }
+        if(user.type === "admin"){
+            if(!techApproval){
+                return (
+                    <div>
+                        <Button className="approveButton" disabled>App</Button>
+                        <Button className="deleteButton" disabled>Rej</Button>
+                    </div>
+                )
+            }
+            else{
+                return (
+                    <div>
+                        <Button className="approveButton" >App</Button>
+                        <Button className="deleteButton" >Rej</Button>
+                    </div>
+                )
+            }     
+        }
+        if(user.type === "technician"){
+            if(!adminApproval || adminApproval.startsWith("Rej")){
+                return (
+                    <div>
+                        <Button className="approveButton" disabled>App</Button>
+                        <Button className="deleteButton" disabled>Rej</Button>
+                    </div>
+                )
+            }
+            else {
+                return (
+                    <div>
+                        <Button className="approveButton" >App</Button>
+                        <Button className="deleteButton">Rej</Button>
+                    </div>
+                )
+            }
+        }
+    }
+    
     function renderBookingTable(booking) {
         return (
             <tr className="booking">
@@ -56,11 +114,13 @@ function AnimalBooking() {
                 <td>{booking.animalName}</td>
                 <td>{booking.visitDate}</td>
                 <td>{booking.requestingUser}</td>
-                <td>{booking.approvalStatus}</td>
+                <td>{booking.adminApproval}</td>
+                <td>{booking.techApproval}</td>
                 <td className="actions">
-                    <Button className="approveButton" >App</Button>
-                    <Button className="deleteButton">Del</Button>
-                    <Button className="editButton">Edit</Button>
+                    {
+                        getActionButtons(booking)
+                    }
+                    
                 </td>
             </tr>
         )
@@ -75,12 +135,13 @@ function AnimalBooking() {
             <Table striped bordered hover>
                 <thead>
                     <tr>
-                        <th width={'12%'}>Health Status</th>
-                        <th width={'17%'}>Animal Name</th>
-                        <th width={'13%'}>Visit Date</th>
-                        <th width={'17%'}>Requesting User</th>
-                        <th width={'17%'}>Approval Status</th>
-                        <th width={'25%'}>Actions</th>
+                        <th width={'10%'}>Health Status</th>
+                        <th width={'12%'}>Animal Name</th>
+                        <th width={'11%'}>Visit Date</th>
+                        <th width={'12%'}>Requesting User</th>
+                        <th width={'18%'}>Admin Approval</th>
+                        <th width={'18%'}>Tech Approval</th>
+                        <th width={'15%'}>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
