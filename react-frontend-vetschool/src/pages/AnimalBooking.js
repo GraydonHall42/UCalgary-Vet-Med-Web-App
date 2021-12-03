@@ -28,7 +28,6 @@ function AnimalBooking() {
     {
         axios.delete('http://localhost:8080/api/bookings/' + bookingId)
              .then(res => {
-                console.log(res);
                 getAllBookings();
             })
             .catch(err => {
@@ -36,8 +35,76 @@ function AnimalBooking() {
         })
     }
 
-    function getActionButtons({adminAppStatus, techAppStatus, bookingId}) 
+    function ApproveBooking(booking) 
+    {
+        if(user.userType === "Admin"){
+            if(booking.adminAppStatus === "Approved") return;
+            booking.adminAppStatus = "Approved";
+            booking.adminAppId = user;
+
+            axios.put('http://localhost:8080/api/bookings/' + booking.bookingId, booking)
+            .then(res => {
+                getAllBookings();
+            })
+            .catch(err => {
+                console.log(err);
+            })
+        }
+        if(user.userType === "Animal Health Technician"){
+            if(booking.techAppStatus === "Approved") return;
+            booking.techAppStatus = "Approved";
+            booking.techAppId = user;
+
+            axios.put('http://localhost:8080/api/bookings/' + booking.bookingId, booking)
+            .then(res => {
+                // I dont think you need this because you update the actual state too but good for now to check
+                getAllBookings();
+            })
+            .catch(err => {
+                console.log(err);
+            })
+        }
+        
+    }
+
+    function RejectBooking(booking) 
+    {
+        if(user.userType === "Admin"){
+            if(booking.adminAppStatus === "Rejected") return;
+            booking.adminAppStatus = "Rejected";
+            booking.adminAppId = user;
+
+            axios.put('http://localhost:8080/api/bookings/' + booking.bookingId, booking)
+            .then(res => {
+                getAllBookings();
+            })
+            .catch(err => {
+                console.log(err);
+            })
+        }
+        if(user.userType === "Animal Health Technician"){
+            if(booking.techAppStatus === "Rejected") return;
+            booking.techAppStatus = "Rejected";
+            booking.techAppId = user;
+
+            axios.put('http://localhost:8080/api/bookings/' + booking.bookingId, booking)
+            .then(res => {
+                // I dont think you need this because you update the actual state too but good for now to check
+                getAllBookings();
+            })
+            .catch(err => {
+                console.log(err);
+            })
+        }
+        
+    }
+
+
+
+    function getActionButtons(booking) 
     {   
+        const {adminAppStatus, techAppStatus, bookingId} = booking;
+
         if(user.userType === "Teaching Technician"){
             // can only cancel before tech app or rej
             if(techAppStatus.startsWith("Pend")){
@@ -52,8 +119,8 @@ function AnimalBooking() {
             if(techAppStatus.startsWith("Pend")){
                 return (
                     <div>
-                        <Button className="approveButton" >App</Button>
-                        <Button className="deleteButton" >Rej</Button>
+                        <Button className="approveButton" onClick={e => ApproveBooking(booking)}>App</Button>
+                        <Button className="deleteButton" onClick={e => RejectBooking(booking)}>Rej</Button>
                     </div>
                 )
             }
@@ -79,8 +146,8 @@ function AnimalBooking() {
             else {
                 return (
                     <div>
-                        <Button className="approveButton" >App</Button>
-                        <Button className="deleteButton">Rej</Button>
+                        <Button className="approveButton" onClick={e => ApproveBooking(booking)}>App</Button>
+                        <Button className="deleteButton" onClick={e => RejectBooking(booking)}>Rej</Button>
                     </div>
                 )
             }
@@ -94,8 +161,8 @@ function AnimalBooking() {
                 <td>{booking.animalId.animalName}</td>
                 <td>{booking.bookingDate}</td>
                 <td>{booking.teacherId.name}</td>
-                <td>{booking.adminAppStatus === "Pending" ? booking.adminAppStatus : booking.adminAppStatus + "(" +  booking.adminAppId.name + ")"}</td>
-                <td>{booking.techAppStatus === "Pending" ? booking.techAppStatus : booking.techAppStatus + "(" +  booking.techAppId.name + ")"}</td>
+                <td>{booking.adminAppStatus === "Pending" ? booking.adminAppStatus : booking.adminAppStatus + " (" +  booking.adminAppId.name + ")"}</td>
+                <td>{booking.techAppStatus === "Pending" ? booking.techAppStatus : booking.techAppStatus + " (" +  booking.techAppId.name + ")"}</td>
                 <td className="actions">
                     {
                         getActionButtons(booking)
