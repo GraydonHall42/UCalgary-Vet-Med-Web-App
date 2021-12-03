@@ -56,7 +56,7 @@ function RequestVisitModal(props) {
             aria-labelledby="contained-modal-title-vcenter"
             centered
         >
-            <Modal.Header closeButton>
+            <Modal.Header>
                 <Modal.Title id="contained-modal-title-vcenter">
                     Request Animal Visit: {props.selectedAnimal.animalName}
                 </Modal.Title>
