@@ -2,7 +2,7 @@
 #### Instructions to run API
 
 #### Step 1: change your username and password for MySQL in this file here
-![](images/runningAPIChangePasswordInstructions.png)
+![](./runningAPIChangePasswordInstructions.png)
 
 #### Step 2: Run vet_db_gropu248.sql file to populate database
 
