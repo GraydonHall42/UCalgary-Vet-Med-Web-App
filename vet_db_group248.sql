@@ -17,7 +17,10 @@ VALUES ('John', 'John@gmail.com', '1234', 'Vet'),
        ('Jim', 'Jim@gmail.com', '2345', 'Animal Care Attendant'),
        ('Jane', 'Jane@gmail.com', '3456', 'Animal Health Technician'),
        ('Mo', 'Mo@gmail.com', '4567', 'Teaching Technician'),
-       ('Ali', 'Ali@gmail.com', '5678', 'Student');
+       ('Ali', 'Ali@gmail.com', '5678', 'Student'),
+       ('Instructor_1', 'instruct@gmail.com', 'pt@123', 'Teaching Technician'),
+       ('Admin_1', 'admin@gmail.com', 'pa', 'Admin'),
+       ('Technician', 'tech@gmail.com', 'pe', 'Animal Health Technician');
 
 DROP TABLE IF EXISTS ANIMAL;
 create table ANIMAL
@@ -185,20 +188,29 @@ CREATE TABLE CLASSROOM_BOOKINGS(
     booking_id                   int auto_increment,
     animal_id                    int not null,
     teacher_id                   int not null,
-    approvee_id                  int,
+    admin_app_id                  int,
+    tech_app_id                  int,
     booking_date                DATE,
     start_time                  TIME,
     return_time                 TIME,
-    approval_status             varchar(10) not null,
+    admin_app_status             varchar(40) not null,
+    tech_app_status             varchar(40) not null,
     primary key (booking_id),
     foreign key (animal_id) references ANIMAL(animal_id),
     foreign key (teacher_id) references USER(user_id),
-    foreign key (approvee_id) references USER(user_id)
+    foreign key (admin_app_id) references USER(user_id),
+    foreign key (tech_app_id) references USER(user_id)
 );
 
-INSERT INTO CLASSROOM_BOOKINGS (animal_id, teacher_id, approvee_id, booking_date, start_time, return_time, approval_status)
-VALUES (3, 4, 1, '2021-11-15', '12:00:00', '13:00:00', 'Approved'),
-       (4, 4, NULL, '2021-11-16', '12:00:00', '13:00:00', 'Pending')
+INSERT INTO CLASSROOM_BOOKINGS (animal_id, teacher_id, admin_app_id, tech_app_id, booking_date, start_time, return_time, admin_app_status, tech_app_status)
+VALUES (1, 6, 7, 8, '2021-11-15', '12:00:00', '13:00:00', 'Approved', 'Approved'),
+       (2, 6, 7, null, '2021-11-16', '12:00:00', '13:00:00', 'Rejected', 'Pending'),
+       (3, 6, 7, null, '2021-11-15', '12:00:00', '13:00:00', 'Approved', 'Pending'),
+       (4, 6, null, null, '2021-11-16', '12:00:00', '13:00:00', 'Pending', 'Pending'),
+       (1, 6, 7, 8, '2021-11-15', '12:00:00', '13:00:00', 'Approved', 'Rejected'),
+       (2, 6, 7, null, '2021-11-16', '12:00:00', '13:00:00', 'Approved', 'Pending'),
+       (3, 6, null, null, '2021-11-15', '12:00:00', '13:00:00', 'Pending', 'Pending'),
+       (4, 6, null, null, '2021-11-16', '12:00:00', '13:00:00', 'Pending', 'Pending');
 
 # SELECT a.animal_name, ams.issue_name, ams.current_status, ams.open_date, ams.close_date
 # FROM ANIMAL_MEDICAL_ISSUES AS ams
