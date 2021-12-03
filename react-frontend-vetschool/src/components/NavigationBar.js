@@ -1,10 +1,14 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {Link} from 'react-router-dom';
 import Logo from '../assets/ucalgary-vet-med-logo.png';
 import {Container, Row, Col, Button, Image, Navbar, Nav } from "react-bootstrap";
 import "../styles/NavigationBar.css";
+import {UserContext} from "../UserContext";
 
 function NavigationBar() {
+
+    const { user, setUser } = useContext(UserContext);
+
     return (
         <Navbar className="navigationbar">
             <Container fluid>
@@ -16,6 +20,7 @@ function NavigationBar() {
                 <Nav.Link className="link" href="/status">Animal Statuses</Nav.Link>
                 <Nav.Link className="link" href="/booking">Animal Bookings</Nav.Link>
                 <Nav.Link className="link" href="/profile">Profile</Nav.Link>
+                <Nav.Link className="link" onClick={()=> setUser(null)}>Log Out</Nav.Link>
             </Nav>
             </Container>
         </Navbar>
