@@ -1,10 +1,12 @@
-import React, {useState} from 'react'
+import React, {useContext, useState} from 'react'
 import {Button, Card, Col, Container, Image, Row, Table} from "react-bootstrap";
 // import puppyPhoto from '../assets/puppy.jpg';
 import puppyPhoto from '../assets/spud.jpg';
 import "../styles/AnimalSearchResult.css"
+import {UserContext} from "../UserContext";
 
 const AnimalSearchResult = (props) =>  {
+    const { user, setUser } = useContext(UserContext);
 
     const handleClick = (animal) => {
         props.setModalShow(true)
@@ -33,6 +35,7 @@ const AnimalSearchResult = (props) =>  {
                         </Button>
                         <br />
                         <Button
+                            disabled={user.userType!=='Teaching Technician'}
                             className={"searchResultBtn"}
                             variant={"warning"}
                             onClick={()=>handleClick(animal)}
