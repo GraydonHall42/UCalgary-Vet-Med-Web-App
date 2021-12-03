@@ -1,5 +1,6 @@
-import React, {useState, useContext} from 'react';
+import React, {useState, useContext, useEffect} from 'react';
 import {Table, Container, Row, Button} from "react-bootstrap";
+import axios from 'axios';
 import {UserContext} from "../UserContext";
 import '../styles/AnimalBooking.css';
 
@@ -226,11 +227,19 @@ function AnimalBooking() {
         }
     ])
 
-    const [user, setUser] = useContext(UserContext);
+    useEffect(() => {
+        axios.get('http://localhost:8080/api/bookings')
+             .then(res => {
+                 console.log(res.data)
+             });
+    }, [])
+
+    const { user, setUser } = useContext(UserContext);
+    console.log(user);
 
     function getActionButtons({adminAppStatus, techAppStatus}) 
     {   
-        if(user.type === "instructor"){
+        if(user.userType === "Teaching Technician"){
             if(techAppStatus.startsWith("Pend") || techAppStatus.startsWith("Rej")){
                 return <Button className="deleteButton" >Del</Button>
             }
@@ -238,7 +247,7 @@ function AnimalBooking() {
                 return <Button className="deleteButton" disabled>Del</Button>
             }
         }
-        if(user.type === "admin"){
+        if(user.userType === "Admin"){
             if(techAppStatus.startsWith("Pend")){
                 return (
                     <div>
@@ -256,7 +265,7 @@ function AnimalBooking() {
                 )
             }     
         }
-        if(user.type === "technician"){
+        if(user.userType === "Animal Health Technician"){
             if(adminAppStatus.startsWith("Pend") || adminAppStatus.startsWith("Rej")){
                 return (
                     <div>

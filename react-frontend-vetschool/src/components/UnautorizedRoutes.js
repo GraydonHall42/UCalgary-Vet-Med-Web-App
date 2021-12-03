@@ -11,9 +11,11 @@ import IndividualMedicalIssuePage from "../pages/IndividualMedicalIssuePage";
 import Login from "../pages/Login";
 
 function UnauthorizedRoutes() {
+    
+    
     return (
-        <div className="not-auth"><
-            Login exact path="/"/>
+        <div className="not-auth">
+            <Login exact path="/"/>
         </div>
     )
 }

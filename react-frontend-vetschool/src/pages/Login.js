@@ -25,7 +25,7 @@ function Login({Authenticate}) {
                 {/*<form onSubmit={submitHandler}>*/}
                 <form onSubmit={
                     async () => {
-                        const user = await login();
+                        const user = await login(username, password);
                         setUser(user);
                 }}>
                     <div className="form-inner">
