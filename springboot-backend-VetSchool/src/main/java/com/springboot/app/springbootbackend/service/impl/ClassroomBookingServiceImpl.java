@@ -45,11 +45,13 @@ public class ClassroomBookingServiceImpl implements ClassroomBookingService {
 		existingBooking.setBookingId(booking.getBookingId());
 		existingBooking.setAnimalId(booking.getAnimalId());
 		existingBooking.setTeacherId(booking.getTeacherId());
-		existingBooking.setApproveeId(booking.getApproveeId());
+		existingBooking.setAdminAppId(booking.getAdminAppId());
+		existingBooking.setTechAppId(booking.getTechAppId());
 		existingBooking.setBookingDate(booking.getBookingDate());
 		existingBooking.setStartTime(booking.getStartTime());
 		existingBooking.setReturnTime(booking.getReturnTime());
-		existingBooking.setApprovalStatus(booking.getApprovalStatus());
+		existingBooking.setAdminAppStatus(booking.getAdminAppStatus());
+		existingBooking.setTechAppStatus(booking.getTechAppStatus());
 
 		bookingRepository.save(existingBooking);
 		return existingBooking;

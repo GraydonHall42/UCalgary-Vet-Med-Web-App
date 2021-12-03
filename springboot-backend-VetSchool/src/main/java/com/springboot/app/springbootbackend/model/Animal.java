@@ -27,16 +27,16 @@ public class Animal {
 	@Column(name = "animal_type", nullable = false)
 	private String animalType;
 
-	@OneToMany(mappedBy = "animalId")  // this is the name in the corresponding table
-	List<Weight> weights;
-
-	@OneToMany(mappedBy = "animalId")
-	List<ProfileImage> images;
-
-	@OneToMany(mappedBy = "animalId")
-	List<MedicalIssue> medicalIssues;
-
-	@OneToMany(mappedBy = "animalId")
-	List<Prescription> prescriptions;
+//	@OneToMany(mappedBy = "animalId")  // this is the name in the corresponding table
+//	List<Weight> weights;
+//
+//	@OneToMany(mappedBy = "animalId")
+//	List<ProfileImage> images;
+//
+//	@OneToMany(mappedBy = "animalId")
+//	List<MedicalIssue> medicalIssues;
+//
+//	@OneToMany(mappedBy = "animalId")
+//	List<Prescription> prescriptions;
 
 }

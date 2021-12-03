@@ -23,8 +23,11 @@ public class ClassroomBooking {
     @Column(name = "return_time")
     private String returnTime;
 
-    @Column(name = "approval_status")
-    private String approvalStatus;
+    @Column(name = "admin_app_status")
+    private String adminAppStatus;
+
+    @Column(name = "tech_app_status")
+    private String TechAppStatus;
 
     @ManyToOne()
     @JoinColumn(name = "animal_id")  // give the name in this table
@@ -35,7 +38,11 @@ public class ClassroomBooking {
     private User teacherId;
 
     @ManyToOne()
-    @JoinColumn(name = "approvee_id")  // give the name in this table
-    private User approveeId;
+    @JoinColumn(name = "admin_app_id")  // give the name in this table
+    private User adminAppId;
+
+    @ManyToOne()
+    @JoinColumn(name = "tech_app_id")  // give the name in this table
+    private User techAppId;
 
 }

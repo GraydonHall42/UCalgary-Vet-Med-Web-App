@@ -1,76 +1,245 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import {Table, Container, Row, Button} from "react-bootstrap";
+import {UserContext} from "../UserContext";
 import '../styles/AnimalBooking.css';
 
 function AnimalBooking() {
 
     let [bookings, SetBookings] = useState([
         {
-            "healthStatus": "Red",
-            "animalName": "Spud",
-            "visitDate": "2020-11-29",
-            "requestingUser": "Dr. Grady",
-            "adminApproval": "Approved (Dr. Deylin)",
-            "techApproval": "Rejected (Dr. Moshirpour)"
-
+            "bookingId": 1,
+            "bookingDate": "2021-11-15",
+            "startTime": "12:00:00",
+            "returnTime": "13:00:00",
+            "adminAppStatus": "Approved",
+            "animalId": {
+                "animalId": 1,
+                "animalName": "Sally",
+                "animalType": "Dog"
+            },
+            "teacherId": {
+                "userId": 6,
+                "name": "Instructor_1",
+                "email": "instruct@gmail.com",
+                "password": "pt@123",
+                "userType": "Teaching Technician"
+            },
+            "adminAppId": {
+                "userId": 7,
+                "name": "Admin_1",
+                "email": "admin@gmail.com",
+                "password": "pa",
+                "userType": "Admin"
+            },
+            "techAppId": {
+                "userId": 8,
+                "name": "Technician",
+                "email": "tech@gmail.com",
+                "password": "pe",
+                "userType": "Animal Health Technician"
+            },
+            "techAppStatus": "Approved"
         },
         {
-            "healthStatus": "Yellow",
-            "animalName": "Greg",
-            "visitDate": "2020-10-29",
-            "requestingUser": "Dr. Jared",
-            "adminApproval": null,
-            "techApproval": null
+            "bookingId": 2,
+            "bookingDate": "2021-11-16",
+            "startTime": "12:00:00",
+            "returnTime": "13:00:00",
+            "adminAppStatus": "Rejected",
+            "animalId": {
+                "animalId": 2,
+                "animalName": "Jimmy",
+                "animalType": "Dog"
+            },
+            "teacherId": {
+                "userId": 6,
+                "name": "Instructor_1",
+                "email": "instruct@gmail.com",
+                "password": "pt@123",
+                "userType": "Teaching Technician"
+            },
+            "adminAppId": {
+                "userId": 7,
+                "name": "Admin_1",
+                "email": "admin@gmail.com",
+                "password": "pa",
+                "userType": "Admin"
+            },
+            "techAppId": null,
+            "techAppStatus": "Pending"
         },
         {
-            "healthStatus": "Red",
-            "animalName": "Doggo",
-            "visitDate": "2020-09-19",
-            "requestingUser": "Dr. Alex",
-            "adminApproval": "Approved (Dr. Deylin)",
-            "techApproval": "Approved (Dr. Moshirpour)"
+            "bookingId": 3,
+            "bookingDate": "2021-11-15",
+            "startTime": "12:00:00",
+            "returnTime": "13:00:00",
+            "adminAppStatus": "Approved",
+            "animalId": {
+                "animalId": 3,
+                "animalName": "Ralph",
+                "animalType": "Cat"
+            },
+            "teacherId": {
+                "userId": 6,
+                "name": "Instructor_1",
+                "email": "instruct@gmail.com",
+                "password": "pt@123",
+                "userType": "Teaching Technician"
+            },
+            "adminAppId": {
+                "userId": 7,
+                "name": "Admin_1",
+                "email": "admin@gmail.com",
+                "password": "pa",
+                "userType": "Admin"
+            },
+            "techAppId": null,
+            "techAppStatus": "Pending"
         },
         {
-            "healthStatus": "Red",
-            "animalName": "Spud",
-            "visitDate": "2020-11-29",
-            "requestingUser": "Dr. Grady",
-            "adminApproval": "Rejected (Dr. Deylin)",
-            "techApproval": null
+            "bookingId": 4,
+            "bookingDate": "2021-11-16",
+            "startTime": "12:00:00",
+            "returnTime": "13:00:00",
+            "adminAppStatus": "Pending",
+            "animalId": {
+                "animalId": 4,
+                "animalName": "Buttercup",
+                "animalType": "Cat"
+            },
+            "teacherId": {
+                "userId": 6,
+                "name": "Instructor_1",
+                "email": "instruct@gmail.com",
+                "password": "pt@123",
+                "userType": "Teaching Technician"
+            },
+            "adminAppId": null,
+            "techAppId": null,
+            "techAppStatus": "Pending"
         },
         {
-            "healthStatus": "Yellow",
-            "animalName": "Greg",
-            "visitDate": "2020-10-29",
-            "requestingUser": "Dr. Jared",
-            "adminApproval": "Approved (Dr. Deylin)",
-            "techApproval": "Approved (Dr. Moshirpour)"
+            "bookingId": 5,
+            "bookingDate": "2021-11-15",
+            "startTime": "12:00:00",
+            "returnTime": "13:00:00",
+            "adminAppStatus": "Approved",
+            "animalId": {
+                "animalId": 1,
+                "animalName": "Sally",
+                "animalType": "Dog"
+            },
+            "teacherId": {
+                "userId": 6,
+                "name": "Instructor_1",
+                "email": "instruct@gmail.com",
+                "password": "pt@123",
+                "userType": "Teaching Technician"
+            },
+            "adminAppId": {
+                "userId": 7,
+                "name": "Admin_1",
+                "email": "admin@gmail.com",
+                "password": "pa",
+                "userType": "Admin"
+            },
+            "techAppId": {
+                "userId": 8,
+                "name": "Technician",
+                "email": "tech@gmail.com",
+                "password": "pe",
+                "userType": "Animal Health Technician"
+            },
+            "techAppStatus": "Rejected"
         },
         {
-            "healthStatus": "Red",
-            "animalName": "Doggo",
-            "visitDate": "2020-09-19",
-            "requestingUser": "Dr. Alex",
-            "adminApproval": "Approved (Dr. Deylin)",
-            "techApproval": null
+            "bookingId": 6,
+            "bookingDate": "2021-11-16",
+            "startTime": "12:00:00",
+            "returnTime": "13:00:00",
+            "adminAppStatus": "Approved",
+            "animalId": {
+                "animalId": 2,
+                "animalName": "Jimmy",
+                "animalType": "Dog"
+            },
+            "teacherId": {
+                "userId": 6,
+                "name": "Instructor_1",
+                "email": "instruct@gmail.com",
+                "password": "pt@123",
+                "userType": "Teaching Technician"
+            },
+            "adminAppId": {
+                "userId": 7,
+                "name": "Admin_1",
+                "email": "admin@gmail.com",
+                "password": "pa",
+                "userType": "Admin"
+            },
+            "techAppId": null,
+            "techAppStatus": "Pending"
+        },
+        {
+            "bookingId": 7,
+            "bookingDate": "2021-11-15",
+            "startTime": "12:00:00",
+            "returnTime": "13:00:00",
+            "adminAppStatus": "Pending",
+            "animalId": {
+                "animalId": 3,
+                "animalName": "Ralph",
+                "animalType": "Cat"
+            },
+            "teacherId": {
+                "userId": 6,
+                "name": "Instructor_1",
+                "email": "instruct@gmail.com",
+                "password": "pt@123",
+                "userType": "Teaching Technician"
+            },
+            "adminAppId": null,
+            "techAppId": null,
+            "techAppStatus": "Pending"
+        },
+        {
+            "bookingId": 8,
+            "bookingDate": "2021-11-16",
+            "startTime": "12:00:00",
+            "returnTime": "13:00:00",
+            "adminAppStatus": "Pending",
+            "animalId": {
+                "animalId": 4,
+                "animalName": "Buttercup",
+                "animalType": "Cat"
+            },
+            "teacherId": {
+                "userId": 6,
+                "name": "Instructor_1",
+                "email": "instruct@gmail.com",
+                "password": "pt@123",
+                "userType": "Teaching Technician"
+            },
+            "adminAppId": null,
+            "techAppId": null,
+            "techAppStatus": "Pending"
         }
     ])
 
-    const [user, setUser] = useState({name: "Dr. Majid", type: "technician"})
+    const [user, setUser] = useContext(UserContext);
 
-    function getActionButtons({adminApproval, techApproval}) 
-    {
-        console.log(techApproval + " | " + adminApproval);
+    function getActionButtons({adminAppStatus, techAppStatus}) 
+    {   
         if(user.type === "instructor"){
-            if(!techApproval || techApproval.startsWith("Rej")){
+            if(techAppStatus.startsWith("Pend") || techAppStatus.startsWith("Rej")){
                 return <Button className="deleteButton" >Del</Button>
             }
-            if(techApproval.startsWith("Approved")){
+            if(techAppStatus.startsWith("Approved")){
                 return <Button className="deleteButton" disabled>Del</Button>
             }
         }
         if(user.type === "admin"){
-            if(!techApproval){
+            if(techAppStatus.startsWith("Pend")){
                 return (
                     <div>
                         <Button className="approveButton" disabled>App</Button>
@@ -88,7 +257,7 @@ function AnimalBooking() {
             }     
         }
         if(user.type === "technician"){
-            if(!adminApproval || adminApproval.startsWith("Rej")){
+            if(adminAppStatus.startsWith("Pend") || adminAppStatus.startsWith("Rej")){
                 return (
                     <div>
                         <Button className="approveButton" disabled>App</Button>
@@ -110,12 +279,12 @@ function AnimalBooking() {
     function renderBookingTable(booking) {
         return (
             <tr className="booking">
-                <td>{booking.healthStatus}</td>
-                <td>{booking.animalName}</td>
-                <td>{booking.visitDate}</td>
-                <td>{booking.requestingUser}</td>
-                <td>{booking.adminApproval}</td>
-                <td>{booking.techApproval}</td>
+                <td>{"Red"}</td>
+                <td>{booking.animalId.animalName}</td>
+                <td>{booking.bookingDate}</td>
+                <td>{booking.teacherId.name}</td>
+                <td>{booking.adminAppStatus === "Pending" ? booking.adminAppStatus : booking.adminAppStatus + "(" +  booking.adminAppId.name + ")"}</td>
+                <td>{booking.techAppStatus === "Pending" ? booking.techAppStatus : booking.techAppStatus + "(" +  booking.techAppId.name + ")"}</td>
                 <td className="actions">
                     {
                         getActionButtons(booking)
