@@ -27,6 +27,12 @@ public class Animal {
 	@Column(name = "animal_type", nullable = false)
 	private String animalType;
 
+	@Column(name = "sex", nullable = false)
+	private String sex;
+
+	@Column(name = "photo_path", nullable = false)
+	private String phtoPath;
+
 //	@OneToMany(mappedBy = "animalId")  // this is the name in the corresponding table
 //	List<Weight> weights;
 //
