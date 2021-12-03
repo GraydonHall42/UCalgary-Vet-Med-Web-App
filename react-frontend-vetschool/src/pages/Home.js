@@ -1,32 +1,31 @@
-import React, {useState} from 'react'
+import React, {useContext, useEffect, useState} from 'react'
 import {Col, Container, Row} from "react-bootstrap";
 import SearchBarWithCriteria from "../components/SearchBarWithCriteria";
 import AnimalSearchResults from "../components/AnimalSearchResult";
+import axios from "axios";
+import RequestVisitModal from "../components/RequestVisitModal";
+import {UserContext} from "../UserContext";
 
 function Home() {
-    const [animals, setAnimals] = useState([
-        {
-            id:1,
-            name:"Spud",
-            type:"Dog",
-            sex:"Male",
-            photoPath:"/images/spud.jpg"
-        },
-        {
-            id:2,
-            name:"Rex",
-            type:"Dog",
-            sex:"Male",
-            photoPath:"/images/puppy.jpg"
-        },
-        {
-            id:3,
-            name:"Lucy",
-            type:"Dog",
-            sex:"Female",
-            photoPath:"/images/female-puppy.png"
-        }
-    ])
+    const [animals, setAnimals] = useState([])
+    const [modalShow, setModalShow] = React.useState(false);
+    const [selectedAnimal, setSelectedAnimal] = useState([])
+
+
+    function getAllAnimals() {
+        axios.get('http://localhost:8080/api/animals?fields=images,medicalIssues, prescriptions')
+            .then(res => {
+                console.log(res.data)
+                setAnimals(res.data)
+            })
+            .catch(err => {
+                console.log(err);
+            })
+    }
+
+    useEffect(() => {
+        getAllAnimals();
+    }, []);
 
 
     return (
@@ -39,10 +38,20 @@ function Home() {
                 </Row>
                 <Row>
                     <Col>
-                        <AnimalSearchResults animals={animals}/>
+                        <AnimalSearchResults
+                            animals={animals}
+                            setModalShow={setModalShow}
+                            setSelectedAnimal={setSelectedAnimal}
+                        />
                     </Col>
                 </Row>
             </Container>
+
+            <RequestVisitModal
+                show={modalShow}
+                onHide={() => setModalShow(false)}
+                selectedAnimal={selectedAnimal}
+            />
         </div>
     )
 }

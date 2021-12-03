@@ -31,7 +31,7 @@ public class Animal {
 	private String sex;
 
 	@Column(name = "photo_path", nullable = false)
-	private String phtoPath;
+	private String photoPath;
 
 //	@OneToMany(mappedBy = "animalId")  // this is the name in the corresponding table
 //	List<Weight> weights;

@@ -6,18 +6,23 @@ import "../styles/AnimalSearchResult.css"
 
 const AnimalSearchResult = (props) =>  {
 
+    const handleClick = (animal) => {
+        props.setModalShow(true)
+        props.setSelectedAnimal(animal)
+    }
+
 
     function renderTableData() {
         return props.animals.map((animal, index) => {
-            const { id, name, type, sex, photoPath } = animal //destructuring
+            const { animalId, animalName, animalType, sex, photoPath } = animal //destructuring
             return (
-                <tr key={id} className={"align-middle"}>
+                <tr key={animalId} className={"align-middle"}>
                     <td><Image src={photoPath} fluid roundedCircle className={"animalSearchImage"}/></td>
                     <td>
-                        {name}
+                        {animalName}
                     </td>
                     <td>
-                        {type}
+                        {animalType}
                     </td>
                     <td>
                         {sex}
@@ -27,7 +32,11 @@ const AnimalSearchResult = (props) =>  {
                             Go to profile
                         </Button>
                         <br />
-                        <Button className={"searchResultBtn"} variant={"warning"}>
+                        <Button
+                            className={"searchResultBtn"}
+                            variant={"warning"}
+                            onClick={()=>handleClick(animal)}
+                        >
                             Request visit
                         </Button>
                     </td>
