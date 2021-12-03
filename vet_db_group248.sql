@@ -28,15 +28,36 @@ create table ANIMAL
 	animal_id int not null auto_increment,
 	animal_name varchar(25) not null,
 	animal_type varchar(25) not null,
+	photo_path varchar(25) not null,
 	primary key (animal_id)
 );
 
 
-INSERT INTO ANIMAL (animal_name, animal_type)
-VALUES ('Sally', 'Dog'),
-       ('Jimmy', 'Dog'),
-       ('Ralph', 'Cat'),
-       ('Buttercup', 'Cat');
+INSERT INTO ANIMAL (animal_name, animal_type, photo_path)
+VALUES ('Jimmy1', 'Dog', 'images/dogs/dog1.jpg'),
+       ('Jimmy2', 'Dog', 'images/dogs/dog2.jpg'),
+       ('Jimmy3', 'Dog', 'images/dogs/dog3.jpg'),
+       ('Jimmy4', 'Dog', 'images/dogs/dog4.jpg'),
+       ('Jimmy5', 'Dog', 'images/dogs/dog5.jpg'),
+       ('Jimmy6', 'Dog', 'images/dogs/dog6.jpg'),
+       ('Jimmy7', 'Dog', 'images/dogs/dog7.jpg'),
+       ('Jimmy8', 'Dog', 'images/dogs/dog8.jpg'),
+       ('Ralph1', 'Cat', 'images/cats/cat1.jpg'),
+       ('Ralph2', 'Cat', 'images/cats/cat2.jpg'),
+       ('Ralph3', 'Cat', 'images/cats/cat3.jpg'),
+       ('Ralph4', 'Cat', 'images/cats/cat4.jpg'),
+       ('Ralph5', 'Cat', 'images/cats/cat5.jpg'),
+       ('Ralph6', 'Cat', 'images/cats/cat6.jpg'),
+       ('Ralph7', 'Cat', 'images/cats/cat7.jpg'),
+       ('Ralph8', 'Cat', 'images/cats/cat8.jpg'),
+       ('Mercury1', 'Horse', 'images/horses/horse1.jpg'),
+       ('Mercury2', 'Horse', 'images/horses/horse2.jpg'),
+       ('Mercury3', 'Horse', 'images/horses/horse3.jpg'),
+       ('Mercury4', 'Horse', 'images/horses/horse4.jpg'),
+       ('Mercury5', 'Horse', 'images/horses/horse5.jpg'),
+       ('Mercury6', 'Horse', 'images/horses/horse6.jpg'),
+       ('Mercury7', 'Horse', 'images/horses/horse7.jpg'),
+       ('Mercury8', 'Horse', 'images/horses/horse8.jpg');
 
 
 DROP TABLE IF EXISTS WEIGHT;
