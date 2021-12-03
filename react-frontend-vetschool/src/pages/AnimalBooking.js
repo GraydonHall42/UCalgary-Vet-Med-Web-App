@@ -227,11 +227,27 @@ function AnimalBooking() {
         }
     ])
 
+    var axios = require('axios');
+
+    var config = {
+    method: 'get',
+    url: 'http://localhost:8080/api/bookings',
+    headers: { }
+    };
+
+    
     useEffect(() => {
-        axios.get('http://localhost:8080/api/bookings')
-             .then(res => {
-                 console.log(res.data)
-             });
+        // axios.get('http://localhost:8080/api/bookings')
+        //      .then(res => {
+        //          console.log(res.data)
+        //      });
+        axios(config)
+        .then(function (response) {
+            console.log(JSON.stringify(response.data));
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
     }, [])
 
     const { user, setUser } = useContext(UserContext);

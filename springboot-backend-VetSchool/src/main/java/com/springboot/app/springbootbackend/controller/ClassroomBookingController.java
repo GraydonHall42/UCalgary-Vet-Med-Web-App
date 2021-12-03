@@ -27,6 +27,7 @@ public class ClassroomBookingController {
 	
 	// build get all animals REST API
 	// http://localhost:8080/api/bookings
+	@CrossOrigin(origins = "http://localhost:3000")
 	@GetMapping
 	public List<ClassroomBooking> getAllBookings(){
 		return bookingService.getAllBookings();
