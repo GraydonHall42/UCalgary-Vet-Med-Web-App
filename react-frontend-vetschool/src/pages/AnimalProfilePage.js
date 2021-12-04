@@ -5,6 +5,7 @@ import AnimalProfileContent from '../components/AnimalProfileContent';
 
 function AnimalProfilePage() {
 
+    const [modalShow, setModalShow] = useState(false);
     const [weightData, setWeightData] = useState([
         {
             weight:10,
