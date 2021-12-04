@@ -37,9 +37,6 @@ const IndividualMedicalIssueSet = ({medicalIssue}) => {
                             </Row>]
                     ))}
                 </Row>
-                <Row>
-                    <Button variant="warning" > Add New Treatment </Button>
-                </Row>
             </Container>
         )
     }

@@ -11,9 +11,12 @@ import image10 from "../assets/imageSet/n02106166_7329.jpg";
 import image11 from "../assets/imageSet/n02106166_7447.jpg";
 import image12 from "../assets/imageSet/n02106166_7454.jpg";
 import IndividualMedicalIssueSet from "../components/IndividualMedicalIssueSet";
+import CommentModal from "../components/CommentModal";
+import {Button, Row, Container} from "react-bootstrap";
 
 const IndividualMedicalIssuePage = () => {
 
+    const [modalShow, setModalShow] = React.useState(false);
     const [medicalIssue, setMedicalIssue] = useState(
         {
             medical_issue_id: 3,
@@ -66,11 +69,22 @@ const IndividualMedicalIssuePage = () => {
                 }]
         })
 
+    const handleClick = () => {
+        setModalShow(true)
+    }
+
     return(
-        <>
+        <Container>
             <MedicalIssueProfileCard medicalIssue={medicalIssue}/>
             <IndividualMedicalIssueSet medicalIssue={medicalIssue}/>
-        </>
+            <Row xl={3} className="justify-content-center pt-2">
+                <Button variant="warning" onClick={() => handleClick()}> Add New Treatment </Button>
+            </Row>
+            <CommentModal
+                show={modalShow}
+                onHide={() => setModalShow(false)}
+            />
+        </Container>
     )
 };
 
