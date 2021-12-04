@@ -10,12 +10,12 @@ the front end of our application.<br>
 ## Project Sprint 3 - API
 The following document outlines details regarding our API for the project.
 It is built using the Spring Boot Framework, and connecting to a MySQL database.<br>
-[Project API Documentation](MarkdownAndImages/API.md)
+[Project API Documentation](MarkdownAndImages/API.md)<br>
 
 ## Project Hackathon - Animal Booking Logic
 As apart of a hackathon related to this project, we implemented detailed
 logic for booking animals for classroom visits. This process is outlined in the following document.<br>
-![](MarkdownAndImages/Hackaton.drawio.png)<br>
+[Animal Booking Workflow](MarkdownAndImages/animalBooking.md)<br>
 
 ## Project Sprint 4 - Front End
 The following document shows our completed front end, written in React.js.<br>
