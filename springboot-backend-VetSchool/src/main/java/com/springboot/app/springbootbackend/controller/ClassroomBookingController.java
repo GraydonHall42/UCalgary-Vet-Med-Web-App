@@ -12,6 +12,7 @@ import java.util.List;
 @RequestMapping("/api/bookings")
 public class ClassroomBookingController {
 
+
 	private ClassroomBookingService bookingService;
 
 	public ClassroomBookingController(ClassroomBookingService bookingService) {

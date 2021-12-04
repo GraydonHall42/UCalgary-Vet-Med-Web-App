@@ -4,7 +4,7 @@ for a classroom visit<br>
 ![](Hackaton.drawio.png)<br>
 
 
-### Requirements
+## Requirements
 1. Instructor
     1. Can request an animal
     2. Can cancel a request
@@ -27,10 +27,17 @@ for a classroom visit<br>
     * Admin_1: pass: pa
     * Technician: pass: pe
 
-# Demonstration
+## Demonstration
 1. Log in as instructor<br>![](instructorLogin.png)<br>
 2. Request a visit<br>![](instructorRequestVisit1.png)<br>![](instructorRequestVisit2.png)<br>![](instructorRequestVisit3.png)<br>
 3. Log in as admin<br>![](AdminLogin.png)<br>
 4. Approve or request a visit<br>![](AdminApprovalRejection.png)<br>
 5. Log in as technician<br>![](TechLogin.png)<br>
 6. Approve or request a visit<br> ![](TechAcceptReject.png)<br>
+
+## Handling two users concurrently changing a request state.
+To handle this situation, we used the following JPA annotation in our Service implementation class for
+handling classroom bookings. By attaching this annotation, we ensure that a pessimistic
+lock is placed on the exisitingBooking object that is being edited within this method.<br>
+More details on this method of pessimistic locking in JPA can be found at https://www.baeldung.com/jpa-pessimistic-locking <br>
+![](ConcurrentUsersCode.png)<br>
