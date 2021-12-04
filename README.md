@@ -13,10 +13,8 @@ It is built using the Spring Boot Framework, and connecting to a MySQL database.
 [Project API Documentation](MarkdownAndImages/API.md)
 
 ## Project Hackathon - Animal Booking Logic
-As apart of a hackathon related to this project, we implemented the following
-logic for booking animals for classroom visits. This logic is outlined in the following document.<br>
-
-[Animal Booking Workflow](MarkdownAndImages/animalBooking.md)<br>
+As apart of a hackathon related to this project, we implemented detailed
+logic for booking animals for classroom visits. This process is outlined in the following document.<br>
 ![](MarkdownAndImages/Hackaton.drawio.png)<br>
 
 ## Project Sprint 4 - Front End
