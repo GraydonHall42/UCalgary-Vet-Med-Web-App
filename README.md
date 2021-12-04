@@ -18,3 +18,7 @@ logic for booking animals for classroom visits. This logic is outlined in the fo
 
 [Animal Booking Workflow](MarkdownAndImages/animalBooking.md)<br>
 ![](MarkdownAndImages/Hackaton.drawio.png)<br>
+
+## Project Sprint 4 - Front End
+The following document shows our completed front end, written in React.js.<br>
+[Front End](MarkdownAndImages/FrontEnd.md)<br>
