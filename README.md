@@ -2,6 +2,11 @@
 This is our final project for ENSF 607 and 608. It is a full stack application built
 for the University of Calgary School of Veterinary medicine.
 
+## Project Sprint 2 - Wireframes
+The following document gives all the wireframes our team generated using Figma, in the process of planning
+the front end of our application.<br>
+[Wireframes](MarkdownAndImages/Wireframes.md)<br>
+
 ## Project Sprint 3 - API
 The following document outlines details regarding our API for the project.
 It is built using the Spring Boot Framework, and connecting to a MySQL database.<br>
