@@ -35,7 +35,7 @@ function AnimalProfilePage(props) {
 
     useEffect(() => {
         console.log("rerender because animal changes")
-    }, [animal, weightData]);  // every time animal changes page will reload...
+    }, [animal]);  // every time animal changes page will reload...
 
 
     let [medicalIssues, setMedicalIssues] = useState([
@@ -88,28 +88,22 @@ function AnimalProfilePage(props) {
     ]);
 
     const addWeightData = (weight, date) => {
-        // const weightBody = {
-        //     animalId:animalId,
-        //     date:date,
-        //     weight:weight
-        // }
-
         const weightBody = {
-            "animalId": 1,
-            "date": "2022-01-15",
-            "weight": "1000"
-
+            animalId:animalId,
+            date:date,
+            weight:weight
         }
 
-        axios.put('http://localhost:8080/api/weight', weightBody)
+        axios.post('http://localhost:8080/api/weight', weightBody)
             .then(res => {
                 console.log(res)
+                getAnimalById(animalId);
             })
             .catch(err => {
                 console.log(err);
             })
 
-        // let newData = [...weightData, { weight:weight, date: date}]
+        // let newData = [...weightData]
         // newData.sort(function(a,b){
         //     // Turn your strings into dates, and then subtract them
         //     // to get a value that is either negative, positive, or zero.
