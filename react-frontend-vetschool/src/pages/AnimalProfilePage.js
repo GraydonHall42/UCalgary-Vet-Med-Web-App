@@ -1,44 +1,47 @@
-import React, {useEffect, useState} from 'react'
+import React, {useEffect, useMemo, useState} from 'react'
 import AnimalProfileCard from '../components/AnimalProfileCard';
 import AnimalProfileContent from '../components/AnimalProfileContent';
 import {useParams} from "react-router-dom";
+import axios from "axios";
+import {AnimalContext} from "../AnimalContext";
 
 
 function AnimalProfilePage(props) {
-
     const {animalId} = useParams();  // animalID from route param
+
+    const [animal, setAnimal] = useState(null)
+    const animalValue = useMemo(() => ({ animal, setAnimal }), [animal, setAnimal]);
+    const [isLoading, setLoading] = useState(true);
+
     const [modalShow, setModalShow] = useState(false);
-    const [weightData, setWeightData] = useState([
-        {
-            weight:10,
-            date:"2021-02-01"
-        },{
-            weight:11,
-            date:"2021-04-01"
-        },{
-            weight:12,
-            date:"2021-06-01"
-        },{
-            weight:13,
-            date:"2021-08-01"
-        },{
-            weight:10,
-            date:"2021-10-01"
-        }
-    ])
+    const [weightData, setWeightData] = useState([null])
 
-
-
-
+    function getAnimalById(id) {
+        axios.get('http://localhost:8080/api/animals/' + id + '?fields')
+            .then(res => {
+                console.log(res.data)
+                setAnimal(res.data)
+                setWeightData(res.data.weights)
+                setLoading(false);
+            })
+            .catch(err => {
+                console.log(err);
+            })
+    }
 
     useEffect(() => {
-        console.log(animalId);
-    });
+        getAnimalById(animalId);
+    }, []);  // empty array so only executes once
+
+    useEffect(() => {
+        console.log("rerender because animal changes")
+    }, [animal, weightData]);  // every time animal changes page will reload...
+
 
     let [medicalIssues, setMedicalIssues] = useState([
             
         {
-            "medicalId": 45,
+            medicalId: 45,
             "animalId": 2,
             "issueName": "Flu",
             "currentStatus": "Red",
@@ -85,25 +88,49 @@ function AnimalProfilePage(props) {
     ]);
 
     const addWeightData = (weight, date) => {
-        let newData = [...weightData, { weight:weight, date: date}]
-        newData.sort(function(a,b){
-            // Turn your strings into dates, and then subtract them
-            // to get a value that is either negative, positive, or zero.
-            return new Date(a.date) - new Date(b.date);
-        });
-        setWeightData(newData);
+        // const weightBody = {
+        //     animalId:animalId,
+        //     date:date,
+        //     weight:weight
+        // }
+
+        const weightBody = {
+            "animalId": 1,
+            "date": "2022-01-15",
+            "weight": "1000"
+
+        }
+
+        axios.put('http://localhost:8080/api/weight', weightBody)
+            .then(res => {
+                console.log(res)
+            })
+            .catch(err => {
+                console.log(err);
+            })
+
+        // let newData = [...weightData, { weight:weight, date: date}]
+        // newData.sort(function(a,b){
+        //     // Turn your strings into dates, and then subtract them
+        //     // to get a value that is either negative, positive, or zero.
+        //     return new Date(a.date) - new Date(b.date);
+        // });
+        // setWeightData(newData);
+
+    }
+
+    // while awaiting axios...
+    if (isLoading) {
+        return <div className="App">Loading...</div>;
     }
 
     return (
-        <div className="medicalContainer">
-            <AnimalProfileCard
-                name="Spud"
-                type="Dog"
-                status="Healthy"
-                lastCheckup="2021-10-01"
-            />
-            <AnimalProfileContent weightData={weightData} medicalData={medicalIssues} addWeightData={addWeightData}/>
-        </div>
+        <AnimalContext.Provider  value={animalValue}>
+            <div className="medicalContainer">
+                <AnimalProfileCard />
+                <AnimalProfileContent weightData={weightData} medicalData={medicalIssues} addWeightData={addWeightData}/>
+            </div>
+        </AnimalContext.Provider>
     )
 }
 

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import {Link} from 'react-router-dom';
 import {Tabs, Tab, Container, Row, Col} from "react-bootstrap";
 import WeightGraph from './WeightGraph';
@@ -7,32 +7,33 @@ import MedicalIssueList from './MedicalIssueList';
 import AnimalInfoTable from './AnimalInfoTable';
 import ImageSet from "./ImageSet";
 import '../styles/AnimalProfileContent.css';
+import {AnimalContext} from "../AnimalContext";
 
 function AnimalProfileContent(props) {
-    const [key, setKey] = useState('medical');
+    const [key, setKey] = useState('animalInfo');
+    const { animal, setAnimal } = useContext(AnimalContext);
 
     return (
         <Container>
             <Tabs fill justify activeKey={key} onSelect={(k) => setKey(k)} className="mb-3">
-                <Tab className="profileTab" eventKey="medical" title="Medical Issues">
-                    <MedicalIssueList medicalData={props.medicalData}/>
-                </Tab>
                 <Tab className="profileTab" eventKey="animalInfo" title="Animal Info">
                     <Container className="p-2">
                         <Row>
                             <Col>
                                 <AnimalInfoTable
-                                    birthdate="2020-05-01"
-                                    age="2"
-                                    sex="male"
-                                    color="Black and White"
-                                    active="True"
-                                    chipNum="2345"
-                                    specialNotes="Is cute but causes trouble"
+                                    birthdate={animal.birthDate}
+                                    age={getAge(animal.birthDate)}
+                                    sex={animal.sex}
+                                    color={animal.color}
+                                    active={animal.active}
+                                    chipNum={animal.microchipNum}
                                 />
                             </Col>
                         </Row>
                 </Container>
+                </Tab>
+                <Tab className="profileTab" eventKey="medical" title="Medical Issues">
+                    <MedicalIssueList medicalData={props.medicalData}/>
                 </Tab>
                 <Tab className="profileTab" eventKey="weight" title="Weights">
                     <Row className="align-items-center justify-content-center p-3">
@@ -50,6 +51,17 @@ function AnimalProfileContent(props) {
             </Tabs>
         </Container>
     )
+
+    function getAge(dateString) {
+        var today = new Date();
+        var birthDate = new Date(dateString);
+        var age = today.getFullYear() - birthDate.getFullYear();
+        var m = today.getMonth() - birthDate.getMonth();
+        if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+            age--;
+        }
+        return age;
+    }
 }
 
 export default AnimalProfileContent

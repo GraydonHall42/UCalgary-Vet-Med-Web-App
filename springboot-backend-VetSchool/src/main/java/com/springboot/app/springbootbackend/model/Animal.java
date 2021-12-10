@@ -48,6 +48,12 @@ public class Animal {
 	@Column(name="breed")
 	private String breed;
 
+	@Column(name="last_checkup")
+	private String lastCheckup;
+
+	@Column(name="status")
+	private String status;
+
 	@OneToMany(mappedBy = "animalId")  // this is the name in the corresponding table
 	List<Weight> weights;
 
