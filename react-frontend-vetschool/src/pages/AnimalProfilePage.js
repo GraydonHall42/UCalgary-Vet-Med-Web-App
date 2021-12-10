@@ -1,10 +1,12 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import AnimalProfileCard from '../components/AnimalProfileCard';
 import AnimalProfileContent from '../components/AnimalProfileContent';
+import {useParams} from "react-router-dom";
 
 
-function AnimalProfilePage() {
+function AnimalProfilePage(props) {
 
+    const {animalId} = useParams();  // animalID from route param
     const [modalShow, setModalShow] = useState(false);
     const [weightData, setWeightData] = useState([
         {
@@ -24,6 +26,14 @@ function AnimalProfilePage() {
             date:"2021-10-01"
         }
     ])
+
+
+
+
+
+    useEffect(() => {
+        console.log(animalId);
+    });
 
     let [medicalIssues, setMedicalIssues] = useState([
             

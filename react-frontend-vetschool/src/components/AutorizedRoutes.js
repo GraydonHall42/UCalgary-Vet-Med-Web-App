@@ -17,7 +17,7 @@ function AuthorizedRoutes() {
                 <Routes className="routes">
                     <Route exact path="/" element={<Home/>}/>
                     <Route exact path="/status" element={<StatusDashboard/>}/>
-                    <Route exact path="/animal-profile" element={<AnimalProfilePage/>}/>
+                    <Route exact path="/animal-profile/:animalId" element={<AnimalProfilePage/>}/>
                     <Route exact path="/user-management" element={<UserManagement/>}/>
                     <Route exact path="/booking" element={<AnimalBooking/>}/>
                     <Route exact path="/user-profile" element={<UserProfilePage/>}/>

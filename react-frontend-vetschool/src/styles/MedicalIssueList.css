@@ -1,0 +1,76 @@
+.medicalContainer {
+  text-align: center;
+  background-color: white;
+  height: 100%;
+}
+
+.listContainer {
+  text-align: center;
+}
+
+.medicalIssueList {
+  text-align: center;
+  display: inline-block;
+  background-color: lightgray;
+  width: 70%;
+  height: 370px;
+  list-style-type: none;
+  overflow-y: auto;
+  padding-bottom: 10px;
+}
+
+.medicalIssueItem {
+  display: inline-block;
+  width: 95%;
+  height: 80px;
+  background-color: white;
+  margin-top: 10px;
+}
+.itemTop {
+  display: block;
+  width: 100%;
+}
+.itemTopLeft {
+  display: inline-block;
+  width: 48%;
+  text-align: left;
+}
+.itemTopRight {
+  display: inline-block;
+  width: 48%;
+  text-align: right;
+}
+.issueName {
+  font-size: 20px;
+}
+
+.itemBottom {
+  text-align: right;
+  display: block;
+  width: 98%;
+}
+.closed {
+  display: inline-block;
+  width: 50px;
+  margin-right: 5px;
+}
+.issueCloseDate {
+  display: inline-block;
+  width: 50px;
+}
+
+.addButtonContainer {
+  text-align: center;
+  padding-top: 5px;
+  display: inline-block;
+  width: 70%;
+  height: 50px;
+}
+
+.addButton {
+  background-color: #eaac35;
+  width: 80%;
+  height: 30px;
+  border-radius: 25px;
+  font-size: 18px;
+}

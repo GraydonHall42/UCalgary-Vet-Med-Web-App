@@ -30,12 +30,27 @@ public class Animal {
 	@Column(name = "sex", nullable = false)
 	private String sex;
 
-	@Column(name = "photo_path", nullable = false)
-	private String photoPath;
+	@Column(name = "profile_photo", nullable = false)
+	private String profilePhoto;
 
-//	@OneToMany(mappedBy = "animalId")  // this is the name in the corresponding table
-//	List<Weight> weights;
-//
+	@Column(name="birth_date")
+	private String birthDate;
+
+	@Column(name="color")
+	private String color;
+
+	@Column(name="active")
+	private String active;
+
+	@Column(name="microchip_num")
+	private String microchipNum;
+
+	@Column(name="breed")
+	private String breed;
+
+	@OneToMany(mappedBy = "animalId")  // this is the name in the corresponding table
+	List<Weight> weights;
+
 //	@OneToMany(mappedBy = "animalId")
 //	List<ProfileImage> images;
 //
