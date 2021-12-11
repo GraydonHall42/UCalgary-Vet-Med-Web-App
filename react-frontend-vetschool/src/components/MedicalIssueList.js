@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import {Tabs, Tab, Container, Row, Col, Button, ButtonGroup} from "react-bootstrap";
 import '../styles/MedicalIssuesList.css';
 import MedicalIssueModal from "./MedicalIssueModal";
