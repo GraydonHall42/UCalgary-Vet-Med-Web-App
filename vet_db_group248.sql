@@ -274,14 +274,14 @@ DROP TABLE IF EXISTS COMMENT_IMAGES;
 CREATE TABLE COMMENT_IMAGES(
     comment_photo_id        int auto_increment,
     comment_id              int not null,
-    image                     varchar(10) not null,
+    image                     varchar(255) not null,
     primary key (comment_photo_id),
     foreign key (comment_id) references COMMENT(comment_id)
 );
 
 INSERT INTO COMMENT_IMAGES (comment_id, image)
-VALUES (1, 'img13.jpg'),
-       (1, 'img14.jpg'),
+VALUES (1, '/images/commentImages/sickpuppy1.jpg'),
+       (1, '/images/commentImages/sickpuppy2.jpg'),
        (2, 'img15.jpg'),
        (2, 'img16.jpg'),
        (3, 'img17.jpg'),

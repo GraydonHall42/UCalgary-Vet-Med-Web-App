@@ -9,10 +9,7 @@ import java.util.List;
 
 public interface AnimalRepository extends JpaRepository<Animal, Integer>{
 
-    List<Animal> findByAnimalType(String type);
-
-    // tried alternate way to do it
-//    @Query("select a from animal a where a.Animal_Type = ?1")
-//    List<Animal> findByAnimalType(String type);
+    List<Animal> findByAnimalTypeContaining(String type);
+    List<Animal> findByAnimalNameContaining(String name);
 
 }
