@@ -42,30 +42,30 @@ create table ANIMAL
 
 
 INSERT INTO ANIMAL (animal_name, animal_type, profile_photo, sex, birth_date, color, active, microchip_num, breed, last_checkup, status)
-VALUES ('Spud', 'Dog', '/images/dogs/dog1.jpg', 'male', "2020-02-14", "white", true, 1234, "Corgi", "2021-10-01", "Healthy"),
+VALUES ('Spud', 'Dog', '/images/dogs/dog1.jpg', 'male', "2020-02-14", "white", true, 1234, "Corgi", "2021-10-01", "Attention"),
        ('Jimmy2', 'Dog', '/images/dogs/dog2.jpg', 'female', "2019-03-14", "white", true, 1235, "Corgi", "2021-10-01", "Healthy"),
        ('Jimmy3', 'Dog', '/images/dogs/dog3.jpg', 'male', "2018-04-14", "white", true, 1236, "Corgi", "2021-10-01", "Healthy"),
-       ('Jimmy4', 'Dog', '/images/dogs/dog4.jpg', 'female', "2017-05-14", "white", true, 1237, "Corgi", "2021-10-01", "Healthy"),
+       ('Jimmy4', 'Dog', '/images/dogs/dog4.jpg', 'female', "2017-05-14", "white", true, 1237, "Corgi", "2021-10-01", "Attention"),
        ('Jimmy5', 'Dog', '/images/dogs/dog5.jpg', 'male', "2020-06-14", "white", true, 1238, "Beagle", "2021-10-01", "Healthy"),
-       ('Jimmy6', 'Dog', '/images/dogs/dog6.jpg', 'female', "2019-07-14", "white", true, 1239, "Beagle", "2021-10-01", "Healthy"),
+       ('Jimmy6', 'Dog', '/images/dogs/dog6.jpg', 'female', "2019-07-14", "white", true, 1239, "Beagle", "2021-10-01", "Urgent"),
        ('Jimmy7', 'Dog', '/images/dogs/dog7.jpg', 'male', "2018-08-14", "white", true, 1240, "Beagle", "2021-10-01", "Healthy"),
-       ('Jimmy8', 'Dog', '/images/dogs/dog8.jpg', 'female', "2017-09-14", "white", true, 1241, "Beagle", "2021-10-01", "Healthy"),
+       ('Jimmy8', 'Dog', '/images/dogs/dog8.jpg', 'female', "2017-09-14", "white", true, 1241, "Beagle", "2021-10-01", "Attention"),
        ('Ralph1', 'Cat', '/images/cats/cat1.jpg', 'male', "2017-10-14", "white", true, 1242, "Persian", "2021-10-01", "Healthy"),
        ('Ralph2', 'Cat', '/images/cats/cat2.jpg', 'female', "2016-11-14", "white", true, 1243, "Persian", "2021-10-01", "Healthy"),
        ('Ralph3', 'Cat', '/images/cats/cat3.jpg', 'male', "2020-01-14", "white", true, 1244, "Persian", "2021-10-01", "Healthy"),
-       ('Ralph4', 'Cat', '/images/cats/cat4.jpg', 'female', "2021-02-14", "white", true, 1245, "Persian", "2021-10-01", "Healthy"),
+       ('Ralph4', 'Cat', '/images/cats/cat4.jpg', 'female', "2021-02-14", "white", true, 1245, "Persian", "2021-10-01", "Attention"),
        ('Ralph5', 'Cat', '/images/cats/cat5.jpg', 'male', "2021-03-14", "white", true, 12346, "Munchkin", "2021-10-01", "Healthy"),
-       ('Ralph6', 'Cat', '/images/cats/cat6.jpg', 'female', "2015-04-14", "white", true, 1247, "Munchkin", "2021-10-01", "Healthy"),
+       ('Ralph6', 'Cat', '/images/cats/cat6.jpg', 'female', "2015-04-14", "white", true, 1247, "Munchkin", "2021-10-01", "Urgent"),
        ('Ralph7', 'Cat', '/images/cats/cat7.jpg', 'male', "2016-05-14", "white", true, 1248, "Munchkin", "2021-10-01", "Healthy"),
        ('Ralph8', 'Cat', '/images/cats/cat8.jpg', 'female', "2017-06-14", "white", true, 1249, "Munchkin", "2021-10-01", "Healthy"),
        ('Mercury1', 'Horse', '/images/horses/horse1.jpg', 'male', "2018-07-14", "white", true, 1250, "Arabian", "2021-10-01", "Healthy"),
        ('Mercury2', 'Horse', '/images/horses/horse2.jpg', 'female', "2019-08-14", "white", true, 1251, "Arabian", "2021-10-01", "Healthy"),
-       ('Mercury3', 'Horse', '/images/horses/horse3.jpg', 'male', "2020-09-14", "white", true, 1252, "Arabian", "2021-10-01", "Healthy"),
+       ('Mercury3', 'Horse', '/images/horses/horse3.jpg', 'male', "2020-09-14", "white", true, 1252, "Arabian", "2021-10-01", "Attention"),
        ('Mercury4', 'Horse', '/images/horses/horse4.jpg', 'female', "2021-10-14", "white", true, 1253, "Arabian", "2021-10-01", "Healthy"),
        ('Mercury5', 'Horse', '/images/horses/horse5.jpg', 'male', "2020-11-14", "white", true, 1254, "Clydesdale", "2021-10-01", "Healthy"),
        ('Mercury6', 'Horse', '/images/horses/horse6.jpg', 'female', "2018-12-14", "white", true, 1255, "Clydesdale", "2021-10-01", "Healthy"),
        ('Mercury7', 'Horse', '/images/horses/horse7.jpg', 'male', "2019-01-14", "white", true, 1256, "Clydesdale", "2021-10-01", "Healthy"),
-       ('Mercury8', 'Horse', '/images/horses/horse8.jpg', 'female', "2020-02-14", "white", true, 1257, "Clydesdale", "2021-10-01", "Healthy");
+       ('Mercury8', 'Horse', '/images/horses/horse8.jpg', 'female', "2020-02-14", "white", true, 1257, "Clydesdale", "2021-10-01", "Urgent");
 
 
 DROP TABLE IF EXISTS WEIGHT;
