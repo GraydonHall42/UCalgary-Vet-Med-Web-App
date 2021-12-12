@@ -41,8 +41,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().antMatchers("/api/token/refresh").permitAll();
 
         // only let certain roles do certain things
-        http.authorizeRequests().antMatchers(GET, "/api/users").hasAnyAuthority("ADMIN");
-        http.authorizeRequests().anyRequest().authenticated();
+        //http.authorizeRequests().antMatchers(GET, "/api/users").hasAnyAuthority("ADMIN");
+        //http.authorizeRequests().anyRequest().authenticated();
+        http.authorizeRequests().anyRequest().permitAll();
+
         http.addFilter(new CustomAuthenticationFilter(authenticationManagerBean()));
         http.addFilterBefore(new CustomAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);
     }
