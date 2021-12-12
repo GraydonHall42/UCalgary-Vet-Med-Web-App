@@ -4,8 +4,10 @@ import com.springboot.app.springbootbackend.exception.ResourceNotFoundException;
 import com.springboot.app.springbootbackend.model.ClassroomBooking;
 import com.springboot.app.springbootbackend.repository.ClassroomBookingRepository;
 import com.springboot.app.springbootbackend.service.ClassroomBookingService;
+import org.springframework.data.jpa.repository.Lock;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.LockModeType;
 import java.util.List;
 
 @Service
@@ -36,6 +38,7 @@ public class ClassroomBookingServiceImpl implements ClassroomBookingService {
 
 
 	@Override
+	@Lock(LockModeType.PESSIMISTIC_WRITE)
 	public ClassroomBooking updateBooking(ClassroomBooking booking, int id) {
 
 		// we need to check whether employee with given id is exist in DB or not
@@ -65,7 +68,5 @@ public class ClassroomBookingServiceImpl implements ClassroomBookingService {
 								new ResourceNotFoundException("Employee", "Id", id));
 		bookingRepository.deleteById(id);
 	}
-
-
 
 }

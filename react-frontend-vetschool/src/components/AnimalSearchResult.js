@@ -1,10 +1,11 @@
-import React, {useState} from 'react'
+import React, {useContext, useState} from 'react'
 import {Button, Card, Col, Container, Image, Row, Table} from "react-bootstrap";
-// import puppyPhoto from '../assets/puppy.jpg';
-import puppyPhoto from '../assets/spud.jpg';
 import "../styles/AnimalSearchResult.css"
+import {UserContext} from "../UserContext";
+import {Link} from "react-router-dom";
 
 const AnimalSearchResult = (props) =>  {
+    const { user, setUser } = useContext(UserContext);
 
     const handleClick = (animal) => {
         props.setModalShow(true)
@@ -14,10 +15,11 @@ const AnimalSearchResult = (props) =>  {
 
     function renderTableData() {
         return props.animals.map((animal, index) => {
-            const { animalId, animalName, animalType, sex, photoPath } = animal //destructuring
+            const { animalId, animalName, animalType, sex, profilePhoto } = animal //destructuring
             return (
                 <tr key={animalId} className={"align-middle"}>
-                    <td><Image src={photoPath} fluid roundedCircle className={"animalSearchImage"}/></td>
+                    {/*<td><Image src={profilePhoto} fluid roundedCircle className={"animalSearchImage"}/></td>*/}
+                    <td><Image src={profilePhoto} fluid roundedCircle className={"animalSearchImage"}/></td>
                     <td>
                         {animalName}
                     </td>
@@ -28,11 +30,14 @@ const AnimalSearchResult = (props) =>  {
                         {sex}
                     </td>
                     <td>
-                        <Button className={"searchResultBtn"} variant={"danger"}>
-                            Go to profile
-                        </Button>
+                        <Link to={"/animal-profile/"+animalId}>
+                            <Button className={"searchResultBtn"} variant={"danger"}>
+                                Go to profile
+                            </Button>
+                        </Link>
                         <br />
                         <Button
+                            disabled={user.userType!=='Teaching Technician'}
                             className={"searchResultBtn"}
                             variant={"warning"}
                             onClick={()=>handleClick(animal)}

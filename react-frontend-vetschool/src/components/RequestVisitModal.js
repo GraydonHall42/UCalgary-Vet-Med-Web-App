@@ -34,6 +34,19 @@ function RequestVisitModal(props) {
             .then((res)=> console.log(res))
             .catch((err) => console.log(err))
 
+        props.onHide()
+        setDate(null)
+        setDescription(null)
+        setStartTime(null)
+        setEndTime(null)
+    }
+
+    const closeModal = () => {
+        setDate(null)
+        setDescription(null)
+        setStartTime(null)
+        setEndTime(null)
+        props.onHide()
     }
 
     return (
@@ -43,7 +56,7 @@ function RequestVisitModal(props) {
             aria-labelledby="contained-modal-title-vcenter"
             centered
         >
-            <Modal.Header closeButton>
+            <Modal.Header>
                 <Modal.Title id="contained-modal-title-vcenter">
                     Request Animal Visit: {props.selectedAnimal.animalName}
                 </Modal.Title>
@@ -86,14 +99,16 @@ function RequestVisitModal(props) {
                             value={endTime}
                             onChange={e => {setEndTime(e.target.value)}}
                             type="time"
-                            placeholder="Start Time" />
+                            placeholder="Start Time"
+                        />
+
                     </Form.Group>
 
                 </Form>
             </Modal.Body>
             <Modal.Footer>
                 <Button variant={"warning"} onClick={submitBookingRequest}>Submit Request</Button>
-                <Button variant={"danger"} onClick={props.onHide}>Close</Button>
+                <Button variant={"danger"} onClick={closeModal}>Close</Button>
             </Modal.Footer>
         </Modal>
     );

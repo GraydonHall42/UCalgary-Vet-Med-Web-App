@@ -36,10 +36,6 @@ const AnimalInfoTable = (props) => {
                 <td>Microchip #</td>
                 <td>{props.chipNum}</td>
             </tr>
-            <tr>
-                <td>Special Instructions</td>
-                <td>{props.specialNotes}</td>
-            </tr>
             </tbody>
         </Table>
     )

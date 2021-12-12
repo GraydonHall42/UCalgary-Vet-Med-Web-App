@@ -7,6 +7,13 @@ const WeightGraph = (props) => {
   const [chartData, setChartData] = useState({});
 
   const chart = (weightData) => {
+    weightData.sort(function(a,b){
+      // Turn your strings into dates, and then subtract them
+      // to get a value that is either negative, positive, or zero.
+      return new Date(a.date) - new Date(b.date);
+    });
+
+
     let weights = weightData.map(w => w.weight)
     let dates = weightData.map(w => w.date)
 

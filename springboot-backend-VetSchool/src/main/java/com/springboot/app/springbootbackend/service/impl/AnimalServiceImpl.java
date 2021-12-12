@@ -1,6 +1,5 @@
 package com.springboot.app.springbootbackend.service.impl;
 
-import com.fasterxml.jackson.annotation.JsonFilter;
 import com.springboot.app.springbootbackend.exception.ResourceNotFoundException;
 import com.springboot.app.springbootbackend.model.Animal;
 import com.springboot.app.springbootbackend.repository.AnimalRepository;
@@ -38,7 +37,12 @@ public class AnimalServiceImpl implements AnimalService {
 
 	@Override
 	public List<Animal> getAnimalByType(String type) {
-		return animalRepository.findByAnimalType(type);
+		return animalRepository.findByAnimalTypeContaining(type);
+	}
+
+	@Override
+	public List<Animal> getAnimalByName(String name) {
+		return animalRepository.findByAnimalNameContaining(name);
 	}
 
 	@Override
@@ -50,6 +54,7 @@ public class AnimalServiceImpl implements AnimalService {
 
 		existingAnimal.setAnimalName(animal.getAnimalName());
 		existingAnimal.setAnimalType(animal.getAnimalType());
+		existingAnimal.setStatus(animal.getStatus());
 		// save existing employee to DB
 		animalRepository.save(existingAnimal);
 		return existingAnimal;

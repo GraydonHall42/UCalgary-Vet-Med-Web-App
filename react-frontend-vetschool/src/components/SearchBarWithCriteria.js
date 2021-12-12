@@ -14,9 +14,9 @@ import "../styles/AnimalSearchBar.css"
 
 const SearchBarWithCriteria = (props) => {
 
-    const [value,setValue]=useState(props.searchOptions[0]);
+
     const handleSelect=(e)=>{
-        setValue(e)
+        props.setSearchCriteria(e)
     }
 
     function renderSearchCriteria() {
@@ -40,16 +40,13 @@ const SearchBarWithCriteria = (props) => {
                         onSelect={handleSelect}
                     >
                         {renderSearchCriteria()}
-                        {/*<Dropdown.Item eventKey="Animal Name">Animal Name</Dropdown.Item>*/}
-                        {/*<Dropdown.Item eventKey="Animal Type">Animal Type</Dropdown.Item>*/}
                     </DropdownButton>
                     <FormControl
+                        onChange={(e) => props.setAnimalName(e.target.value)}
                         aria-label="Text input with dropdown button"
-                        placeholder={"Enter "+ value}
+                        placeholder={"Enter "+ props.searchCriteria}
+                        value={props.animalName}
                     />
-                    <Button variant="danger" size="lg">
-                        Search
-                    </Button>
                 </InputGroup>
             </Container>
         </div>

@@ -82,6 +82,13 @@ public class AnimalController {
         return animalService.getAnimalByType(type);
     }
 
+    // build get animal by type REST API
+    // http://localhost:8080/api/animals/dog
+    @GetMapping("/byName/{name}")
+    public List<Animal> getAnimalByName(@PathVariable("name") String name){
+        return animalService.getAnimalByName(name);
+    }
+
 
 
     // build update employee REST API

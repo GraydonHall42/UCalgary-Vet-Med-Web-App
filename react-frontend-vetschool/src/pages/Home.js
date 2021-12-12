@@ -10,7 +10,9 @@ function Home() {
     const [animals, setAnimals] = useState([])
     const [modalShow, setModalShow] = React.useState(false);
     const [selectedAnimal, setSelectedAnimal] = useState([])
-
+    const [reRender, setReRender] = useState(false);
+    const [searchEntry, setSearchEntry] = useState("");
+    const [searchCriteria,setSearchCriteria]=useState("Animal Name");
 
     function getAllAnimals() {
         axios.get('http://localhost:8080/api/animals?fields=images,medicalIssues, prescriptions')
@@ -28,12 +30,72 @@ function Home() {
     }, []);
 
 
+
+    useEffect(() => {
+        const search = () => {
+            console.log("hello")
+            // search criteria: Animal name or animal type
+            let endPoint = 'http://localhost:8080/api/animals?fields=images,medicalIssues, prescriptions';
+            if(searchEntry !== ""){
+                if(searchCriteria==="Animal Name"){
+                    endPoint = 'http://localhost:8080/api/animals/byName/';
+                }else if(searchCriteria==="Animal Type"){
+                    endPoint= 'http://localhost:8080/api/animals/byType/'
+                }
+            }
+
+
+            // get request to back end
+            axios.get(endPoint+searchEntry)
+                .then(res => {
+                    console.log(res.data)
+                    setAnimals(res.data)
+                })
+                .catch(err => {
+                    console.log(err);
+                })
+        };
+
+
+
+
+        if (!animals.length) {
+            console.log("searching on initial animal list");
+            search();
+        }
+
+        const id = setTimeout(() => {
+            search()
+            // if (searchEntry) {
+            //     search();
+            // } else {
+            //     console.log("searching on interval animal list");
+            //     search();
+            // }
+        }, 500);
+
+        // the only thing you can return is a function in a useEffect
+        // runs when the component unmounts OR at the start of a new render
+        // this is why we see the function run at the beginning of the render
+        // use this to clean up our timer
+        return () => {
+            clearTimeout(id);
+        };
+    }, [searchEntry, reRender]);
+
+
     return (
         <div>
             <Container className="p-2">
                 <Row>
                     <Col>
-                        <SearchBarWithCriteria searchOptions ={["Animal Name", "Animal Type"]} />
+                        <SearchBarWithCriteria
+                            setAnimalName={setSearchEntry}
+                            animalName={searchEntry}
+                            searchOptions ={["Animal Name", "Animal Type"]}
+                            setSearchCriteria={setSearchCriteria}
+                            searchCriteria={searchCriteria}
+                        />
                     </Col>
                 </Row>
                 <Row>
