@@ -12,12 +12,16 @@ const MedicalIssueProfileCard = ({medicalIssue}) =>  {
     const [animal, setAnimal] = useState("");
     const [modalShow, setModalShow] = useState(null);
     const [medicalIssueState, setMedicalIssueState] = useState(null);
+    const [isLoading, setLoading] = useState(true);
 
-
-    const obtainAnimalById = (animalId) => {
-        axios.get("http://localhost:8080/api/animals/"+animalId+"?fields")
-            .then(response => {setAnimal(response.data)
-                console.log(response.data.name)})
+    const obtainAnimalById = async(animalId) => {
+        const res = await axios.get("http://localhost:8080/api/animals/"+animalId+"?fields")
+            .then(response => {
+                setAnimal(response.data)
+                console.log("hello from obtainanimalbyID")
+                console.log(response.data)
+                setLoading(false);
+            })
             .catch(error => console.log(error))
     }
 
@@ -34,8 +38,18 @@ const MedicalIssueProfileCard = ({medicalIssue}) =>  {
         obtainAnimalById(medicalIssue.animalId);
     },[medicalIssue])
 
+    useEffect(() => {
+        console.log("rerender because animal changes")
+    }, [animal]);  // every time animal changes page will reload...
+
+
     function formatDate(string){
         return new Date(string).toISOString().slice(0,10);
+    }
+
+    // while awaiting axios...
+    if (isLoading) {
+        return <div className="App">Loading...</div>;
     }
 
     return (
@@ -49,19 +63,23 @@ const MedicalIssueProfileCard = ({medicalIssue}) =>  {
                             </Col>
                             <Col>
                             <Row>
-                                <Col xs={5} className="text-start">
+                                <Col md={4} className="text-start">
                                     <h3>Patient's Name: {animal.animalName}</h3>
                                     <h4>Medical Issue: {medicalIssue.issueName}</h4>
                                 </Col>
-                                <Col xs={4} className="text-start">
+                                <Col md={3} className="text-start">
                                     <b>Priority: {medicalIssue.currentStatus}</b><br/>
                                     <b>Open Date: {medicalIssue.openDate ? formatDate(medicalIssue.openDate) : null}</b><br/>
                                     <b>Close Date: {medicalIssue.closeDate ? formatDate(medicalIssue.closeDate) : null}</b>
                                 </Col>
-                                <Col xs={3}>
+                                <Col md={3}>
+                                    <h5>Animal Status</h5>
                                     <AnimalStatusButton animal={animal}/>
-                                    <Button variant="warning" className="mt-1" onClick={() => handleClick()}>
-                                        Edit Medical Issue
+
+                                </Col>
+                                <Col md={2}>
+                                    <Button variant="warning" className="mt-2" onClick={() => handleClick()}>
+                                        Edit Issue
                                     </Button>
                                 </Col>
                             </Row>
@@ -71,7 +89,8 @@ const MedicalIssueProfileCard = ({medicalIssue}) =>  {
                                         as="textarea"
                                         value={medicalIssue.description}
                                         placeholder="Leave a comment here"
-                                        style={{ height: '100px' }}
+                                        style={{ height: '75px' , backgroundColor: "white"}}
+                                        disabled={true}
                                     />
                             </Row>
                             </Col>

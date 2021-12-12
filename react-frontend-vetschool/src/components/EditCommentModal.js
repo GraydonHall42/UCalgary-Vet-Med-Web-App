@@ -4,12 +4,12 @@ import {UserContext} from "../UserContext";
 import axios from "axios";
 
 
-function CommentModal(props) {
+function EditCommentModal(props) {
 
     const { user, setUser } = useContext(UserContext);
     const [medicalIssueId, setMedicalIssueId] = useState(null);
     const [authorId, setAuthorId] = useState(null);
-    const [title, setTitle] = useState(null);
+    const [title, setTitle] = useState(props.props.title);
     const [date, setDate] = useState(null);
     const [description, setDescription] = useState(null);
     const [image, setImage] = useState(null);
@@ -36,7 +36,7 @@ function CommentModal(props) {
             "image": image
         }
 
-        let commentRes = await axios.post("http://localhost:8080/api/comments", comment)
+        let commentRes = await axios.put("http://localhost:8080/api/comments/"+props.props.commentId, comment)
             .then((res)=> {
                 setCommentId(res.data.commentId)
                 commentImage.commentId = res.data.commentId
@@ -45,7 +45,7 @@ function CommentModal(props) {
             .catch((err) => console.log(err))
 
 
-        let imageRes = await axios.post("http://localhost:8080/api/treatment-images", commentImage)
+        let imageRes = await axios.put("http://localhost:8080/api/treatment-images/"+props.props.commentImages.commentPhotoId, commentImage)
             .then((res) => console.log(res.data))
             .catch((err) => console.log(err))
 
@@ -81,7 +81,7 @@ function CommentModal(props) {
         >
             <Modal.Header>
                 <Modal.Title id="contained-modal-title-vcenter">
-                    New Comment
+                    Edit Comment
                 </Modal.Title>
             </Modal.Header>
             <Modal.Body>
@@ -92,6 +92,7 @@ function CommentModal(props) {
                             onChange={e => {setTitle(e.target.value)}}
                             type="text"
                             placeholder="Enter Comment Issue"
+                            defaultValue={props.props.title}
                         />
                         <Form.Text className="text-muted">
                         </Form.Text>
@@ -133,4 +134,4 @@ function CommentModal(props) {
     );
 }
 
-export default CommentModal;
+export default EditCommentModal;

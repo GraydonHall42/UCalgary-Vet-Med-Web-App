@@ -67,7 +67,7 @@ const IndividualMedicalIssuePage = (props) => {
                 <MedicalIssueProfileCard medicalIssue={medicalIssue}/>
                 <IndividualMedicalIssueSet medicalIssue={medicalIssue}/>
                 <Row xl={3} className="justify-content-center pt-2">
-                    <Button variant="warning" onClick={() => handleClick()}> Add New Treatment </Button>
+                    <Button variant="warning" onClick={() => handleClick()}> Add New Comment </Button>
                 </Row>
                 <CommentModal
                     props={medicalIssue}
