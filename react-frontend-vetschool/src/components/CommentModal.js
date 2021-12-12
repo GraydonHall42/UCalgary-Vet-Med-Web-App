@@ -6,14 +6,12 @@ import axios from "axios";
 
 function CommentModal(props) {
 
-    const [description, setDescription] = useState(null)
-    const [startDate, setStartDate] = useState(null)
+    const [description, setDescription] = useState("")
+    const [commentDate, setCommentDate] = useState(null)
     const [endDate, setEndDate] = useState(null)
     const { user, setUser } = useContext(UserContext);
     const [ closed, setClosed ] = useState(true);
-    const [animal, setAnimal] = useState({
-        "animalName": "Spud"
-    })
+    const [animal, setAnimal] = useState("")
     // const submitBookingRequest = () => {
     //     console.log("Requested!")
     //     console.log(props.selectedAnimal)
@@ -44,7 +42,7 @@ function CommentModal(props) {
     // }
 
     const closeModal = () => {
-        setStartDate(null)
+        setCommentDate(null)
         setEndDate(null)
         setDescription(null)
         props.onHide()
@@ -67,8 +65,8 @@ function CommentModal(props) {
                     <Form.Group className="mb-3" controlId="formBasicPassword">
                         <Form.Label>Comment Date</Form.Label>
                         <Form.Control
-                            value={startDate}
-                            onChange={e => {setStartDate(e.target.value)}}
+                            value={commentDate}
+                            onChange={e => {setCommentDate(e.target.value)}}
                             type="date"
                             placeholder="Date" />
                     </Form.Group>

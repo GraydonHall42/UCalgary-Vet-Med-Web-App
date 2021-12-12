@@ -21,7 +21,7 @@ function AuthorizedRoutes() {
                     <Route exact path="/user-management" element={<UserManagement/>}/>
                     <Route exact path="/booking" element={<AnimalBooking/>}/>
                     <Route exact path="/user-profile" element={<UserProfilePage/>}/>
-                    <Route exact path="/medical-issue/3" element={<IndividualMedicalIssuePage/>}/>
+                    <Route exact path="/medical/:medicalIssueId" element={<IndividualMedicalIssuePage/>}/>
                 </Routes>
             </Router>
         </div>

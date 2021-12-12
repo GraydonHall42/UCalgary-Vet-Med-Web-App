@@ -1,52 +1,58 @@
 import {Button, FloatingLabel, Form, Modal} from "react-bootstrap";
-import React, {useContext, useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
+import {useParams} from "react-router-dom";
 import {UserContext} from "../UserContext";
 import axios from "axios";
+import individualMedicalIssueSet from "./IndividualMedicalIssueSet";
 
 
 function MedicalIssueModal(props) {
 
-    const [description, setDescription] = useState(null)
-    const [startDate, setStartDate] = useState(null)
-    const [endDate, setEndDate] = useState(null)
-    const { user, setUser } = useContext(UserContext);
-    const [ closed, setClosed ] = useState(true);
-    const [animal, setAnimal] = useState({
-        "animalName": "Spud"
-    })
-    // const submitBookingRequest = () => {
-    //     console.log("Requested!")
-    //     console.log(props.selectedAnimal)
-    //     console.log(user)
-    //     console.log(date)
-    //     console.log(startTime)
-    //     console.log(endTime)
-    //
-    //     const bookingRequest = {
-    //         "bookingDate": date,
-    //         "startTime": startTime,
-    //         "returnTime": endTime,
-    //         "adminAppStatus": "Pending",
-    //         "animalId": props.selectedAnimal,
-    //         "teacherId": user,
-    //         "techAppStatus": "Pending"
-    //     }
-    //
-    //     axios.post("http://localhost:8080/api/bookings", bookingRequest)
-    //         .then((res)=> console.log(res))
-    //         .catch((err) => console.log(err))
-    //
-    //     props.onHide()
-    //     setDate(null)
-    //     setDescription(null)
-    //     setStartTime(null)
-    //     setEndTime(null)
-    // }
+    const {animalId} = useParams()
+    const [issueName, setIssueName] = useState(null);
+    const [currentStatus, setCurrentStatus] = useState(null);
+    const [openDate, setOpenDate] = useState(null);
+    const [closeDate, setCloseDate] = useState(null);
+    const [description, setDescription] = useState(null);
+    const [closed, setClosed] = useState(true);
+
+    const submitMedicalIssue = () => {
+        console.log("Requested!")
+        console.log(animalId)
+        console.log(issueName)
+        console.log(currentStatus)
+        console.log(openDate)
+        console.log(closeDate)
+        console.log(description)
+
+        const medicalIssue = {
+            "animalId": animalId,
+            "issueName": issueName,
+            "currentStatus": currentStatus,
+            "openDate": openDate,
+            "closeDate": closeDate,
+            "description": description,
+            "comments": []
+        }
+
+        axios.post("http://localhost:8080/api/medical", medicalIssue)
+            .then((res)=> console.log(res))
+            .catch((err) => console.log(err))
+
+        setIssueName(null);
+        setCurrentStatus(null);
+        setOpenDate(null);
+        setCloseDate(null);
+        setDescription(null);
+        props.onHide()
+    }
 
     const closeModal = () => {
-        setStartDate(null)
-        setEndDate(null)
-        setDescription(null)
+        setIssueName(null);
+        setCurrentStatus(null);
+        setOpenDate(null);
+        setCloseDate(null);
+        setDescription(null);
         props.onHide()
     }
 
@@ -59,7 +65,7 @@ function MedicalIssueModal(props) {
         >
             <Modal.Header>
                 <Modal.Title id="contained-modal-title-vcenter">
-                    New Medical Issue: {animal.animalName}
+                    New Medical Issue
                 </Modal.Title>
             </Modal.Header>
             <Modal.Body>
@@ -67,8 +73,8 @@ function MedicalIssueModal(props) {
                     <Form.Group className="mb-3" controlId="formBasicEmail" >
                         <Form.Label>Medical Issue</Form.Label>
                         <Form.Control
-                            value={description}
-                            onChange={e => {setDescription(e.target.value)}}
+                            value={issueName}
+                            onChange={e => {setIssueName(e.target.value)}}
                             type="text"
                             placeholder="Enter Medical Issue"
                         />
@@ -77,11 +83,14 @@ function MedicalIssueModal(props) {
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="formBasicPassword" >
                         <Form.Label>Severity</Form.Label>
-                            <Form.Select aria-label="Severity drop down">
+                            <Form.Select aria-label="Severity drop down"
+                                         value={currentStatus}
+                                         onChange={e => {
+                                             setCurrentStatus(e.target.value) }}>
                                 <option>Select Severity</option>
-                                <option value="Critical">Red</option>
-                                <option value="Moderate">Yellow</option>
-                                <option value="Mild">Green</option>
+                                <option value="Low">Low</option>
+                                <option value="Moderate">Moderate</option>
+                                <option value="High" >High</option>
                             </Form.Select>
                         <Form.Text className="text-muted">
                         </Form.Text>
@@ -89,8 +98,8 @@ function MedicalIssueModal(props) {
                     <Form.Group className="mb-3" controlId="formBasicPassword">
                         <Form.Label>Issue Start Date</Form.Label>
                         <Form.Control
-                            value={startDate}
-                            onChange={e => {setStartDate(e.target.value)}}
+                            value={openDate}
+                            onChange={e => {setOpenDate(e.target.value)}}
                             type="date"
                             placeholder="Date" />
                     </Form.Group>
@@ -103,8 +112,8 @@ function MedicalIssueModal(props) {
                         />
                         <Form.Label>Issue Close Date</Form.Label>
                         <Form.Control
-                            value={endDate}
-                            onChange={e => {setEndDate(e.target.value)}}
+                            value={closeDate}
+                            onChange={e => {setCloseDate(e.target.value)}}
                             type="date"
                             placeholder="Date"
                             disabled={closed}
@@ -116,13 +125,15 @@ function MedicalIssueModal(props) {
                                 as="textarea"
                                 placeholder="Leave a comment here"
                                 style={{ height: '100px' }}
+                                value={description}
+                                onChange={e => {setDescription(e.target.value)}}
                             />
                         </FloatingLabel>
                     </Form.Group>
                 </Form>
             </Modal.Body>
             <Modal.Footer>
-                <Button variant={"warning"} /*onClick={submitBookingRequest}*/>Save Medical Issue</Button>
+                <Button variant={"warning"} onClick={submitMedicalIssue}>Save Medical Issue</Button>
                 <Button variant={"danger"} onClick={closeModal}>Close</Button>
             </Modal.Footer>
         </Modal>

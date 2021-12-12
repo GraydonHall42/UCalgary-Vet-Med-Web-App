@@ -239,12 +239,13 @@ CREATE TABLE MEDICAL_ISSUES(
 );
 
 INSERT INTO MEDICAL_ISSUES (animal_id, issue_name, current_status, open_date, close_date, description)
-VALUES (1, 'Scratched Ear', 'Green', '2020-09-01', '2020-09-05', 'Sally Cut her ear and it was bleeding'),
-       (1, 'Broken Leg', 'Yellow', '2021-09-01', NULL, 'Sally broke leg running'),
-       (2, 'Upset Stomach', 'Green', '2020-12-01', '2020-12-01', 'Jimmy had upset stomach issues'),
-       (2, 'Infected Tooth', 'Yellow', '2021-11-10', NULL, 'Jimmy has a tooth that has become infected'),
-       (3, 'Broken Ankle', 'Red', '2021-11-10', NULL, 'Ralph has broken his ankle and needs surgery'),
-       (4, 'Ingrown claw', 'Yellow', '2021-11-10', NULL, 'Buttercup has an ingrown claw on her right paw');
+VALUES (1, 'Scratched Ear', 'Low', '2020-09-01', '2020-09-05', 'Spud cut her left ear and it was bleeding. Primary reason is due to running into a table corner, no visible injury to the head or other ear.'),
+       (1, 'Broken Leg', 'Moderate', '2021-09-01', NULL, 'Spud broke leg running'),
+       (1, 'Cataract in Left Eye', 'High', '2021-10-01', NULL, 'Spud left eye shows signs of premature cataracts'),
+       (2, 'Upset Stomach', 'Low', '2020-12-01', '2020-12-01', 'Jimmy had upset stomach issues'),
+       (2, 'Infected Tooth', 'Moderate', '2021-11-10', NULL, 'Jimmy has a tooth that has become infected'),
+       (3, 'Broken Ankle', 'High', '2021-11-10', NULL, 'Ralph has broken his ankle and needs surgery'),
+       (4, 'Ingrown claw', 'Moderate', '2021-11-10', NULL, 'Buttercup has an ingrown claw on her right paw');
 
 DROP TABLE IF EXISTS COMMENT;
 CREATE TABLE COMMENT(
@@ -261,8 +262,8 @@ CREATE TABLE COMMENT(
 
 # INSERT INTO TREATMENT (animalID, medicalIssueID, authorID, title, date, description)
 INSERT INTO COMMENT (medical_issue_id, author_id, title, date, description)
-VALUES (1, 1, 'Give Stiches', '2020-09-01', 'Gave sally stitches for her cut ear'),
-       (1, 1, 'Remove Stiches', '2020-09-05', 'Took out stitches for sally, issue resolved'),
+VALUES (1, 1, 'Give Stitches', '2020-09-01', 'Gave sally stitches for her cut ear'),
+       (1, 1, 'Remove Stitches', '2020-09-05', 'Took out stitches for sally, issue resolved'),
        (2, 1, 'Splint broken leg', '2021-09-01', 'Gave sally splint for leg. Follow up to check healing in 2 months'),
        (2, 1, 'Change splint dressing', '2021-10-01', 'Changed dressing for Sallys splint'),
        (3, 1, 'Administer stomach medication', '2020-12-01', 'Gave Jimmy stomach meds to ease stomach issues'),

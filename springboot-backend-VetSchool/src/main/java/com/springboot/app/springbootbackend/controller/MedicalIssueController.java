@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/api/medical")
 public class MedicalIssueController {
@@ -35,14 +36,14 @@ public class MedicalIssueController {
         return medicalIssueService.getAllMedicalIssues();
     }
 
-    @GetMapping("{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<MedicalIssue> getMedicalIssueByID(@PathVariable("id") int medicalIssueId){
         return new ResponseEntity<MedicalIssue>(medicalIssueService.getMedicalIssueById(medicalIssueId), HttpStatus.OK);
     }
 
     // build update employee REST API
     // http://localhost:8080/api/users/1
-    @PutMapping("{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<MedicalIssue> updateMedicalIssue(@PathVariable("id") int id
             , @RequestBody MedicalIssue medicalIssue){
         return new ResponseEntity<MedicalIssue>(medicalIssueService.updateMedicalIssue(medicalIssue, id), HttpStatus.OK);
@@ -50,7 +51,7 @@ public class MedicalIssueController {
 
     // build delete employee REST API
     // http://localhost:8080/api/users/1
-    @DeleteMapping("{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteMedicalIssue(@PathVariable("id") int id){
 
         // delete employee from DB
