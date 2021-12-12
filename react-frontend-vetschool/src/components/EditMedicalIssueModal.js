@@ -4,17 +4,39 @@ import {useParams} from "react-router-dom";
 import {UserContext} from "../UserContext";
 import axios from "axios";
 import individualMedicalIssueSet from "./IndividualMedicalIssueSet";
+import {renderToString} from "react-dom/server";
 
 
-function MedicalIssueModal(props) {
+function EditMedicalIssueModal(props) {
 
-    const {animalId} = useParams()
+    const [animalId, setAnimalId] = useState(null)
     const [issueName, setIssueName] = useState(null);
     const [currentStatus, setCurrentStatus] = useState(null);
     const [openDate, setOpenDate] = useState(null);
     const [closeDate, setCloseDate] = useState(null);
     const [description, setDescription] = useState(null);
-    const [closed, setClosed] = useState(true);
+    const [closed, setClosed] = useState(null);
+
+    const setDefaults = () => {
+        setAnimalId(animalId ? animalId : props.medicalIssues.animalId);
+        setIssueName(issueName ? issueName : props.medicalIssues.issueName);
+        setCurrentStatus(currentStatus ? currentStatus : props.medicalIssues.currentStatus);
+        setOpenDate(openDate ? openDate : props.medicalIssues.openDate);
+        setCloseDate(closed ? (closeDate ? closeDate : props.medicalIssues.closeDate) : null);
+        setDescription(description ? description : props.medicalIssues.description)
+    }
+
+    function formatDate(string){
+        return new Date(string).toISOString().slice(0,10);
+    }
+
+    useEffect(() => {
+        setDefaults()
+    })
+
+    useEffect (() => {
+        setClosed(props.medicalIssues.closeDate ? true : false)
+    },[props.medicalIssues.closeDate])
 
     const submitMedicalIssue = () => {
         console.log("Requested!")
@@ -24,6 +46,7 @@ function MedicalIssueModal(props) {
         console.log(openDate)
         console.log(closeDate)
         console.log(description)
+        console.log(closed)
 
         let medicalIssue = {
             "animalId": animalId,
@@ -35,7 +58,7 @@ function MedicalIssueModal(props) {
             "comments": []
         }
 
-        axios.post("http://localhost:8080/api/medical", medicalIssue)
+        axios.put("http://localhost:8080/api/medical/" + props.medicalIssues.medicalIssueId, medicalIssue)
             .then((res)=> console.log(res))
             .catch((err) => console.log(err))
 
@@ -46,6 +69,9 @@ function MedicalIssueModal(props) {
         setDescription(null);
         props.onHide()
     }
+
+
+
 
     const closeModal = () => {
         setIssueName(null);
@@ -65,7 +91,7 @@ function MedicalIssueModal(props) {
         >
             <Modal.Header>
                 <Modal.Title id="contained-modal-title-vcenter">
-                    New Medical Issue
+                    Edit Medical Issue
                 </Modal.Title>
             </Modal.Header>
             <Modal.Body>
@@ -73,29 +99,32 @@ function MedicalIssueModal(props) {
                     <Form.Group className="mb-3">
                         <Form.Label>Medical Issue</Form.Label>
                         <Form.Control
+                            defaultValue={props.medicalIssues.issueName}
                             onChange={e => {setIssueName(e.target.value)}}
                             type="text"
-                            placeholder="Enter Medical Issue"
+                            placeholder={"Issue Name"}
                         />
                         <Form.Text className="text-muted">
                         </Form.Text>
                     </Form.Group>
                     <Form.Group className="mb-3">
                         <Form.Label>Severity</Form.Label>
-                            <Form.Select aria-label="Severity drop down"
-                                         onChange={e => {
-                                             setCurrentStatus(e.target.value) }}>
-                                <option>Select Severity</option>
-                                <option value="Low">Low</option>
-                                <option value="Moderate">Moderate</option>
-                                <option value="High" >High</option>
-                            </Form.Select>
+                        <Form.Select aria-label="Severity drop down"
+                                     defaultValue={props.medicalIssues.currentStatus}
+                                     onChange={e => {
+                                         setCurrentStatus(e.target.value) }}>
+                            <option>Select Severity</option>
+                            <option value="Low">Low</option>
+                            <option value="Moderate">Moderate</option>
+                            <option value="High" >High</option>
+                        </Form.Select>
                         <Form.Text className="text-muted">
                         </Form.Text>
                     </Form.Group>
                     <Form.Group className="mb-3">
                         <Form.Label>Issue Start Date</Form.Label>
                         <Form.Control
+                            defaultValue={props.medicalIssues.openDate ? formatDate(props.medicalIssues.openDate) : null}
                             onChange={e => {setOpenDate(e.target.value)}}
                             type="date"
                             placeholder="Date" />
@@ -105,14 +134,16 @@ function MedicalIssueModal(props) {
                             type="switch"
                             id="issueStatus"
                             label="Issue Closed"
-                            onClick={() => setClosed(!closed)}
+                            onChange={e => setClosed(e.target.checked)}
+                            defaultChecked={props.medicalIssues.closeDate ? true : false}
                         />
                         <Form.Label>Issue Close Date</Form.Label>
-                        <Form.Control
+                        <Form.Control id="closeDate"
+                            defaultValue={props.medicalIssues.closeDate ? formatDate(props.medicalIssues.closeDate) : null}
                             onChange={e => {setCloseDate(e.target.value)}}
                             type="date"
                             placeholder="Date"
-                            disabled={closed}
+                            disabled={!closed}
                         />
                     </Form.Group>
                     <Form.Group className="mb-3">
@@ -121,6 +152,7 @@ function MedicalIssueModal(props) {
                                 as="textarea"
                                 placeholder="Leave a comment here"
                                 style={{ height: '100px' }}
+                                defaultValue={props.medicalIssues.description}
                                 onChange={e => {setDescription(e.target.value)}}
                             />
                         </FloatingLabel>
@@ -135,4 +167,4 @@ function MedicalIssueModal(props) {
     );
 }
 
-export default MedicalIssueModal;
+export default EditMedicalIssueModal;

@@ -70,6 +70,7 @@ const IndividualMedicalIssuePage = (props) => {
                     <Button variant="warning" onClick={() => handleClick()}> Add New Treatment </Button>
                 </Row>
                 <CommentModal
+                    props={medicalIssue}
                     show={modalShow}
                     onHide={() => setModalShow(false)}
                 />

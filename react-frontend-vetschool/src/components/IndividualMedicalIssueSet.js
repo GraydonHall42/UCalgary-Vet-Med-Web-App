@@ -4,6 +4,10 @@ import '../styles/ImageSet.css';
 
 const IndividualMedicalIssueSet = (medicalIssue) => {
 
+    function formatDate(string){
+        return new Date(string).toISOString().slice(0,10);
+    }
+
     const commentMapping = (comments) => {
         return(
             <Container>
@@ -18,7 +22,7 @@ const IndividualMedicalIssueSet = (medicalIssue) => {
                                         <h5>Treated by: {commentObject.author.name}</h5>
                                     </Col>
                                     <Col>
-                                        <h5>Date: {commentObject.date}</h5>
+                                        <h5>Date: {commentObject.date ? formatDate(commentObject.date) : null}</h5>
                                     </Col>
                                 </Row>
                                 <Row className="bg-light text-black" id="description" style={{ textAlign: "left" }}>
