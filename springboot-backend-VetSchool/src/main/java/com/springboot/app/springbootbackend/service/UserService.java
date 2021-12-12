@@ -1,6 +1,7 @@
 package com.springboot.app.springbootbackend.service;
 
 import com.springboot.app.springbootbackend.model.Animal;
+import com.springboot.app.springbootbackend.model.Role;
 import com.springboot.app.springbootbackend.model.User;
 
 import java.util.List;
@@ -12,4 +13,8 @@ public interface UserService {
 	User updateUser(User user, int id);
 	void deleteUser(int id);
 	List<User> getUserByType(String type);
+
+	Role saveRole(Role role);
+	void addRoleToUser(String email, String roleName);
+	User getUserByEmail(String email);
 }
