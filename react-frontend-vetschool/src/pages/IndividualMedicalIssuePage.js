@@ -10,38 +10,8 @@ const IndividualMedicalIssuePage = (props) => {
 
     const {medicalIssueId} = useParams();
     const [modalShow, setModalShow] = useState(false);
-    const initialMedicalIssueTemplate = {
-        "medicalIssueId": 0,
-        "animalId": 0,
-        "issueName": "",
-        "currentStatus": "",
-        "openDate": "",
-        "closeDate": "",
-        "description": "",
-        "comments": [
-        {
-            "commentId": 0,
-            "medicalIssueId": 0,
-            "title": "",
-            "date": "",
-            "description": "",
-            "commentImages":[
-                {
-                    "commentPhotoId":0,
-                    "commentId":0,
-                    "image":""
-                }
-            ],
-            "author": {
-                "userId": 0,
-                "name": "",
-                "email": "",
-                "password": "",
-                "userType": ""
-            }
-        }
-    ]
-    }
+    const [medicalIssue, setMedicalIssue] = useState(null);
+    const [loading, setLoading] = useState(true)
 
     const handleClick = () => {
         setModalShow(true)
@@ -49,32 +19,43 @@ const IndividualMedicalIssuePage = (props) => {
 
     const obtainMedicalIssueById = (medicalIssueId) => {
         axios.get("http://localhost:8080/api/medical/" + medicalIssueId)
-        .then(response => {setMedicalIssue(response.data)})
+        .then(response => {
+            setMedicalIssue(response.data)
+            setLoading(false)
+        })
         .catch(error => {
             console.log(error)
         })
     }
 
-    const [medicalIssue, setMedicalIssue] = useState(initialMedicalIssueTemplate);
+
 
     useEffect(() => {
         obtainMedicalIssueById(medicalIssueId);
     },[])
 
+    if(loading) {
+        return <div>Loading...</div>
+    }
 
     return(
-            <Container>
-                <MedicalIssueProfileCard medicalIssue={medicalIssue}/>
-                <IndividualMedicalIssueSet medicalIssue={medicalIssue}/>
-                <Row xl={3} className="justify-content-center pt-2">
-                    <Button variant="warning" onClick={() => handleClick()}> Add New Comment </Button>
-                </Row>
-                <CommentModal
-                    props={medicalIssue}
-                    show={modalShow}
-                    onHide={() => setModalShow(false)}
-                />
-            </Container>
+        <Container>
+            {medicalIssue !== null &&
+                <div>
+                    <MedicalIssueProfileCard medicalIssue={medicalIssue}/>
+                    <IndividualMedicalIssueSet medicalIssue={medicalIssue}/>
+                    <Row xl={3} className="justify-content-center pt-2">
+                        <Button variant="warning" onClick={() => handleClick()}> Add New Comment </Button>
+                    </Row>
+
+                    <CommentModal
+                        props={medicalIssue}
+                        show={modalShow}
+                        onHide={() => setModalShow(false)}
+                    />
+                </div>
+            }
+        </Container>
     )
 };
 

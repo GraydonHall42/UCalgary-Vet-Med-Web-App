@@ -7,7 +7,7 @@ import axios from "axios";
 import AnimalStatusButton from "./AnimalStatusButton";
 import EditMedicalIssueModal from "./EditMedicalIssueModal";
 
-const MedicalIssueProfileCard = ({medicalIssue}) =>  {
+const MedicalIssueProfileCard = (props) =>  {
 
     const [animal, setAnimal] = useState("");
     const [modalShow, setModalShow] = useState(null);
@@ -35,8 +35,8 @@ const MedicalIssueProfileCard = ({medicalIssue}) =>  {
     }
 
     useEffect(() => {
-        obtainAnimalById(medicalIssue.animalId);
-    },[medicalIssue])
+        obtainAnimalById(props.medicalIssue.animalId);
+    },[props.medicalIssue])
 
     useEffect(() => {
         console.log("rerender because animal changes")
@@ -65,12 +65,12 @@ const MedicalIssueProfileCard = ({medicalIssue}) =>  {
                             <Row>
                                 <Col md={4} className="text-start">
                                     <h3>Patient's Name: {animal.animalName}</h3>
-                                    <h4>Medical Issue: {medicalIssue.issueName}</h4>
+                                    <h4>Medical Issue: {props.medicalIssue.issueName}</h4>
                                 </Col>
                                 <Col md={3} className="text-start">
-                                    <b>Priority: {medicalIssue.currentStatus}</b><br/>
-                                    <b>Open Date: {medicalIssue.openDate ? formatDate(medicalIssue.openDate) : null}</b><br/>
-                                    <b>Close Date: {medicalIssue.closeDate ? formatDate(medicalIssue.closeDate) : null}</b>
+                                    <b>Priority: {props.medicalIssue.currentStatus}</b><br/>
+                                    <b>Open Date: {props.medicalIssue.openDate ? formatDate(props.medicalIssue.openDate) : null}</b><br/>
+                                    <b>Close Date: {props.medicalIssue.closeDate ? formatDate(props.medicalIssue.closeDate) : null}</b>
                                 </Col>
                                 <Col md={3}>
                                     <h5>Animal Status</h5>
@@ -87,7 +87,7 @@ const MedicalIssueProfileCard = ({medicalIssue}) =>  {
                                 <h4 className="text-start">Description</h4>
                                     <Form.Control
                                         as="textarea"
-                                        value={medicalIssue.description}
+                                        value={props.medicalIssue.description}
                                         placeholder="Leave a comment here"
                                         style={{ height: '75px' , backgroundColor: "white"}}
                                         disabled={true}
@@ -95,9 +95,9 @@ const MedicalIssueProfileCard = ({medicalIssue}) =>  {
                             </Row>
                             </Col>
                             <EditMedicalIssueModal
-                                medicalIssues={medicalIssue}
+                                medicalIssues={props.medicalIssue}
                                 show={modalShow}
-                                onHide={() => handleHide(medicalIssue)}/>
+                                onHide={() => handleHide(props)}/>
 
                         </Row>
                     </Row>
