@@ -9,18 +9,31 @@ const AnimalSearchResult = (props) =>  {
         setAction(e)
     }
 
+    const getRoles = (roles) => {
+        let rolesString = "";
+        roles.forEach(role => {
+            rolesString = rolesString + " " + role.name + "\n";
+        })
+        return rolesString;
+    }
+
+    const handleClick = (user) => {
+        props.setIsModalShowing(true)
+        props.setSelectedUser(user)
+    }
+
 
     function renderTableData() {
         return props.users.map((user, index) => {
-            const { id, fName, lName, phone, email, type, photoPath } = user //destructuring
+            const { id, firstName, lastName, phone, email, roles, photoPath } = user //destructuring
             return (
                 <tr key={id} className={"align-middle"}>
                     <td><Image src={photoPath} fluid roundedCircle className={"userSearchImage"}/></td>
                     <td>
-                        {fName}
+                        {firstName}
                     </td>
                     <td>
-                        {lName}
+                        {lastName}
                     </td>
                     <td>
                         {phone}
@@ -29,22 +42,10 @@ const AnimalSearchResult = (props) =>  {
                         {email}
                     </td>
                     <td>
-                        {type}
+                        {getRoles(roles)}
                     </td>
                     <td>
-                        {/* <DropdownButton
-                            className="btn-block"
-                            variant="warning"
-                            size="sm"
-                            title={"Action"}
-                            id="dropdown-menu-align-right"
-                            onSelect={handleSelect}
-                        >
-                            <Dropdown.Item eventKey="Block User">Block User</Dropdown.Item>
-                            <Dropdown.Item eventKey="Edit User">Edit User</Dropdown.Item>
-                            <Dropdown.Item eventKey="Delete User">Delete User</Dropdown.Item>
-                        </DropdownButton> */}
-                        <Button variant="warning">
+                        <Button variant="warning" onClick={() => handleClick(user)}>
                             Edit
                         </Button>
                     </td>
@@ -59,12 +60,12 @@ const AnimalSearchResult = (props) =>  {
             <thead>
             <tr>
                 <th width={'10%'}>Photo</th>
-                <th width={'15%'}>First Name</th>
-                <th width={'15%'}>Last Name</th>
-                <th width={'15%'}>Phone Number</th>
-                <th width={'15%'}>Email</th>
-                <th width={'15%'}>User Type</th>
-                <th width={'15%'}>Action</th>
+                <th width={'17%'}>First Name</th>
+                <th width={'17%'}>Last Name</th>
+                <th width={'12%'}>Phone Number</th>
+                <th width={'22%'}>Email</th>
+                <th width={'12%'}>User Type</th>
+                <th width={'10%'}></th>
             </tr>
             </thead>
             <tbody>

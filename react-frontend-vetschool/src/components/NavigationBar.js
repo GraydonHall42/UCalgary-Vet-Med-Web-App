@@ -12,7 +12,6 @@ function NavigationBar() {
     const isAdmin = () => {
         let isAdmin = false;
         user.roles.forEach(role => {
-            console.log(role.name);
             if(role.name === "ADMIN") {
                 isAdmin = true;
             }

@@ -1,39 +1,40 @@
-import React, {useState} from 'react'
-import {Col, Container, Row} from "react-bootstrap";
+import React, {useState, useEffect} from 'react'
+import {Col, Container, Row, Button} from "react-bootstrap";
 import SearchBarWithCriteria from "../components/SearchBarWithCriteria";
-import AnimalSearchResults from "../components/AnimalSearchResult";
+import UserManagementModal from "../components/UserManagementModal";
 import UserSearchResults from "../components/UserSearchResults";
 import useAuthorization from '../hooks/useAuthorization';
+import axios from 'axios';
+import '../styles/UserManagement.css';
 
 function UserManagement() {
-    const [users, setUsers] = useState([
-        {
-            id:1,
-            fName:"Grady",
-            lName:"Hall",
-            phone:"123-456-7890",
-            email:"grady@gmail.com",
-            type:"Student",
-            photoPath:"/images/guy1.jpg"
-        },
-        {
-            id:2,
-            fName:"Jared",
-            lName:"Kraus",
-            phone:"234-567-8901",
-            email:"jared@gmail.com",
-            type:"Vet",
-            photoPath:"/images/guy2.jpg"
-        },{
-            id:3,
-            fName:"Deylin",
-            lName:"Yiao",
-            phone:"345-678-9012",
-            email:"deylin@gmail.com",
-            type:"admin",
-            photoPath:"/images/guy3.jpg"
-        }
-    ])
+    const [users, setUsers] = useState([]);
+    const [isModalShowing, setIsModalShowing] = useState(false);
+    const [selectedUser, setSelectedUser] = useState([]);
+    const getAccessToken = useAuthorization();
+
+    
+    const getAllUsers = () => {
+        let config = { headers: {'Authorization': getAccessToken() }}
+        let url = 'http://localhost:8080/api/users';
+        axios.get(url, config)
+            .then(res => {
+                console.log(res.data);
+                setUsers(res.data);
+            })
+            .catch(err => {
+                console.log(err);
+            })
+
+    }
+
+
+    useEffect(() => {
+        getAllUsers();
+    }, []);
+
+    
+
 
     return (
         <div>
@@ -47,10 +48,20 @@ function UserManagement() {
                 </Row>
                 <Row>
                     <Col>
-                        <UserSearchResults users={users}/>
+                        <UserSearchResults users={users} setIsModalShowing={setIsModalShowing} setSelectedUser={setSelectedUser}/>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col>
+                        <Button className='addUser' variant="success">Add User</Button>
                     </Col>
                 </Row>
             </Container>
+            <UserManagementModal
+                show={isModalShowing}
+                onHide={() => setIsModalShowing(false)}
+                selectedUser={selectedUser}
+            />
         </div>
     )
 }
