@@ -37,7 +37,7 @@ const AnimalSearchResult = (props) =>  {
                         </Link>
                         <br />
                         <Button
-                            disabled={user.userType!=='Teaching Technician'}
+                            disabled={user.roles[0].name !=='TEACHING_TECH'}
                             className={"searchResultBtn"}
                             variant={"warning"}
                             onClick={()=>handleClick(animal)}
