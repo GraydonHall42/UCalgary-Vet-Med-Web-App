@@ -29,8 +29,9 @@ create table ROLES
     user_id int not null,
 	name varchar(25) not null,
 	primary key (role_id),
-    foreign key (user_id) references USER(user_id)
+    foreign key (user_id) references USER(user_id) ON DELETE CASCADE
 );
+
 
 INSERT INTO ROLES (user_id, name)
 VALUES (1, 'ADMIN'),
@@ -93,7 +94,7 @@ CREATE TABLE WEIGHT(
     date            datetime,
     weight          double,
     primary key (weight_id),
-    foreign key (animal_id) references ANIMAL(animal_id)
+    foreign key (animal_id) references ANIMAL(animal_id) ON DELETE CASCADE
 );
 
 INSERT INTO WEIGHT (animal_id, date, weight)
@@ -195,25 +196,6 @@ VALUES (1, '2021-09-01', 85),
        (24, '2021-12-01', 19);
 
 
-
-DROP TABLE IF EXISTS PRESCRIPTION;
-CREATE TABLE PRESCRIPTION(
-    prescription_id         int auto_increment,
-    animal_id               int not null,
-    date                    datetime,
-    medicine              varchar(255) not null,
-    directions                   varchar(255),
-    primary key (prescription_id),
-    foreign key (animal_id) references ANIMAL(animal_id)
-);
-
-INSERT INTO PRESCRIPTION (animal_id, date, medicine, directions)
-VALUES (1, '2021-10-01', 'Advil', '1 month, daily'),
-       (1, '2021-10-11', 'Tylenol', '2 months, 3x daily'),
-       (2, '2021-11-01', 'Penicillan', '1 week, 2x daily'),
-       (3, '2021-09-05', 'Pepto Bismol', '1 week, as needed'),
-       (4, '2020-05-01', 'Reactin', '1 month, 2x daily with food');
-
 DROP TABLE IF EXISTS PROFILE_IMAGES;
 CREATE TABLE PROFILE_IMAGES(
     photo_id         int auto_increment,
@@ -221,7 +203,7 @@ CREATE TABLE PROFILE_IMAGES(
     date            datetime,
     image          varchar(10) not null,
     primary key (photo_id),
-    foreign key (animal_id) references ANIMAL(animal_id)
+    foreign key (animal_id) references ANIMAL(animal_id) ON DELETE CASCADE
 );
 
 INSERT INTO PROFILE_IMAGES (animal_id, date, image)
@@ -253,7 +235,7 @@ CREATE TABLE MEDICAL_ISSUES(
     close_date               datetime,
     description             varchar(500),
     primary key (medical_issue_id),
-    foreign key (animal_id) references ANIMAL(animal_id)
+    foreign key (animal_id) references ANIMAL(animal_id) ON DELETE CASCADE
 );
 
 INSERT INTO MEDICAL_ISSUES (animal_id, issue_name, current_status, open_date, close_date, description)
@@ -304,13 +286,13 @@ DROP TABLE IF EXISTS COMMENT;
 CREATE TABLE COMMENT(
     comment_id            int auto_increment,
     medical_issue_id	            int not null,
-    author_id                int not null,  # COMMENTIN THIS OUT FOR NOW
+    author_id                int,  # COMMENTIN THIS OUT FOR NOW
     title                   varchar(30),
     date                    datetime,
     description             varchar(500),
     primary key (comment_id),
-    foreign key (author_id) references USER(user_id),
-    foreign key (medical_issue_id) references MEDICAL_ISSUES(medical_issue_id)
+    foreign key (author_id) references USER(user_id) ON DELETE SET NULL,
+    foreign key (medical_issue_id) references MEDICAL_ISSUES(medical_issue_id) ON DELETE CASCADE
 );
 
 # INSERT INTO TREATMENT (animalID, medicalIssueID, authorID, title, date, description)
@@ -330,7 +312,7 @@ CREATE TABLE COMMENT_IMAGES(
     comment_id              int not null,
     image                     varchar(255) not null,
     primary key (comment_photo_id),
-    foreign key (comment_id) references COMMENT(comment_id)
+    foreign key (comment_id) references COMMENT(comment_id) ON DELETE CASCADE
 );
 
 INSERT INTO COMMENT_IMAGES (comment_id, image)
@@ -360,10 +342,10 @@ CREATE TABLE CLASSROOM_BOOKINGS(
     admin_app_status             varchar(40) not null,
     tech_app_status             varchar(40) not null,
     primary key (booking_id),
-    foreign key (animal_id) references ANIMAL(animal_id),
-    foreign key (teacher_id) references USER(user_id),
-    foreign key (admin_app_id) references USER(user_id),
-    foreign key (tech_app_id) references USER(user_id)
+    foreign key (animal_id) references ANIMAL(animal_id) ON DELETE CASCADE,
+    foreign key (teacher_id) references USER(user_id) ON DELETE CASCADE,
+    foreign key (admin_app_id) references USER(user_id) ON DELETE SET NULL,
+    foreign key (tech_app_id) references USER(user_id) ON DELETE SET NULL
 );
 
 INSERT INTO CLASSROOM_BOOKINGS (animal_id, teacher_id, admin_app_id, tech_app_id, booking_date, start_time, return_time, admin_app_status, tech_app_status)
@@ -376,9 +358,5 @@ VALUES (1, 2, 1, 3, '2021-11-15', '12:00:00', '13:00:00', 'Approved', 'Approved'
        (3, 2, null, null, '2021-11-15', '12:00:00', '13:00:00', 'Pending', 'Pending'),
        (4, 2, null, null, '2021-11-16', '12:00:00', '13:00:00', 'Pending', 'Pending');
 
-# SELECT a.animal_name, ams.issue_name, ams.current_status, ams.open_date, ams.close_date
-# FROM ANIMAL_MEDICAL_ISSUES AS ams
-# LEFT JOIN ANIMAL as a
-#     ON ams.animalID = a.animalID
-# WHERE ams.current_status != 'Green'
+
 
