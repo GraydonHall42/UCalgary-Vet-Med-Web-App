@@ -37,7 +37,7 @@ const AnimalStatusButton = (props) => {
 
         return(
             <Dropdown.Toggle
-                size={"lg"}
+                size={"mid"}
                 className= {classname}
                 variant={color}
                 id="dropdown-basic">

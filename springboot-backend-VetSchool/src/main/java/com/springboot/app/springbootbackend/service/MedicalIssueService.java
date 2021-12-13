@@ -13,5 +13,6 @@ public interface MedicalIssueService {
     MedicalIssue getMedicalIssueById(Integer medicalIssueId);
     MedicalIssue updateMedicalIssue(MedicalIssue medicalIssue, int id);
     void deleteMedicalIssue(int id);
+    List<MedicalIssue> getActiveMedicalIssues();
 
 }

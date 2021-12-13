@@ -1,19 +1,39 @@
-import React, {useContext} from 'react'
+import React, {useState, useEffect, useContext} from 'react'
 import {Tabs, Tab, Container, Row, Col, Button, ButtonGroup} from "react-bootstrap";
 import '../styles/MedicalIssuesList.css';
 import MedicalIssueModal from "./MedicalIssueModal";
 import {Link} from "react-router-dom";
+import axios from 'axios';
 
 function MedicalIssueList(props) {
 
-    const [modalShow, setModalShow] = React.useState(false);
+    const [modalShow, setModalShow] = useState(false);
+    const [medicalIssueList, setMedicalIssueList] = useState(null);
+
+    useEffect(() => {
+        setMedicalIssueList(props.medicalData.medicalIssues.map( (issue) => Item(issue)))
+    }, [])
+
+    useEffect(() => {
+        getMedicalIssuesByAnimalId(props.medicalData.animalId)
+    })
+
+    const getMedicalIssuesByAnimalId = (animalId) => {
+        axios.get("http://localhost:8080/api/animals/"+animalId+"?fields=images,weights,prescriptions")
+            .then(response => setMedicalIssueList(response.data.medicalIssues.map( (issue) => Item(issue))))
+            .catch(error => console.log(error))
+    }
 
     const handleClick = () => {
         setModalShow(true)
     }
 
-    const handleHide = (props) => {
+    const handleHide = () => {
         setModalShow(false)
+    }
+
+    function formatDate(string){
+        return new Date(string).toISOString().slice(0,10);
     }
 
     function Item(issue){
@@ -34,7 +54,7 @@ function MedicalIssueList(props) {
                         <Col className="medicalIssueItemRight">
                             <div>
                                 <p className="closed1" >{issue.closeDate ? "Closed: " : ""}</p>
-                                <p className="closed2">{issue.closeDate ? issue.closeDate : "Active"}</p>
+                                <p className="closed2">{issue.closeDate ? formatDate(issue.closeDate) : "Active"}</p>
                             </div>
                         </Col>
                     </Row>
@@ -45,9 +65,7 @@ function MedicalIssueList(props) {
    
     return (
         <Container className="MedicalListContainer1">
-            {               
-                props.medicalData.map( (issue) => Item(issue))
-            }
+            {medicalIssueList}
             <Button variant="warning" className="addIssueButton" onClick={() => handleClick()}>
                 Create a new Medical Issue
             </Button>

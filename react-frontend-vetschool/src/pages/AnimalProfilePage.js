@@ -23,7 +23,7 @@ function AnimalProfilePage(props) {
                 console.log(res.data)
                 setAnimal(res.data)
                 setWeightData(res.data.weights)
-                setMedicalIssues(res.data.medicalIssues)
+                setMedicalIssues(res.data)
                 setLoading(false);
             })
             .catch(err => {

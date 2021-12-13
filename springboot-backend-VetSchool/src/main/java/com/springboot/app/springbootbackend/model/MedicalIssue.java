@@ -1,5 +1,6 @@
 package com.springboot.app.springbootbackend.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -16,6 +17,10 @@ public class MedicalIssue {
 
     @Column(name="animal_id", nullable = false)
     private Integer animalId;
+
+    @ManyToOne
+    @JoinColumn(name="animal_id", nullable=false, insertable = false, updatable = false)
+    private AnimalLight animal;
 
     @Column(name="issue_name")
     private String issueName;

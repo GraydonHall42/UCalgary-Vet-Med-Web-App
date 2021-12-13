@@ -4,7 +4,7 @@ import {UserContext} from "../UserContext";
 import axios from "axios";
 
 
-function CommentModal(props) {
+function EditCommentModal(props) {
 
     const { user, setUser } = useContext(UserContext);
     const [medicalIssueId, setMedicalIssueId] = useState(null);
@@ -14,6 +14,23 @@ function CommentModal(props) {
     const [description, setDescription] = useState(null);
     const [image, setImage] = useState(null);
     const [commentId, setCommentId] = useState(null);
+
+    const setDefaults = () => {
+        setMedicalIssueId(medicalIssueId ? medicalIssueId : props.comment.animalId);
+        setTitle(title ? title : props.comment.title);
+        setDate(date ? date : props.comment.date);
+        setDescription(description ? description : props.comment.description);
+        setImage(image ? image : props.comment.commentImages[0].image);
+        setCommentId(commentId ? commentId : props.comment.commentId);
+    }
+
+    useEffect(() => {
+        setDefaults()
+    })
+
+    function formatDate(string){
+        return new Date(string).toISOString().slice(0,10);
+    }
 
     const submitCommentRequest = async () => {
         console.log("Requested!")
@@ -32,20 +49,18 @@ function CommentModal(props) {
         }
 
         let commentImage = {
-            "commentId": null,
+            "commentId": commentId,
             "image": image
         }
 
-        let commentRes = await axios.post("http://localhost:8080/api/comments", comment)
+        let commentRes = await axios.put("http://localhost:8080/api/comments/"+props.comment.commentId, comment)
             .then((res)=> {
-                setCommentId(res.data.commentId)
-                commentImage.commentId = res.data.commentId
-                console.log("HELLO")
+                console.log(res)
             })
             .catch((err) => console.log(err))
 
 
-        let imageRes = await axios.post("http://localhost:8080/api/treatment-images", commentImage)
+        let imageRes = await axios.put("http://localhost:8080/api/treatment-images/"+props.comment.commentImages[0].commentPhotoId, commentImage)
             .then((res) => console.log(res.data))
             .catch((err) => console.log(err))
 
@@ -69,7 +84,7 @@ function CommentModal(props) {
     }
 
     useEffect(() => {
-        setMedicalIssueId(props.props.medicalIssueId);
+        setMedicalIssueId(props.comment.medicalIssueId);
     })
 
     return (
@@ -81,7 +96,7 @@ function CommentModal(props) {
         >
             <Modal.Header>
                 <Modal.Title id="contained-modal-title-vcenter">
-                    New Comment
+                    Edit Comment
                 </Modal.Title>
             </Modal.Header>
             <Modal.Body>
@@ -92,6 +107,7 @@ function CommentModal(props) {
                             onChange={e => {setTitle(e.target.value)}}
                             type="text"
                             placeholder="Enter Comment Issue"
+                            defaultValue={props.comment.title}
                         />
                         <Form.Text className="text-muted">
                         </Form.Text>
@@ -101,7 +117,10 @@ function CommentModal(props) {
                         <Form.Control
                             onChange={e => {setDate(e.target.value)}}
                             type="date"
-                            placeholder="Date" />
+                            placeholder="Date"
+                            defaultValue={formatDate(props.comment.date)}
+                        />
+
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="formBasicPassword">
                         <FloatingLabel controlId="commentDescription" label="Comment Description">
@@ -110,6 +129,7 @@ function CommentModal(props) {
                                 placeholder="Leave a comment here"
                                 style={{ height: '100px' }}
                                 onChange={e => {setDescription(e.target.value)}}
+                                defaultValue={props.comment.description}
                             />
                         </FloatingLabel>
                     </Form.Group>
@@ -119,6 +139,7 @@ function CommentModal(props) {
                             onChange={e => {setImage(e.target.value)}}
                             type="text"
                             placeholder="/images/commentImages/sickpuppy1.jpg"
+                            defaultValue={props.comment.commentImages[0].image}
                         />
                         <Form.Text className="text-muted">
                         </Form.Text>
@@ -133,4 +154,4 @@ function CommentModal(props) {
     );
 }
 
-export default CommentModal;
+export default EditCommentModal;

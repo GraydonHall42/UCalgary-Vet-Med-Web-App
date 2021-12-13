@@ -31,6 +31,11 @@ public class MedicalIssueServiceImpl implements MedicalIssueService {
     }
 
     @Override
+    public List<MedicalIssue> getActiveMedicalIssues() {
+        return medicalIssueRepository.findByCloseDateIsNull();
+    }
+
+    @Override
     public MedicalIssue getMedicalIssueById(Integer medicalIssueId) {
         return medicalIssueRepository.findById(medicalIssueId).orElseThrow(() ->
                 new ResourceNotFoundException("Employee", "Id", medicalIssueId));
