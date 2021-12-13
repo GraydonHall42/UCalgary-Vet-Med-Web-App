@@ -62,29 +62,29 @@ create table ANIMAL
 
 INSERT INTO ANIMAL (animal_name, animal_type, profile_photo, sex, birth_date, color, active, microchip_num, breed, last_checkup, status, location)
 VALUES ('Spud', 'Dog', '/images/dogs/dog1.jpg', 'male', "2020-02-14", "white", true, 1234, "Corgi", "2021-10-01", "Attention", "Barn A"),
-       ('Jimmy2', 'Dog', '/images/dogs/dog2.jpg', 'female', "2019-03-14", "white", true, 1235, "Corgi", "2021-10-01", "Healthy", "Barn B"),
-       ('Jimmy3', 'Dog', '/images/dogs/dog3.jpg', 'male', "2018-04-14", "white", true, 1236, "Corgi", "2021-10-01", "Healthy", "Barn C"),
+       ('Jimmy2', 'Dog', '/images/dogs/dog2.jpg', 'female', "2019-03-14", "white", true, 1235, "Corgi", "2021-10-01", "Healthy", "Barn A"),
+       ('Jimmy3', 'Dog', '/images/dogs/dog3.jpg', 'male', "2018-04-14", "white", true, 1236, "Corgi", "2021-10-01", "Healthy", "Barn A"),
        ('Jimmy4', 'Dog', '/images/dogs/dog4.jpg', 'female', "2017-05-14", "white", true, 1237, "Corgi", "2021-10-01", "Attention", "Barn A"),
        ('Jimmy5', 'Dog', '/images/dogs/dog5.jpg', 'male', "2020-06-14", "white", true, 1238, "Beagle", "2021-10-01", "Healthy", "Barn B"),
-       ('Jimmy6', 'Dog', '/images/dogs/dog6.jpg', 'female', "2019-07-14", "white", true, 1239, "Beagle", "2021-10-01", "Urgent", "Barn C"),
-       ('Jimmy7', 'Dog', '/images/dogs/dog7.jpg', 'male', "2018-08-14", "white", true, 1240, "Beagle", "2021-10-01", "Healthy", "Barn D"),
-       ('Jimmy8', 'Dog', '/images/dogs/dog8.jpg', 'female', "2017-09-14", "white", true, 1241, "Beagle", "2021-10-01", "Attention", "Barn D"),
-       ('Ralph1', 'Cat', '/images/cats/cat1.jpg', 'male', "2017-10-14", "white", true, 1242, "Persian", "2021-10-01", "Healthy", "Barn D"),
-       ('Ralph2', 'Cat', '/images/cats/cat2.jpg', 'female', "2016-11-14", "white", true, 1243, "Persian", "2021-10-01", "Healthy", "Barn A"),
-       ('Ralph3', 'Cat', '/images/cats/cat3.jpg', 'male', "2020-01-14", "white", true, 1244, "Persian", "2021-10-01", "Healthy", "Barn A"),
-       ('Ralph4', 'Cat', '/images/cats/cat4.jpg', 'female', "2021-02-14", "white", true, 1245, "Persian", "2021-10-01", "Attention", "Barn B"),
-       ('Ralph5', 'Cat', '/images/cats/cat5.jpg', 'male', "2021-03-14", "white", true, 12346, "Munchkin", "2021-10-01", "Healthy", "Barn B"),
-       ('Ralph6', 'Cat', '/images/cats/cat6.jpg', 'female', "2015-04-14", "white", true, 1247, "Munchkin", "2021-10-01", "Urgent", "Barn A"),
-       ('Ralph7', 'Cat', '/images/cats/cat7.jpg', 'male', "2016-05-14", "white", true, 1248, "Munchkin", "2021-10-01", "Healthy", "Barn C"),
-       ('Ralph8', 'Cat', '/images/cats/cat8.jpg', 'female', "2017-06-14", "white", true, 1249, "Munchkin", "2021-10-01", "Healthy", "Barn A"),
-       ('Mercury1', 'Horse', '/images/horses/horse1.jpg', 'male', "2018-07-14", "white", true, 1250, "Arabian", "2021-10-01", "Healthy", "Barn C"),
-       ('Mercury2', 'Horse', '/images/horses/horse2.jpg', 'female', "2019-08-14", "white", true, 1251, "Arabian", "2021-10-01", "Healthy", "Barn A"),
-       ('Mercury3', 'Horse', '/images/horses/horse3.jpg', 'male', "2020-09-14", "white", true, 1252, "Arabian", "2021-10-01", "Attention", "Barn B"),
-       ('Mercury4', 'Horse', '/images/horses/horse4.jpg', 'female', "2021-10-14", "white", true, 1253, "Arabian", "2021-10-01", "Healthy", "Barn C"),
-       ('Mercury5', 'Horse', '/images/horses/horse5.jpg', 'male', "2020-11-14", "white", true, 1254, "Clydesdale", "2021-10-01", "Healthy", "Barn A"),
-       ('Mercury6', 'Horse', '/images/horses/horse6.jpg', 'female', "2018-12-14", "white", true, 1255, "Clydesdale", "2021-10-01", "Healthy", "Barn D"),
-       ('Mercury7', 'Horse', '/images/horses/horse7.jpg', 'male', "2019-01-14", "white", true, 1256, "Clydesdale", "2021-10-01", "Healthy", "Barn D"),
-       ('Mercury8', 'Horse', '/images/horses/horse8.jpg', 'female', "2020-02-14", "white", true, 1257, "Clydesdale", "2021-10-01", "Urgent", "Barn A");
+       ('Jimmy6', 'Dog', '/images/dogs/dog6.jpg', 'female', "2019-07-14", "white", true, 1239, "Beagle", "2021-10-01", "Urgent", "Barn B"),
+       ('Jimmy7', 'Dog', '/images/dogs/dog7.jpg', 'male', "2018-08-14", "white", true, 1240, "Beagle", "2021-10-01", "Healthy", "Barn B"),
+       ('Jimmy8', 'Dog', '/images/dogs/dog8.jpg', 'female', "2017-09-14", "white", true, 1241, "Beagle", "2021-10-01", "Attention", "Barn B"),
+       ('Ralph1', 'Cat', '/images/cats/cat1.jpg', 'male', "2017-10-14", "white", true, 1242, "Persian", "2021-10-01", "Healthy", "Barn C"),
+       ('Ralph2', 'Cat', '/images/cats/cat2.jpg', 'female', "2016-11-14", "white", true, 1243, "Persian", "2021-10-01", "Healthy", "Barn C"),
+       ('Ralph3', 'Cat', '/images/cats/cat3.jpg', 'male', "2020-01-14", "white", true, 1244, "Persian", "2021-10-01", "Healthy", "Barn C"),
+       ('Ralph4', 'Cat', '/images/cats/cat4.jpg', 'female', "2021-02-14", "white", true, 1245, "Persian", "2021-10-01", "Attention", "Barn C"),
+       ('Ralph5', 'Cat', '/images/cats/cat5.jpg', 'male', "2021-03-14", "white", true, 12346, "Munchkin", "2021-10-01", "Healthy", "Barn D"),
+       ('Ralph6', 'Cat', '/images/cats/cat6.jpg', 'female', "2015-04-14", "white", true, 1247, "Munchkin", "2021-10-01", "Urgent", "Barn D"),
+       ('Ralph7', 'Cat', '/images/cats/cat7.jpg', 'male', "2016-05-14", "white", true, 1248, "Munchkin", "2021-10-01", "Healthy", "Barn D"),
+       ('Ralph8', 'Cat', '/images/cats/cat8.jpg', 'female', "2017-06-14", "white", true, 1249, "Munchkin", "2021-10-01", "Healthy", "Barn E"),
+       ('Mercury1', 'Horse', '/images/horses/horse1.jpg', 'male', "2018-07-14", "white", true, 1250, "Arabian", "2021-10-01", "Healthy", "Barn E"),
+       ('Mercury2', 'Horse', '/images/horses/horse2.jpg', 'female', "2019-08-14", "white", true, 1251, "Arabian", "2021-10-01", "Healthy", "Barn E"),
+       ('Mercury3', 'Horse', '/images/horses/horse3.jpg', 'male', "2020-09-14", "white", true, 1252, "Arabian", "2021-10-01", "Attention", "Barn E"),
+       ('Mercury4', 'Horse', '/images/horses/horse4.jpg', 'female', "2021-10-14", "white", true, 1253, "Arabian", "2021-10-01", "Healthy", "Barn E"),
+       ('Mercury5', 'Horse', '/images/horses/horse5.jpg', 'male', "2020-11-14", "white", true, 1254, "Clydesdale", "2021-10-01", "Healthy", "Barn F"),
+       ('Mercury6', 'Horse', '/images/horses/horse6.jpg', 'female', "2018-12-14", "white", true, 1255, "Clydesdale", "2021-10-01", "Healthy", "Barn F"),
+       ('Mercury7', 'Horse', '/images/horses/horse7.jpg', 'male', "2019-01-14", "white", true, 1256, "Clydesdale", "2021-10-01", "Healthy", "Barn F"),
+       ('Mercury8', 'Horse', '/images/horses/horse8.jpg', 'female', "2020-02-14", "white", true, 1257, "Clydesdale", "2021-10-01", "Urgent", "Barn F");
 
 
 DROP TABLE IF EXISTS WEIGHT;
@@ -305,7 +305,7 @@ DROP TABLE IF EXISTS COMMENT;
 CREATE TABLE COMMENT(
     comment_id            int auto_increment,
     medical_issue_id	            int not null,
-    author_id                int not null,  # COMMENTIN THIS OUT FOR NOW
+    author_id                int not null, 
     title                   varchar(30),
     date                    datetime,
     description             varchar(500),
@@ -316,8 +316,8 @@ CREATE TABLE COMMENT(
 
 # INSERT INTO TREATMENT (animalID, medicalIssueID, authorID, title, date, description)
 INSERT INTO COMMENT (medical_issue_id, author_id, title, date, description)
-VALUES (1, 1, 'Give Stitches', '2020-09-01', 'Gave sally stitches for her cut ear'),
-       (1, 1, 'Remove Stitches', '2020-09-05', 'Took out stitches for sally, issue resolved'),
+VALUES (1, 3, 'Give Stitches', '2020-09-01', 'Gave sally stitches for her cut ear'),
+       (1, 3, 'Remove Stitches', '2020-09-05', 'Took out stitches for sally, issue resolved'),
        (2, 1, 'Splint broken leg', '2021-09-01', 'Gave sally splint for leg. Follow up to check healing in 2 months'),
        (2, 1, 'Change splint dressing', '2021-10-01', 'Changed dressing for Sallys splint'),
        (3, 1, 'Administer stomach medication', '2020-12-01', 'Gave Jimmy stomach meds to ease stomach issues'),
@@ -337,8 +337,8 @@ CREATE TABLE COMMENT_IMAGES(
 INSERT INTO COMMENT_IMAGES (comment_id, image)
 VALUES (1, '/images/commentImages/sickpuppy1.jpg'),
        (1, '/images/commentImages/sickpuppy2.jpg'),
-       (2, 'img15.jpg'),
-       (2, 'img16.jpg'),
+       (2, '/images/commentImages/sickpuppy1.jpg'),
+       (2, '/images/commentImages/sickpuppy2.jpg'),
        (3, 'img17.jpg'),
        (3, 'img18.jpg'),
        (4, 'img19.jpg'),

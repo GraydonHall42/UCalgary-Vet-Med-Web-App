@@ -50,4 +50,7 @@ public class AnimalLight {
 	@Column(name="status")
 	private String status;
 
+	@Column(name="location")
+	private String location;
+
 }

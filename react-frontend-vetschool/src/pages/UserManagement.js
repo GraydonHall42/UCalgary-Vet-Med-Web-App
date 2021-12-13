@@ -49,13 +49,13 @@ function UserManagement() {
     return (
         <div>
             <Container className="p-2">
-                <Row>
-                    <Col>
-                        <SearchBarWithCriteria
-                            searchOptions ={["User First Name", "User Type"]}
-                        />
-                    </Col>
-                </Row>
+                {/*<Row>*/}
+                {/*    <Col>*/}
+                {/*        <SearchBarWithCriteria*/}
+                {/*            searchOptions ={["User First Name", "User Type"]}*/}
+                {/*        />*/}
+                {/*    </Col>*/}
+                {/*</Row>*/}
                 <Row>
                     <Col>
                         <UserSearchResults users={users} setIsModalShowing={setIsModalShowing} setSelectedUser={setSelectedUser}/>

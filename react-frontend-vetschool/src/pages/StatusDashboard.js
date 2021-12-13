@@ -60,11 +60,6 @@ function StatusDashboard() {
         )
     }
 
-    const selectOptions = {
-        0: 'Healthy',
-        1: 'Attention',
-        2: 'Urgent'
-    };
 
     const columns = [
         {
@@ -121,7 +116,7 @@ function StatusDashboard() {
             dataField: "currentStatus",
             text: "Issue Status",
             headerStyle: (colum, colIndex) => {
-                return { width: '9%', textAlign: 'center' };
+                return { width: '10%', textAlign: 'center' };
             },
             filter: textFilter({
                 className: 'test-classname',
@@ -130,6 +125,13 @@ function StatusDashboard() {
                     textAlign: 'center'
                 },
             })
+        },
+        {
+            dataField: "animal.location",
+            text: "Animal Location",
+            headerStyle: (colum, colIndex) => {
+                return { width: '10%', textAlign: 'center' };
+            },
         },
         {
             dataField: "animal.animalId",

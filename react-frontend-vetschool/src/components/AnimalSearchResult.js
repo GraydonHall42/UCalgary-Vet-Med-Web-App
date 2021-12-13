@@ -19,7 +19,7 @@ const AnimalSearchResult = (props) =>  {
             return (
                 <tr key={animalId} className={"align-middle"}>
                     {/*<td><Image src={profilePhoto} fluid roundedCircle className={"animalSearchImage"}/></td>*/}
-                    <td><Image src={profilePhoto} fluid roundedCircle className={"animalSearchImage"}/></td>
+                    <td><Image src={profilePhoto} roundedCircle className={"animalSearchImage"}/></td>
                     <td>
                         {animalName}
                     </td>

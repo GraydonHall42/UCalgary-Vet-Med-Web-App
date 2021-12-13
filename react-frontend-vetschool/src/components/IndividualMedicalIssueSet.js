@@ -43,11 +43,11 @@ const IndividualMedicalIssueSet = (props) => {
                 {props.medicalIssue.comments.map((commentObject) => ([
                         <Row className="darkGray ps-4 pb-2 pt-2 pe-0 text-white">
                             <Row className="bg-danger rounded pt-1 pb-1 align-content-center text-start" id="title">
-                                <Col md={5}>
+                                <Col md={4}>
                                     <h5>Comment: {commentObject.title}</h5>
                                 </Col>
-                                <Col md={3}>
-                                    <h5>Commented by: {commentObject.author.name}</h5>
+                                <Col md={4}>
+                                    <h5>Commented by: {commentObject.author.firstName} {commentObject.author.lastName}</h5>
                                 </Col>
                                 <Col md={2}>
                                     <h5>Date: {commentObject.date ? formatDate(commentObject.date) : null}</h5>
