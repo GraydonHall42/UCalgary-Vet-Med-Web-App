@@ -42,7 +42,7 @@ function AnimalBooking() {
 
     function ApproveBooking(booking) 
     {
-        if(user.userType === "Admin"){
+        if(user.roles[0].name === "ADMIN"){
             if(booking.adminAppStatus === "Approved") return;
             booking.adminAppStatus = "Approved";
             booking.adminAppId = user;
@@ -56,7 +56,7 @@ function AnimalBooking() {
                 console.log(err);
             })
         }
-        if(user.userType === "Animal Health Technician"){
+        if(user.roles[0].name === "HEALTH_TECH"){
             if(booking.techAppStatus === "Approved") return;
             booking.techAppStatus = "Approved";
             booking.techAppId = user;
@@ -76,7 +76,7 @@ function AnimalBooking() {
 
     function RejectBooking(booking) 
     {
-        if(user.userType === "Admin"){
+        if(user.roles[0].name === "ADMIN"){
             if(booking.adminAppStatus === "Rejected") return;
             booking.adminAppStatus = "Rejected";
             booking.adminAppId = user;
@@ -90,7 +90,7 @@ function AnimalBooking() {
                 console.log(err);
             })
         }
-        if(user.userType === "Animal Health Technician"){
+        if(user.roles[0].name === "HEALTH_TECH"){
             if(booking.techAppStatus === "Rejected") return;
             booking.techAppStatus = "Rejected";
             booking.techAppId = user;
@@ -114,7 +114,7 @@ function AnimalBooking() {
     {   
         const {adminAppStatus, techAppStatus, bookingId} = booking;
 
-        if(user.userType === "Teaching Technician"){
+        if(user.roles[0].name === "TEACHING_TECH"){
             // can only cancel before tech app or rej
             if(techAppStatus.startsWith("Pend")){
                 return <Button className="deleteButton" onClick={e => deleteBooking(bookingId)}>Del</Button>
@@ -123,7 +123,7 @@ function AnimalBooking() {
                 return <Button className="deleteButton" disabled>Del</Button>
             }
         }
-        if(user.userType === "Admin"){
+        if(user.roles[0].name === "ADMIN"){
             // can only change app status before tech decides
             if(techAppStatus.startsWith("Pend")){
                 return (
@@ -142,7 +142,7 @@ function AnimalBooking() {
                 )
             }     
         }
-        if(user.userType === "Animal Health Technician"){
+        if(user.roles[0].name === "HEALTH_TECH"){
             // can only app or rej after admin app
             if(adminAppStatus.startsWith("Pend") || adminAppStatus.startsWith("Rej")){
                 return (
@@ -169,9 +169,9 @@ function AnimalBooking() {
                 <td>{"Red"}</td>
                 <td>{booking.animalId.animalName}</td>
                 <td>{booking.bookingDate}</td>
-                <td>{booking.teacherId.name}</td>
-                <td>{booking.adminAppStatus === "Pending" ? booking.adminAppStatus : booking.adminAppStatus + " (" +  booking.adminAppId.name + ")"}</td>
-                <td>{booking.techAppStatus === "Pending" ? booking.techAppStatus : booking.techAppStatus + " (" +  booking.techAppId.name + ")"}</td>
+                <td>{booking.teacherId.lastName}</td>
+                <td>{booking.adminAppStatus === "Pending" ? booking.adminAppStatus : booking.adminAppStatus + " (" +  booking.adminAppId.lastName + ")"}</td>
+                <td>{booking.techAppStatus === "Pending" ? booking.techAppStatus : booking.techAppStatus + " (" +  booking.techAppId.lastName + ")"}</td>
                 <td className="actions">
                     {
                         getActionButtons(booking)
