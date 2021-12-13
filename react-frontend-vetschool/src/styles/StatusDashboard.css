@@ -73,3 +73,23 @@
   text-align: center;
 }
 
+thead{
+  background-color: #e63946;
+  color: white;
+  font-size: large;
+  vertical-align: middle !important;
+  border-bottom: none;
+}
+
+tbody{
+  vertical-align: middle !important;
+}
+
+.table > tbody > tr > td,
+.table > thead > tr > th {
+  border: 0 !important
+}
+
+.sr-only{
+  display: none;
+}
