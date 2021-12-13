@@ -58,7 +58,7 @@ function EditMedicalIssueModal(props) {
             "comments": []
         }
 
-        axios.put("http://localhost:8080/api/medical/" + props.medicalIssue.medicalIssueId, medicalIssue)
+        axios.put("http://localhost:8080/api/medical/" + props.medicalIssues.medicalIssueId, medicalIssue)
             .then((res)=> console.log(res))
             .catch((err) => console.log(err))
 
