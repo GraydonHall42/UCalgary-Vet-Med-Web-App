@@ -1,4 +1,4 @@
-package com.springboot.app.springbootbackend.config;
+package com.springboot.app.springbootbackend.filter;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

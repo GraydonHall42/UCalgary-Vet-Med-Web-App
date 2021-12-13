@@ -1,12 +1,20 @@
 package com.springboot.app.springbootbackend.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 @Data
 @Entity
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name="user")
 public class User {
 	
@@ -26,5 +34,8 @@ public class User {
 
 	@Column(name = "user_type", nullable = false)
 	private String userType;
+
+	@OneToMany(mappedBy = "userId")
+	private Collection<Role> roles;
 
 }
