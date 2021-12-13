@@ -36,6 +36,12 @@ public class MedicalIssueController {
         return medicalIssueService.getAllMedicalIssues();
     }
 
+    //READ all medical issues
+    @GetMapping("/active")
+    public List<MedicalIssue> getActiveMedicalIssues(){
+        return medicalIssueService.getActiveMedicalIssues();
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<MedicalIssue> getMedicalIssueByID(@PathVariable("id") int medicalIssueId){
         return new ResponseEntity<MedicalIssue>(medicalIssueService.getMedicalIssueById(medicalIssueId), HttpStatus.OK);
