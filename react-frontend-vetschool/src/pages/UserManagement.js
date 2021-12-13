@@ -19,7 +19,6 @@ function UserManagement() {
         let url = 'http://localhost:8080/api/users';
         axios.get(url, config)
             .then(res => {
-                console.log(res.data);
                 setUsers(res.data);
             })
             .catch(err => {
@@ -31,9 +30,20 @@ function UserManagement() {
 
     useEffect(() => {
         getAllUsers();
-    }, []);
+    }, [isModalShowing]);
 
-    
+    const addUser = () => {
+        setIsModalShowing(true)
+        let user = {
+            "firstName": "",
+            "lastName": "",
+            "email": "",
+            "phone": "",
+            "roles": [{name: ""}],
+            "blocked": false,
+        }
+        setSelectedUser(user)
+    }
 
 
     return (
@@ -53,7 +63,7 @@ function UserManagement() {
                 </Row>
                 <Row>
                     <Col>
-                        <Button className='addUser' variant="success">Add User</Button>
+                        <Button className='addUser' variant="success" onClick={addUser}>Add User</Button>
                     </Col>
                 </Row>
             </Container>

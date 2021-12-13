@@ -2,7 +2,7 @@ import {Button, FloatingLabel, Form, Modal} from "react-bootstrap";
 import React, {useContext, useEffect, useState} from "react";
 import {UserContext} from "../UserContext";
 import axios from "axios";
-
+import useAuthorization from '../hooks/useAuthorization';
 
 function EditCommentModal(props) {
 
@@ -14,6 +14,7 @@ function EditCommentModal(props) {
     const [description, setDescription] = useState(null);
     const [image, setImage] = useState(null);
     const [commentId, setCommentId] = useState(null);
+    const getAccessToken = useAuthorization();
 
     const setDefaults = () => {
         setMedicalIssueId(medicalIssueId ? medicalIssueId : props.comment.animalId);
@@ -53,14 +54,16 @@ function EditCommentModal(props) {
             "image": image
         }
 
-        let commentRes = await axios.put("http://localhost:8080/api/comments/"+props.comment.commentId, comment)
+        let config = { headers: {'Authorization': getAccessToken() }}
+
+        let commentRes = await axios.put("http://localhost:8080/api/comments/"+props.comment.commentId, comment,config)
             .then((res)=> {
                 console.log(res)
             })
             .catch((err) => console.log(err))
 
 
-        let imageRes = await axios.put("http://localhost:8080/api/treatment-images/"+props.comment.commentImages[0].commentPhotoId, commentImage)
+        let imageRes = await axios.put("http://localhost:8080/api/treatment-images/"+props.comment.commentImages[0].commentPhotoId, commentImage, config)
             .then((res) => console.log(res.data))
             .catch((err) => console.log(err))
 

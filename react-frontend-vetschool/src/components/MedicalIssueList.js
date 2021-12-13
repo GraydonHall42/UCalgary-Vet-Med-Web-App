@@ -4,11 +4,13 @@ import '../styles/MedicalIssuesList.css';
 import MedicalIssueModal from "./MedicalIssueModal";
 import {Link} from "react-router-dom";
 import axios from 'axios';
+import useAuthorization from '../hooks/useAuthorization';
 
 function MedicalIssueList(props) {
 
     const [modalShow, setModalShow] = useState(false);
     const [medicalIssueList, setMedicalIssueList] = useState(null);
+    const getAccessToken = useAuthorization();
 
     useEffect(() => {
         setMedicalIssueList(props.medicalData.medicalIssues.map( (issue) => Item(issue)))
@@ -19,7 +21,8 @@ function MedicalIssueList(props) {
     })
 
     const getMedicalIssuesByAnimalId = (animalId) => {
-        axios.get("http://localhost:8080/api/animals/"+animalId+"?fields=images,weights,prescriptions")
+        let config = { headers: {'Authorization': getAccessToken() }}
+        axios.get("http://localhost:8080/api/animals/"+animalId+"?fields=images,weights,prescriptions", config)
             .then(response => setMedicalIssueList(response.data.medicalIssues.map( (issue) => Item(issue))))
             .catch(error => console.log(error))
     }

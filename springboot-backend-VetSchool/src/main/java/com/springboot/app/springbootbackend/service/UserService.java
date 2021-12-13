@@ -10,9 +10,11 @@ public interface UserService {
 	User saveUser(User user);
 	List<User> getAllUsers();
 	User getUserById(int id);
+	User getUserByEmail(String email);
 	User updateUser(User user, int id);
 	void deleteUser(int id);
+	Role getRoleById(int roleId);
 	Role saveRole(Role role);
-	void addRoleToUser(String email, String roleName);
-	User getUserByEmail(String email);
+	Role updateRole(Role role, int roleId);
+
 }

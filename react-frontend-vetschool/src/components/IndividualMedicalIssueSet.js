@@ -4,12 +4,14 @@ import '../styles/ImageSet.css';
 import {AiOutlineEdit, AiOutlineDelete} from "react-icons/all";
 import axios from "axios";
 import EditCommentModal from "./EditCommentModal";
+import useAuthorization from '../hooks/useAuthorization';
 
 const IndividualMedicalIssueSet = (props) => {
 
     const [modalShow, setModalShow] = useState(false);
 
     const [selectedComment, setSelectedComment] = useState(null);
+    const getAccessToken = useAuthorization();
 
     function formatDate(string){
         return new Date(string).toISOString().slice(0,10);
@@ -20,7 +22,8 @@ const IndividualMedicalIssueSet = (props) => {
     }
 
     const deleteComment = (commentId) => {
-        axios.delete("http://localhost:8080/api/comments/"+commentId)
+        let config = { headers: {'Authorization': getAccessToken() }}
+        axios.delete("http://localhost:8080/api/comments/"+commentId, config)
             .then(response => console.log(response))
             .catch(error => console.log(error));
         window.location.reload()

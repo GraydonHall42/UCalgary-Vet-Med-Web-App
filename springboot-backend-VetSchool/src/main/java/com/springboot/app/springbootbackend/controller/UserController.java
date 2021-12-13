@@ -45,12 +45,6 @@ public class UserController {
 		return new ResponseEntity<Role>(userService.saveRole(role), HttpStatus.CREATED);
 	}
 
-	@PostMapping("/user/addRole")
-	public ResponseEntity<?> addRoleToUser(@RequestBody RoleToUserForm form) {
-		userService.addRoleToUser(form.getEmail(), form.getRoleName());
-		return ResponseEntity.ok().build();
-	}
-
 	// build get all animals REST API
 	// http://localhost:8080/api/users
 	@GetMapping("/users")
@@ -77,6 +71,11 @@ public class UserController {
 	@PutMapping("/user/update/{id}")
 	public ResponseEntity<User> updateUser(@PathVariable("id") int id, @RequestBody User updatedUser) {
 		return new ResponseEntity<User>(userService.updateUser(updatedUser, id), HttpStatus.OK);
+	}
+
+	@PutMapping("/role/update/{id}")
+	public ResponseEntity<Role> updateRole(@PathVariable("id") int roleId, @RequestBody Role updatedRole) {
+		return new ResponseEntity<Role>(userService.updateRole(updatedRole, roleId), HttpStatus.OK);
 	}
 
 	// build delete employee REST API

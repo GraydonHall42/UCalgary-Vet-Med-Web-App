@@ -2,18 +2,23 @@ import React, {useContext, useState} from 'react'
 import {Dropdown} from "react-bootstrap";
 import axios from "axios";
 import {AnimalContext} from "../AnimalContext";
+import useAuthorization from '../hooks/useAuthorization';
 
 
 const AnimalStatusButton = (props) => {
     // PROPS TO PASS: the medical issue + the animalID (for the put request)
 
     const [status, setStatus] = useState(props.medicalIssue.status)
+    const getAccessToken = useAuthorization();
 
     // make put request to database and change the medical issue status
     const handleSelect=(e)=>{
         // EDIT TO MATCH THE PUT REQUEST YOU NEED TO MAKE
         props.medicalIssue.status = e; // change status to either healthy, attention, or urgent
-        axios.put('http://localhost:8080/api/animals/' + props.animalId, props.medicalIssue)
+
+        let config = { headers: {'Authorization': getAccessToken() }}
+
+        axios.put('http://localhost:8080/api/animals/' + props.animalId, props.medicalIssue, config)
             .then(res => {
                 console.log(res)
             })

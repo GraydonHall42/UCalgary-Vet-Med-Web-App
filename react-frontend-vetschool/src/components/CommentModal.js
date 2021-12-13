@@ -2,6 +2,7 @@ import {Button, FloatingLabel, Form, Modal} from "react-bootstrap";
 import React, {useContext, useEffect, useState} from "react";
 import {UserContext} from "../UserContext";
 import axios from "axios";
+import useAuthorization from '../hooks/useAuthorization';
 
 
 function CommentModal(props) {
@@ -14,6 +15,7 @@ function CommentModal(props) {
     const [description, setDescription] = useState(null);
     const [image, setImage] = useState(null);
     const [commentId, setCommentId] = useState(null);
+    const getAccessToken = useAuthorization();
 
     const submitCommentRequest = async () => {
         console.log("Requested!")
@@ -36,7 +38,8 @@ function CommentModal(props) {
             "image": image
         }
 
-        let commentRes = await axios.post("http://localhost:8080/api/comments", comment)
+        let config = { headers: {'Authorization': getAccessToken() }}
+        let commentRes = await axios.post("http://localhost:8080/api/comments", comment, config)
             .then((res)=> {
                 setCommentId(res.data.commentId)
                 commentImage.commentId = res.data.commentId
@@ -45,7 +48,7 @@ function CommentModal(props) {
             .catch((err) => console.log(err))
 
 
-        let imageRes = await axios.post("http://localhost:8080/api/treatment-images", commentImage)
+        let imageRes = await axios.post("http://localhost:8080/api/treatment-images", commentImage. config)
             .then((res) => console.log(res.data))
             .catch((err) => console.log(err))
 

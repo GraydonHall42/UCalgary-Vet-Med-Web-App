@@ -6,6 +6,7 @@ import "../styles/AnimalProfileCard.css"
 import axios from "axios";
 import AnimalStatusButton from "./AnimalStatusButton";
 import EditMedicalIssueModal from "./EditMedicalIssueModal";
+import useAuthorization from '../hooks/useAuthorization';
 
 const MedicalIssueProfileCard = (props) =>  {
 
@@ -13,9 +14,11 @@ const MedicalIssueProfileCard = (props) =>  {
     const [modalShow, setModalShow] = useState(null);
     const [medicalIssueState, setMedicalIssueState] = useState(null);
     const [isLoading, setLoading] = useState(true);
+    const getAccessToken = useAuthorization();
 
     const obtainAnimalById = async(animalId) => {
-        const res = await axios.get("http://localhost:8080/api/animals/"+animalId+"?fields")
+        let config = { headers: {'Authorization': getAccessToken() }}
+        const res = await axios.get("http://localhost:8080/api/animals/"+animalId+"?fields", config)
             .then(response => {
                 setAnimal(response.data)
                 console.log("hello from obtainanimalbyID")
