@@ -17,7 +17,6 @@ const UserProfilePage = (props) =>  {
     const [message, setMessage] = useState("");
     const getAccessToken = useAuthorization();
 
-
     const updateUser = () => {
         
         if(firstName !== "") user.firstName = firstName;

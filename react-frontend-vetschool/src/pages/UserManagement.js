@@ -5,7 +5,7 @@ import AnimalSearchResults from "../components/AnimalSearchResult";
 import UserSearchResults from "../components/UserSearchResults";
 import useAuthorization from '../hooks/useAuthorization';
 
-function Home() {
+function UserManagement() {
     const [users, setUsers] = useState([
         {
             id:1,
@@ -35,9 +35,6 @@ function Home() {
         }
     ])
 
-    
-
-
     return (
         <div>
             <Container className="p-2">
@@ -58,4 +55,4 @@ function Home() {
     )
 }
 
-export default Home;
+export default UserManagement;

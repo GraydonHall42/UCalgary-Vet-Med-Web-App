@@ -3,13 +3,17 @@ import {Table, Container, Row, Button} from "react-bootstrap";
 import axios from 'axios';
 import {UserContext} from "../UserContext";
 import '../styles/AnimalBooking.css';
+import useAuthorization from '../hooks/useAuthorization';
+
 
 function AnimalBooking() {
     const { user, setUser } = useContext(UserContext);
     let [bookings, setBookings] = useState([]);
+    const getAccessToken = useAuthorization();
 
     function getAllBookings() {
-        axios.get('http://localhost:8080/api/bookings')
+        let config = { headers: {'Authorization': getAccessToken() }}
+        axios.get('http://localhost:8080/api/bookings', config)
              .then(res => {
                 console.log(res.data)
                 setBookings(res.data)
@@ -26,7 +30,8 @@ function AnimalBooking() {
 
     function deleteBooking(bookingId) 
     {
-        axios.delete('http://localhost:8080/api/bookings/' + bookingId)
+        let config = { headers: {'Authorization': getAccessToken() }}
+        axios.delete('http://localhost:8080/api/bookings/' + bookingId, config)
              .then(res => {
                 getAllBookings();
             })
@@ -42,7 +47,8 @@ function AnimalBooking() {
             booking.adminAppStatus = "Approved";
             booking.adminAppId = user;
 
-            axios.put('http://localhost:8080/api/bookings/' + booking.bookingId, booking)
+            let config = { headers: {'Authorization': getAccessToken() }}
+            axios.put('http://localhost:8080/api/bookings/' + booking.bookingId, booking, config)
             .then(res => {
                 getAllBookings();
             })
@@ -55,7 +61,8 @@ function AnimalBooking() {
             booking.techAppStatus = "Approved";
             booking.techAppId = user;
 
-            axios.put('http://localhost:8080/api/bookings/' + booking.bookingId, booking)
+            let config = { headers: {'Authorization': getAccessToken() }}
+            axios.put('http://localhost:8080/api/bookings/' + booking.bookingId, booking, config)
             .then(res => {
                 // I dont think you need this because you update the actual state too but good for now to check
                 getAllBookings();
@@ -74,7 +81,8 @@ function AnimalBooking() {
             booking.adminAppStatus = "Rejected";
             booking.adminAppId = user;
 
-            axios.put('http://localhost:8080/api/bookings/' + booking.bookingId, booking)
+            let config = { headers: {'Authorization': getAccessToken() }}
+            axios.put('http://localhost:8080/api/bookings/' + booking.bookingId, booking, config)
             .then(res => {
                 getAllBookings();
             })
@@ -87,7 +95,8 @@ function AnimalBooking() {
             booking.techAppStatus = "Rejected";
             booking.techAppId = user;
 
-            axios.put('http://localhost:8080/api/bookings/' + booking.bookingId, booking)
+            let config = { headers: {'Authorization': getAccessToken() }}
+            axios.put('http://localhost:8080/api/bookings/' + booking.bookingId, booking, config)
             .then(res => {
                 // I dont think you need this because you update the actual state too but good for now to check
                 getAllBookings();

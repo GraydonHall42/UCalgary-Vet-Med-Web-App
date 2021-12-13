@@ -5,6 +5,7 @@ import CommentModal from "../components/CommentModal";
 import {useParams} from "react-router-dom";
 import {Button, Row, Container} from "react-bootstrap";
 import axios from 'axios';
+import useAuthorization from '../hooks/useAuthorization';
 
 const IndividualMedicalIssuePage = (props) => {
 
@@ -12,13 +13,15 @@ const IndividualMedicalIssuePage = (props) => {
     const [modalShow, setModalShow] = useState(false);
     const [medicalIssue, setMedicalIssue] = useState(null);
     const [loading, setLoading] = useState(true)
+    const getAccessToken = useAuthorization();
 
     const handleClick = () => {
         setModalShow(true)
     }
 
     const obtainMedicalIssueById = (medicalIssueId) => {
-        axios.get("http://localhost:8080/api/medical/" + medicalIssueId)
+        let config = { headers: {'Authorization': getAccessToken() }}
+        axios.get("http://localhost:8080/api/medical/" + medicalIssueId, config)
         .then(response => {
             setMedicalIssue(response.data)
             setLoading(false)

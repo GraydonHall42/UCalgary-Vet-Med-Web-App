@@ -2,6 +2,7 @@ import {Button, Form, Modal} from "react-bootstrap";
 import React, {useContext, useState} from "react";
 import {UserContext} from "../UserContext";
 import axios from "axios";
+import useAuthorization from '../hooks/useAuthorization';
 
 
 function RequestVisitModal(props) {
@@ -11,6 +12,8 @@ function RequestVisitModal(props) {
     const [startTime, setStartTime] = useState(null)
     const [endTime, setEndTime] = useState(null)
     const { user, setUser } = useContext(UserContext);
+    const getAccessToken = useAuthorization();
+    
 
     const submitBookingRequest = () => {
         console.log("Requested!")
@@ -30,7 +33,8 @@ function RequestVisitModal(props) {
             "techAppStatus": "Pending"
         }
 
-        axios.post("http://localhost:8080/api/bookings", bookingRequest)
+        let config = { headers: {'Authorization': getAccessToken() }}
+        axios.post("http://localhost:8080/api/bookings", bookingRequest, config)
             .then((res)=> console.log(res))
             .catch((err) => console.log(err))
 

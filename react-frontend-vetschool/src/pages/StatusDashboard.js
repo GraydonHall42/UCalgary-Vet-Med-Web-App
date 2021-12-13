@@ -9,14 +9,17 @@ import BootstrapTable from "react-bootstrap-table-next";
 import paginationFactory from "react-bootstrap-table2-paginator";
 import {Container} from "react-bootstrap";
 import axios from "axios";
+import useAuthorization from '../hooks/useAuthorization';
 
 function StatusDashboard() {
 
     const [medicalIssues, setMedicalIssues] = useState(null)
     const [isLoading, setLoading] = useState(true);
+    const getAccessToken = useAuthorization();
 
     function getActiveMedicalIssues() {
-        axios.get('http://localhost:8080/api/medical/active')
+        let config = { headers: {'Authorization': getAccessToken() }}
+        axios.get('http://localhost:8080/api/medical/active', config)
             .then(res => {
                 console.log(res.data)
                 setLoading(false)

@@ -4,6 +4,7 @@ import AnimalProfileContent from '../components/AnimalProfileContent';
 import {useParams} from "react-router-dom";
 import axios from "axios";
 import {AnimalContext} from "../AnimalContext";
+import useAuthorization from '../hooks/useAuthorization';
 
 
 function AnimalProfilePage(props) {
@@ -16,9 +17,11 @@ function AnimalProfilePage(props) {
     const [modalShow, setModalShow] = useState(false);
     const [weightData, setWeightData] = useState([null])
     const [medicalIssues, setMedicalIssues] = useState([null]);
+    const getAccessToken = useAuthorization();
 
     function getAnimalById(id) {
-        axios.get('http://localhost:8080/api/animals/' + id + '?fields')
+        let config = { headers: {'Authorization': getAccessToken() }}
+        axios.get('http://localhost:8080/api/animals/' + id + '?fields', config)
             .then(res => {
                 console.log(res.data)
                 setAnimal(res.data)
@@ -47,7 +50,8 @@ function AnimalProfilePage(props) {
             weight:weight
         }
 
-        axios.post('http://localhost:8080/api/weight', weightBody)
+        let config = { headers: {'Authorization': getAccessToken() }}
+        axios.post('http://localhost:8080/api/weight', weightBody, config)
             .then(res => {
                 console.log(res)
                 getAnimalById(animalId);

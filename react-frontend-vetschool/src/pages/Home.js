@@ -5,6 +5,7 @@ import AnimalSearchResults from "../components/AnimalSearchResult";
 import axios from "axios";
 import RequestVisitModal from "../components/RequestVisitModal";
 import {UserContext} from "../UserContext";
+import useAuthorization from '../hooks/useAuthorization';
 
 function Home() {
     const [animals, setAnimals] = useState([])
@@ -13,9 +14,14 @@ function Home() {
     const [reRender, setReRender] = useState(false);
     const [searchEntry, setSearchEntry] = useState("");
     const [searchCriteria,setSearchCriteria]=useState("Animal Name");
-
+    const getAccessToken = useAuthorization();
+    
+    
     function getAllAnimals() {
-        axios.get('http://localhost:8080/api/animals?fields=images,medicalIssues, prescriptions')
+        
+        let config = { headers: {'Authorization': getAccessToken() }}
+
+        axios.get('http://localhost:8080/api/animals?fields=images,medicalIssues,prescriptions', config)
             .then(res => {
                 console.log(res.data)
                 setAnimals(res.data)
@@ -23,6 +29,7 @@ function Home() {
             .catch(err => {
                 console.log(err);
             })
+
     }
 
     useEffect(() => {
@@ -44,9 +51,10 @@ function Home() {
                 }
             }
 
+            let config = { headers: {'Authorization': getAccessToken() }}
 
             // get request to back end
-            axios.get(endPoint+searchEntry)
+            axios.get(endPoint+searchEntry, config)
                 .then(res => {
                     console.log(res.data)
                     setAnimals(res.data)
