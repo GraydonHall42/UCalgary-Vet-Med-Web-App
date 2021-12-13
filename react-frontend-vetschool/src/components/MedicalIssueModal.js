@@ -4,6 +4,7 @@ import {useParams} from "react-router-dom";
 import {UserContext} from "../UserContext";
 import axios from "axios";
 import individualMedicalIssueSet from "./IndividualMedicalIssueSet";
+import useAuthorization from '../hooks/useAuthorization';
 
 
 function MedicalIssueModal(props) {
@@ -15,6 +16,7 @@ function MedicalIssueModal(props) {
     const [closeDate, setCloseDate] = useState(null);
     const [description, setDescription] = useState(null);
     const [closed, setClosed] = useState(true);
+    const getAccessToken = useAuthorization();
 
     const submitMedicalIssue = () => {
         console.log("Requested!")
@@ -35,7 +37,9 @@ function MedicalIssueModal(props) {
             "comments": []
         }
 
-        axios.post("http://localhost:8080/api/medical", medicalIssue)
+        let config = { headers: {'Authorization': getAccessToken() }}
+
+        axios.post("http://localhost:8080/api/medical", medicalIssue, config)
             .then((res)=> console.log(res))
             .catch((err) => console.log(err))
 

@@ -5,6 +5,7 @@ import {UserContext} from "../UserContext";
 import axios from "axios";
 import individualMedicalIssueSet from "./IndividualMedicalIssueSet";
 import {renderToString} from "react-dom/server";
+import useAuthorization from '../hooks/useAuthorization';
 
 
 function EditMedicalIssueModal(props) {
@@ -16,6 +17,7 @@ function EditMedicalIssueModal(props) {
     const [closeDate, setCloseDate] = useState(null);
     const [description, setDescription] = useState(null);
     const [closed, setClosed] = useState(null);
+    const getAccessToken = useAuthorization();
 
     const setDefaults = () => {
         setAnimalId(animalId ? animalId : props.medicalIssues.animalId);
@@ -58,7 +60,9 @@ function EditMedicalIssueModal(props) {
             "comments": []
         }
 
-        axios.put("http://localhost:8080/api/medical/" + props.medicalIssue.medicalIssueId, medicalIssue)
+        let config = { headers: {'Authorization': getAccessToken() }}
+
+        axios.put("http://localhost:8080/api/medical/" + props.medicalIssue.medicalIssueId, medicalIssue, config)
             .then((res)=> console.log(res))
             .catch((err) => console.log(err))
 
