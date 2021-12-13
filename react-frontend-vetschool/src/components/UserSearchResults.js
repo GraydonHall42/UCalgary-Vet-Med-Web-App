@@ -32,7 +32,7 @@ const AnimalSearchResult = (props) =>  {
                         {type}
                     </td>
                     <td>
-                        <DropdownButton
+                        {/* <DropdownButton
                             className="btn-block"
                             variant="warning"
                             size="sm"
@@ -43,7 +43,10 @@ const AnimalSearchResult = (props) =>  {
                             <Dropdown.Item eventKey="Block User">Block User</Dropdown.Item>
                             <Dropdown.Item eventKey="Edit User">Edit User</Dropdown.Item>
                             <Dropdown.Item eventKey="Delete User">Delete User</Dropdown.Item>
-                        </DropdownButton>
+                        </DropdownButton> */}
+                        <Button variant="warning">
+                            Edit
+                        </Button>
                     </td>
                 </tr>
             )

@@ -1,17 +1,20 @@
 import React, {useState} from 'react'
-import {
-    Button,
-    FormControl,
-    InputGroup
-} from "react-bootstrap";
+import { Button, FormControl, InputGroup } from "react-bootstrap";
 import "../styles/UserProfilePage.css"
 
 const UserProfileField = (props) =>  {
 
-    const [editable, setEditable] = useState(true)
+    const [editable, setEditable] = useState(false)
+    const [value, setValue] = useState(props.fieldValue);
 
     function handleClick(){
+        // If edit gets locked
+        if(editable) {
+            props.setValue(value);
+        }
+        
         setEditable(!editable)
+
     }
 
     return(
@@ -21,17 +24,17 @@ const UserProfileField = (props) =>  {
                     {props.fieldLabel}
                 </InputGroup.Text>
                 <FormControl
-                    defaultValue={props.fieldValue}
-                    aria-label={props.fieldValue}
+                    value={value}
                     aria-describedby={props.fieldName}
-                    disabled={editable}
+                    onChange={(e) => setValue(e.target.value)}
+                    disabled={!editable}
                 />
                 <Button
                     variant={"warning"}
-                    variant={editable? "warning" : "danger"}
+                    variant={!editable ? "warning" : "danger"}
                     onClick={handleClick}
                 >
-                    {editable? "Edit" : "Lock"}
+                    {!editable ? "Edit" : "Enter"}
                 </Button>
             </InputGroup>
         </div>

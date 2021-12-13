@@ -26,7 +26,7 @@ import static org.springframework.http.HttpHeaders.AUTHORIZATION;
 import static org.springframework.http.HttpStatus.FORBIDDEN;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin
 @RestController
 @RequestMapping("/api")
 public class UserController {
@@ -65,20 +65,18 @@ public class UserController {
 		return new ResponseEntity<User>(userService.getUserById(userID), HttpStatus.OK);
 	}
 
-	// build get animal by type REST API
-	// http://localhost:8080/api/users/dog
-	@GetMapping("/user/type/{type}")
-	public List<User> getUserByType(@PathVariable("type") String type) {
-		return userService.getUserByType(type);
+	@GetMapping("/user/email/{email}")
+	public ResponseEntity<User> getUserByEmail(@PathVariable("email") String email) {
+		User user = userService.getUserByEmail(email);
+		user.setPassword("");
+		return new ResponseEntity<User>(user, HttpStatus.OK);
 	}
-
 
 	// build update employee REST API
 	// http://localhost:8080/api/users/1
 	@PutMapping("/user/update/{id}")
-	public ResponseEntity<User> updateUser(@PathVariable("id") int id
-			, @RequestBody User user) {
-		return new ResponseEntity<User>(userService.updateUser(user, id), HttpStatus.OK);
+	public ResponseEntity<User> updateUser(@PathVariable("id") int id, @RequestBody User updatedUser) {
+		return new ResponseEntity<User>(userService.updateUser(updatedUser, id), HttpStatus.OK);
 	}
 
 	// build delete employee REST API

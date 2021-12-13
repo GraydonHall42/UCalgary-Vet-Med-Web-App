@@ -5,22 +5,40 @@ USE vet_db_group248;
 DROP TABLE IF EXISTS USER;
 CREATE TABLE USER (
 	user_id				int not null auto_increment,
-	name				varchar(25) not null,
+	first_name			varchar(25) not null,
+    last_name			varchar(25) not null,
     email				varchar(25) not null,
-    password			varchar(25) not null,
-    user_type			varchar(25) not null,
+    phone				varchar(15) not null,
+    password			varchar(100) not null,
+    blocked				boolean not null,
 	primary key (user_id)
 );
 
-INSERT INTO USER (name, email, password, user_type)
-VALUES ('John', 'John@gmail.com', '1234', 'Vet'),
-       ('Jim', 'Jim@gmail.com', '2345', 'Animal Care Attendant'),
-       ('Jane', 'Jane@gmail.com', '3456', 'Animal Health Technician'),
-       ('Mo', 'Mo@gmail.com', '4567', 'Teaching Technician'),
-       ('Ali', 'Ali@gmail.com', '5678', 'Student'),
-       ('Instructor_1', 'instruct@gmail.com', 'pt@123', 'Teaching Technician'),
-       ('Admin_1', 'admin@gmail.com', 'pa', 'Admin'),
-       ('Technician', 'tech@gmail.com', 'pe', 'Animal Health Technician');
+INSERT INTO USER (first_name, last_name, email, phone, password, blocked)
+VALUES ('Jared', 'Kraus', 'jared@gmail.com', '403-403-1111', '$2a$10$NvpSu0zOBo9gOV8VfQZcRuZW4uBeRy7lfIByk6GC1SZEwpiOste8m', false),
+       ('Deylin', 'Yiao', 'deylin@gmail.com', '403-403-2222', '$2a$10$6p2AAfe4N3nBH.ryM3X8q.GioiaUJPD8Tux2Ox3BT4ZITEULyMN0G', false),
+       ('Graydon', 'Hall', 'graydon@gmail.com', '403-403-3333', '$2a$10$px44AetKRxJczf0R5EtfvuVqWzpH2m9OY8EcjnaesdcbDzWVj1rpG', false),
+       ('Karen', 'Kares', 'karen@gmail.com', '403-403-4444', '$2a$10$NvpSu0zOBo9gOV8VfQZcRuZW4uBeRy7lfIByk6GC1SZEwpiOste8m', false),
+       ('Susan', 'Sue', 'susan@gmail.com', '403-403-5555', '$2a$10$6p2AAfe4N3nBH.ryM3X8q.GioiaUJPD8Tux2Ox3BT4ZITEULyMN0G', false),
+       ('Heather', 'Heat', 'heather@gmail.com', '403-403-6666', '$2a$10$px44AetKRxJczf0R5EtfvuVqWzpH2m9OY8EcjnaesdcbDzWVj1rpG', false);
+       
+DROP TABLE IF EXISTS ROLES;
+create table ROLES
+(
+	role_id int not null auto_increment,
+    user_id int not null,
+	name varchar(25) not null,
+	primary key (role_id),
+    foreign key (user_id) references USER(user_id)
+);
+
+INSERT INTO ROLES (user_id, name)
+VALUES (1, 'ADMIN'),
+       (2, 'TEACHING_TECH'),
+       (3, 'HEALTH_TECH'),
+       (4, 'CARE_ATTENDANT'),
+       (5, 'STUDENT'),
+       (6, 'ADMIN');
 
 DROP TABLE IF EXISTS ANIMAL;
 create table ANIMAL
@@ -314,14 +332,14 @@ CREATE TABLE CLASSROOM_BOOKINGS(
 );
 
 INSERT INTO CLASSROOM_BOOKINGS (animal_id, teacher_id, admin_app_id, tech_app_id, booking_date, start_time, return_time, admin_app_status, tech_app_status)
-VALUES (1, 6, 7, 8, '2021-11-15', '12:00:00', '13:00:00', 'Approved', 'Approved'),
-       (2, 6, 7, null, '2021-11-16', '12:00:00', '13:00:00', 'Rejected', 'Pending'),
-       (3, 6, 7, null, '2021-11-15', '12:00:00', '13:00:00', 'Approved', 'Pending'),
-       (4, 6, null, null, '2021-11-16', '12:00:00', '13:00:00', 'Pending', 'Pending'),
-       (1, 6, 7, 8, '2021-11-15', '12:00:00', '13:00:00', 'Approved', 'Rejected'),
-       (2, 6, 7, null, '2021-11-16', '12:00:00', '13:00:00', 'Approved', 'Pending'),
-       (3, 6, null, null, '2021-11-15', '12:00:00', '13:00:00', 'Pending', 'Pending'),
-       (4, 6, null, null, '2021-11-16', '12:00:00', '13:00:00', 'Pending', 'Pending');
+VALUES (1, 2, 1, 3, '2021-11-15', '12:00:00', '13:00:00', 'Approved', 'Approved'),
+       (2, 2, 1, null, '2021-11-16', '12:00:00', '13:00:00', 'Rejected', 'Pending'),
+       (3, 2, 1, null, '2021-11-15', '12:00:00', '13:00:00', 'Approved', 'Pending'),
+       (4, 2, null, null, '2021-11-16', '12:00:00', '13:00:00', 'Pending', 'Pending'),
+       (1, 2, 1, 3, '2021-11-15', '12:00:00', '13:00:00', 'Approved', 'Rejected'),
+       (2, 2, 1, null, '2021-11-16', '12:00:00', '13:00:00', 'Approved', 'Pending'),
+       (3, 2, null, null, '2021-11-15', '12:00:00', '13:00:00', 'Pending', 'Pending'),
+       (4, 2, null, null, '2021-11-16', '12:00:00', '13:00:00', 'Pending', 'Pending');
 
 # SELECT a.animal_name, ams.issue_name, ams.current_status, ams.open_date, ams.close_date
 # FROM ANIMAL_MEDICAL_ISSUES AS ams

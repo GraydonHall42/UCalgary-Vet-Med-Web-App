@@ -1,16 +1,46 @@
-import React, {useState} from 'react'
-import {
-    Button,
-    Card,
-    Col,
-    Container,
-    Image,
-    Row,
-} from "react-bootstrap";
-import "../styles/UserProfilePage.css"
+import React, {useState, useEffect, useContext} from 'react'
+import { Button, Card, Col, Container, Image, Row } from "react-bootstrap";
+import axios from 'axios';
 import UserProfileField from "../components/UserProfileField";
+import {UserContext} from "../UserContext";
+import useAuthorization from "../hooks/useAuthorization.js";
+import "../styles/UserProfilePage.css"
 
 const UserProfilePage = (props) =>  {
+
+    const { user, setUser } = useContext(UserContext);
+
+    const [firstName, setFirstName] = useState("");
+    const [lastName, setLastName] = useState("");
+    const [email, setEmail] = useState("");
+    const [phone, setPhone] = useState("");
+    const [message, setMessage] = useState("");
+    const getAccessToken = useAuthorization();
+
+
+    const updateUser = () => {
+        
+        if(firstName !== "") user.firstName = firstName;
+        if(lastName !== "") user.lastName = lastName;
+        if(email !== "") user.email = email;
+        if(phone !== "") user.phone = phone;
+        
+        let url = 'http://localhost:8080/api/user/update/' + user.userId;
+        let config = { headers: {'Authorization': getAccessToken() }}
+
+        console.log(url);
+        console.log(config);
+    
+        axios.put(url, user, config)
+            .then(res => {
+                setUser(res.data);
+                setMessage("Update Successful!")
+            })
+            .catch(err => {
+                console.log(err);
+                setMessage("Update Unsuccessful!")
+            })
+    }
 
     return(
         <div>
@@ -27,11 +57,12 @@ const UserProfilePage = (props) =>  {
                 <Row>
                     <Col>
                         <Card.Header className={"UserInfoTitle"}>User Information</Card.Header>
-                        <UserProfileField fieldLabel="First Name" fieldName={"FirstName"} fieldValue={"Graydon"}/>
-                        <UserProfileField fieldLabel="Last Name" fieldName={"LastName"} fieldValue={"Hall"}/>
-                        <UserProfileField fieldLabel="Email" fieldName={"Email"} fieldValue={"grady@gmail.com"}/>
-                        <UserProfileField fieldLabel="Phone Number" fieldName={"PhoneNum"} fieldValue={"123-456-7890"}/>
-                        <Button className={"mt-2"} variant={"success"}>Submit Changes</Button>
+                        <UserProfileField fieldLabel="First Name" fieldName={"FirstName"} fieldValue={user.firstName} setValue={setFirstName}/>
+                        <UserProfileField fieldLabel="Last Name" fieldName={"LastName"} fieldValue={user.lastName} setValue={setLastName}/>
+                        <UserProfileField fieldLabel="Email" fieldName={"Email"} fieldValue={user.email} setValue={setEmail}/>
+                        <UserProfileField fieldLabel="Phone Number" fieldName={"PhoneNum"} fieldValue={user.phone} setValue={setPhone}/>
+                        <Button className={"mt-2"} variant={"success"} onClick={updateUser} >Submit Changes</Button>
+                        <p className='message'>{message}</p>
                     </Col>
                 </Row>
             </Container>

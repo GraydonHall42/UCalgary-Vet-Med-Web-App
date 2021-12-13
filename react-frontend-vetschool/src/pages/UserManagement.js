@@ -3,6 +3,7 @@ import {Col, Container, Row} from "react-bootstrap";
 import SearchBarWithCriteria from "../components/SearchBarWithCriteria";
 import AnimalSearchResults from "../components/AnimalSearchResult";
 import UserSearchResults from "../components/UserSearchResults";
+import useAuthorization from '../hooks/useAuthorization';
 
 function Home() {
     const [users, setUsers] = useState([
@@ -33,6 +34,8 @@ function Home() {
             photoPath:"/images/guy3.jpg"
         }
     ])
+
+    
 
 
     return (

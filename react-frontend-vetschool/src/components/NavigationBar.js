@@ -9,6 +9,17 @@ function NavigationBar() {
 
     const { user, setUser } = useContext(UserContext);
 
+    const isAdmin = () => {
+        let isAdmin = false;
+        user.roles.forEach(role => {
+            console.log(role.name);
+            if(role.name === "ADMIN") {
+                isAdmin = true;
+            }
+        });
+        return isAdmin;
+    }
+
     return (
         <Navbar className="navigationbar">
             <Container fluid>
@@ -19,7 +30,13 @@ function NavigationBar() {
                 <Nav.Link className="link" href="/">Home</Nav.Link>
                 <Nav.Link className="link" href="/status">Animal Statuses</Nav.Link>
                 <Nav.Link className="link" href="/booking">Animal Bookings</Nav.Link>
-                <Nav.Link className="link" href="/profile">Profile</Nav.Link>
+                {
+                    isAdmin() ?
+                    <Nav.Link className="link" href="/user-management">Manage Users</Nav.Link>
+                    :
+                    <div />
+                }
+                <Nav.Link className="link" href="/user-profile">Profile</Nav.Link>
                 <Nav.Link className="link" onClick={()=> setUser(null)}>Log Out</Nav.Link>
             </Nav>
             </Container>

@@ -12,8 +12,6 @@ public interface UserService {
 	User getUserById(int id);
 	User updateUser(User user, int id);
 	void deleteUser(int id);
-	List<User> getUserByType(String type);
-
 	Role saveRole(Role role);
 	void addRoleToUser(String email, String roleName);
 	User getUserByEmail(String email);

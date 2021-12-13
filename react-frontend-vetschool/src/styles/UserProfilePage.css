@@ -1,8 +1,13 @@
 .UserInfoTitle {
-    background-color: #e63946;
-    color: white;
+  background-color: #e63946;
+  color: white;
 }
 
-.profileCard{
-    border-color:none;
+.profileCard {
+  border-color: none;
+}
+
+.message {
+  margin-top: 10px;
+  font-size: 20px;
 }

@@ -75,14 +75,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 	}
 
 	@Override
-	public List<User> getUserByType(String type) {
-		return userRepository.findByUserType(type);
-	}
-
-	@Override
 	public User getUserByEmail(String email) {
-
-		System.out.println("IN SERVICE IMP");
 		return userRepository.findByEmail(email);
 	}
 
@@ -93,10 +86,11 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 		User existingUser = userRepository.findById(id).orElseThrow(
 				() -> new ResourceNotFoundException("User", "Id", id));
 
-		existingUser.setName(user.getName());
-		existingUser.setUserType(user.getUserType());
-		existingUser.setPassword(user.getPassword());
+		existingUser.setFirstName(user.getFirstName());
+		existingUser.setLastName(user.getLastName());
+		existingUser.setPhone(user.getPhone());
 		existingUser.setEmail(user.getEmail());
+		existingUser.setBlocked(user.isBlocked());
 		// save existing employee to DB
 		userRepository.save(existingUser);
 		return existingUser;
