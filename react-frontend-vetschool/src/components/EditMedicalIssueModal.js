@@ -62,7 +62,7 @@ function EditMedicalIssueModal(props) {
 
         let config = { headers: {'Authorization': getAccessToken() }}
 
-        axios.put("http://localhost:8080/api/medical/" + props.medicalIssue.medicalIssueId, medicalIssue, config)
+        axios.put("http://localhost:8080/api/medical/" + props.medicalIssues.medicalIssueId, medicalIssue, config)
             .then((res)=> console.log(res))
             .catch((err) => console.log(err))
 
