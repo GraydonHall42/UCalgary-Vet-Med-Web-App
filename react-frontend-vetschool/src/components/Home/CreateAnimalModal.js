@@ -23,24 +23,9 @@ function CreateAnimalModal(props) {
     const [animalId, setAnimalId] = useState(null);
     const [file, setFile] = useState(null);
     const [date, setDate] = useState(null);
-    // const { user, setUser } = useContext(UserContext);
-    // const [animalName, setAnimalName] = useState("Potato");
-    // const [animalType, setAnimalType] = useState("Dog");
-    // const [sex, setSex] = useState("male");
-    // const [profilePhoto, setProfilePhoto] = useState("/image");
-    // const [color, setColor] = useState("brown");
-    // const [active, setActive] = useState(null);
-    // const [birthDate, setBirthDate] = useState("2000-01-01");
-    // const [microChipNum, setMicroChipNum] = useState(1234);
-    // const [breed, setBreed] = useState("Chihuahua");
-    // const [status, setStatus] = useState("Healthy");
-    // const [location, setLocation] = useState("Barn C");
-    // const [animalId, setAnimalId] = useState(null);
-    // const [date, setDate] = useState(null);
     const getAccessToken = useAuthorization();
 
     let imageList = [];
-    // let fileList = [];
 
     const submitAnimalProfileRequest = async () => {
 
@@ -100,7 +85,6 @@ function CreateAnimalModal(props) {
 
 
         imageList = [];
-        // fileList = [];
         setAnimalName(null)
         setAnimalType(null)
         setFile(null)
@@ -120,8 +104,6 @@ function CreateAnimalModal(props) {
 
 
     const closeModal = () => {
-        // imageList = [];
-        // fileList = [];
         setAnimalName(null)
         setAnimalType(null)
         setFile(null)
