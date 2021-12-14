@@ -1,9 +1,9 @@
 import React, {useEffect, useMemo, useState} from 'react'
-import AnimalProfileCard from '../components/AnimalProfileCard';
-import AnimalProfileContent from '../components/AnimalProfileContent';
+import AnimalProfileCard from '../components/AnimalProfile/AnimalProfileCard';
+import AnimalProfileContent from '../components/AnimalProfile/AnimalProfileContent';
 import {useParams} from "react-router-dom";
 import axios from "axios";
-import {AnimalContext} from "../AnimalContext";
+import {AnimalContext} from "../Context/AnimalContext";
 import useAuthorization from '../hooks/useAuthorization';
 
 

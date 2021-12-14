@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
-import MedicalIssueProfileCard from "../components/MedicalIssueProfileCard";
-import IndividualMedicalIssueSet from "../components/IndividualMedicalIssueSet";
-import CommentModal from "../components/CommentModal";
+import MedicalIssueProfileCard from "../components/MedicalIssue/MedicalIssueProfileCard";
+import IndividualMedicalIssueSet from "../components/MedicalIssue/IndividualMedicalIssueSet";
+import CommentModal from "../components/MedicalIssue/CommentModal";
 import {useParams} from "react-router-dom";
 import {Button, Row, Container} from "react-bootstrap";
 import axios from 'axios';

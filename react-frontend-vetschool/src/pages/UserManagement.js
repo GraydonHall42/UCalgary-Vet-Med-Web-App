@@ -1,9 +1,9 @@
 import React, {useContext, useState, useEffect} from 'react'
 import {Col, Container, Row, Button} from "react-bootstrap";
-import SearchBarWithCriteria from "../components/SearchBarWithCriteria";
-import UserManagementModal from "../components/UserManagementModal";
-import UserSearchResults from "../components/UserSearchResults";
-import {UserContext} from "../UserContext";
+import SearchBarWithCriteria from "../components/Home/SearchBarWithCriteria";
+import UserManagementModal from "../components/UserManagement/UserManagementModal";
+import UserSearchResults from "../components/UserManagement/UserSearchResults";
+import {UserContext} from "../Context/UserContext";
 import useAuthorization from '../hooks/useAuthorization';
 import axios from 'axios';
 import '../styles/UserManagement.css';

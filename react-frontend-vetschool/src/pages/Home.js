@@ -1,15 +1,17 @@
 import React, {useEffect, useState} from 'react'
-import {Col, Container, Row} from "react-bootstrap";
-import SearchBarWithCriteria from "../components/SearchBarWithCriteria";
-import AnimalSearchResults from "../components/AnimalSearchResult";
+import {Button, Col, Container, Row} from "react-bootstrap";
+import SearchBarWithCriteria from "../components/Home/SearchBarWithCriteria";
+import AnimalSearchResults from "../components/Home/AnimalSearchResult";
 import axios from "axios";
-import RequestVisitModal from "../components/RequestVisitModal";
-import {UserContext} from "../UserContext";
+import RequestVisitModal from "../components/Booking/RequestVisitModal";
+import {UserContext} from "../Context/UserContext";
 import useAuthorization from '../hooks/useAuthorization';
+import CreateAnimalModal from "../components/Home/CreateAnimalModal";
 
 function Home() {
     const [animals, setAnimals] = useState([])
-    const [modalShow, setModalShow] = React.useState(false);
+    const [visitModalShow, setVisitModalShow] = useState(false);
+    const [animalModalShow, setAnimalModalShow] = useState(false);
     const [selectedAnimal, setSelectedAnimal] = useState([])
     const [reRender, setReRender] = useState(false);
     const [searchEntry, setSearchEntry] = useState("");
@@ -92,7 +94,7 @@ function Home() {
         <div>
             <Container className="p-2">
                 <Row>
-                    <Col>
+                    <Col xs={10}>
                         <SearchBarWithCriteria
                             setAnimalName={setSearchEntry}
                             animalName={searchEntry}
@@ -101,12 +103,15 @@ function Home() {
                             searchCriteria={searchCriteria}
                         />
                     </Col>
+                    <Col xs={2}>
+                        <Button variant="success" size={"lg"} onClick={() => setAnimalModalShow(true)}> Add Animal</Button>
+                    </Col>
                 </Row>
                 <Row>
                     <Col>
                         <AnimalSearchResults
                             animals={animals}
-                            setModalShow={setModalShow}
+                            setModalShow={setVisitModalShow}
                             setSelectedAnimal={setSelectedAnimal}
                         />
                     </Col>
@@ -114,9 +119,13 @@ function Home() {
             </Container>
 
             <RequestVisitModal
-                show={modalShow}
-                onHide={() => setModalShow(false)}
+                show={visitModalShow}
+                onHide={() => setVisitModalShow(false)}
                 selectedAnimal={selectedAnimal}
+            />
+            <CreateAnimalModal
+                show={animalModalShow}
+                onHide={() => setAnimalModalShow(false)}
             />
         </div>
     )

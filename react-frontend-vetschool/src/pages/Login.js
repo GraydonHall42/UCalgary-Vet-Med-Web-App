@@ -4,7 +4,7 @@ import axios from 'axios';
 import {login} from "../utils/login";
 
 import Horses from '../assets/ucalgary-vet-med-horses.jpg';
-import {UserContext} from "../UserContext";
+import {UserContext} from "../Context/UserContext";
 
 function Login({Authenticate}) {
 

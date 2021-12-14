@@ -1,9 +1,9 @@
 import React, {createContext, useMemo, useState} from "react";
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import "./App.css";
-import {UserContext} from "./UserContext";
-import AuthorizedRoutes from "./components/AutorizedRoutes";
-import UnauthorizedRoutes from "./components/UnautorizedRoutes";
+import {UserContext} from "./Context/UserContext";
+import AuthorizedRoutes from "./components/AuthorizedRoutes";
+import UnauthorizedRoutes from "./components/UnauthorizedRoutes";
 import useLocalStorage from "./hooks/useLocalStorage";
 
 

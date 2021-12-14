@@ -1,7 +1,7 @@
 import React, {useState, useContext, useEffect} from 'react';
 import {Table, Container, Row, Button} from "react-bootstrap";
 import axios from 'axios';
-import {UserContext} from "../UserContext";
+import {UserContext} from "../Context/UserContext";
 import '../styles/AnimalBooking.css';
 import useAuthorization from '../hooks/useAuthorization';
 
