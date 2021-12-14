@@ -28,7 +28,6 @@ const AnimalSearchResult = (props) =>  {
             const { id, firstName, lastName, phone, email, roles, photoPath } = user //destructuring
             return (
                 <tr key={id} className={"align-middle"}>
-                    <td><Image src={photoPath} fluid roundedCircle className={"userSearchImage"}/></td>
                     <td>
                         {firstName}
                     </td>
@@ -59,13 +58,12 @@ const AnimalSearchResult = (props) =>  {
         <Table striped bordered hover>
             <thead>
             <tr>
-                <th width={'10%'}>Photo</th>
-                <th width={'17%'}>First Name</th>
-                <th width={'17%'}>Last Name</th>
+                <th width={'19%'}>First Name</th>
+                <th width={'19%'}>Last Name</th>
                 <th width={'12%'}>Phone Number</th>
-                <th width={'22%'}>Email</th>
+                <th width={'26%'}>Email</th>
                 <th width={'12%'}>User Type</th>
-                <th width={'10%'}></th>
+                <th width={'12%'}></th>
             </tr>
             </thead>
             <tbody>
