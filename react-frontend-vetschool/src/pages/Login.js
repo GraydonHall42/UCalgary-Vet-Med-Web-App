@@ -14,23 +14,6 @@ function Login({Authenticate}) {
     const [errorMessage, setErrorMessage] = useState("");
     const { user, setUser } = useContext(UserContext);
 
-    const getUser = () => {
-        axios.get('http://localhost:8080/api/user/email/' + email, {
-                headers: {
-                    'Authorization': `Bearer ${localStorage.getItem("access_token")}`
-                }
-            })
-            .then(res => {
-                console.log(res.data);
-                setUser(res.data);
-            })
-            .catch(err => {
-                console.log("ERROR ON GET USER");
-                setErrorMessage(err)
-            });  
-
-    }
-
     // TODO: test this!!!
     const submitHandler = async e => {
         e.preventDefault();
@@ -41,18 +24,22 @@ function Login({Authenticate}) {
             .then(res => {
                 console.log(res.data)
                 localStorage.setItem("access_token", res.data.access_token)
-                localStorage.setItem("refresh_token", res.data.access_token)
+                localStorage.setItem("refresh_token", res.data.refresh_token)
                 return axios.get('http://localhost:8080/api/user/email/' + email, { 
                     headers: { 'Authorization': `Bearer ${localStorage.getItem("access_token")}` }
                 })
             })
             .then(res => {
-                console.log(res.data);
-                setUser(res.data);
+                if(res.data.blocked === true) {
+                    setErrorMessage("User Blocked");
+                }
+                else {
+                    setUser(res.data);
+                }
             })
             .catch(err => {
                 console.log(err);
-                setErrorMessage(err)
+                setErrorMessage("Wrong email / password combo.");
             });   
     }
 
@@ -72,6 +59,7 @@ function Login({Authenticate}) {
                             <input type="password" name="password" id="password" value={password} onChange={e => {setPassword(e.target.value)}}/>
                         </div>
                         <input className="submit-button" type="submit" value="Login"/>
+                        <p className="errorMessage">{errorMessage}</p>
                         
                     </div>
                 </form>

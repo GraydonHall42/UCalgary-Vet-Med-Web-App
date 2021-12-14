@@ -1,16 +1,19 @@
-import React, {useState, useEffect} from 'react'
+import React, {useContext, useState, useEffect} from 'react'
 import {Col, Container, Row, Button} from "react-bootstrap";
 import SearchBarWithCriteria from "../components/SearchBarWithCriteria";
 import UserManagementModal from "../components/UserManagementModal";
 import UserSearchResults from "../components/UserSearchResults";
+import {UserContext} from "../UserContext";
 import useAuthorization from '../hooks/useAuthorization';
 import axios from 'axios';
 import '../styles/UserManagement.css';
 
 function UserManagement() {
+
     const [users, setUsers] = useState([]);
     const [isModalShowing, setIsModalShowing] = useState(false);
     const [selectedUser, setSelectedUser] = useState([]);
+    const { user, setUser } = useContext(UserContext);
     const getAccessToken = useAuthorization();
 
     
@@ -63,7 +66,14 @@ function UserManagement() {
                 </Row>
                 <Row>
                     <Col>
-                        <Button className='addUser' variant="success" onClick={addUser}>Add User</Button>
+                        {
+                            user.roles[0].name === "ADMIN" 
+                            ?
+                            <Button className='addUser' variant="success" onClick={addUser}>Add User</Button>
+                            :
+                            <Button className='addUser' variant="success" disabled>Add User</Button>
+                        }
+                        
                     </Col>
                 </Row>
             </Container>
