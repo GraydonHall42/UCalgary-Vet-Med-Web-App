@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 import Logo from '../assets/ucalgary-vet-med-logo.png';
 import {Container, Row, Col, Button, Image, Navbar, Nav } from "react-bootstrap";
 import "../styles/NavigationBar.css";
-import {UserContext} from "../UserContext";
+import {UserContext} from "../Context/UserContext";
 
 function NavigationBar() {
 

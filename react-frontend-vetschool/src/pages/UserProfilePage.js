@@ -1,8 +1,8 @@
 import React, {useState, useEffect, useContext} from 'react'
 import { Button, Card, Col, Container, Image, Row } from "react-bootstrap";
 import axios from 'axios';
-import UserProfileField from "../components/UserProfileField";
-import {UserContext} from "../UserContext";
+import UserProfileField from "../components/UserProfile/UserProfileField";
+import {UserContext} from "../Context/UserContext";
 import useAuthorization from "../hooks/useAuthorization.js";
 import "../styles/UserProfilePage.css"
 
