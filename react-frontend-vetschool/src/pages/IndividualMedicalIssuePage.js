@@ -7,7 +7,7 @@ import {Button, Row, Container} from "react-bootstrap";
 import axios from 'axios';
 import useAuthorization from '../hooks/useAuthorization';
 
-const IndividualMedicalIssuePage = (props) => {
+const IndividualMedicalIssuePage = () => {
 
     const {medicalIssueId} = useParams();
     const [modalShow, setModalShow] = useState(false);

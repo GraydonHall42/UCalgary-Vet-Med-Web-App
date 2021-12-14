@@ -1,9 +1,7 @@
 import {Button, FloatingLabel, Form, Modal} from "react-bootstrap";
-import React, {useContext, useEffect, useState} from "react";
+import React, {useState} from "react";
 import {useParams} from "react-router-dom";
-import {UserContext} from "../UserContext";
 import axios from "axios";
-import individualMedicalIssueSet from "./IndividualMedicalIssueSet";
 import useAuthorization from '../hooks/useAuthorization';
 
 

@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import useAuthorization from "../hooks/useAuthorization";
 import axios from "axios";
-import {Button, FloatingLabel, Form, Modal} from "react-bootstrap";
+import {Button, Form, Modal} from "react-bootstrap";
 
 function ProfileImageModal(props) {
 
@@ -78,7 +78,7 @@ function ProfileImageModal(props) {
     }
 
     if(loading) {
-        return(<div></div>)
+        return(<div> </div>)
     }
 
     return (

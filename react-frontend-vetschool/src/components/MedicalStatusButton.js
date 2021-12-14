@@ -1,7 +1,6 @@
-import React, {useContext, useState} from 'react'
+import React, {useState} from 'react'
 import {Dropdown} from "react-bootstrap";
 import axios from "axios";
-import {AnimalContext} from "../AnimalContext";
 import useAuthorization from '../hooks/useAuthorization';
 
 
