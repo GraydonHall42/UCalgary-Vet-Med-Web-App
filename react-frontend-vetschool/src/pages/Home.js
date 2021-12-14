@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import {Col, Container, Row} from "react-bootstrap";
 import SearchBarWithCriteria from "../components/SearchBarWithCriteria";
 import AnimalSearchResults from "../components/AnimalSearchResult";
@@ -23,7 +23,6 @@ function Home() {
 
         axios.get('http://localhost:8080/api/animals?fields=images,medicalIssues,prescriptions', config)
             .then(res => {
-                console.log(res.data)
                 setAnimals(res.data)
             })
             .catch(err => {
@@ -40,7 +39,6 @@ function Home() {
 
     useEffect(() => {
         const search = () => {
-            console.log("hello")
             // search criteria: Animal name or animal type
             let endPoint = 'http://localhost:8080/api/animals?fields=images,medicalIssues, prescriptions';
             if(searchEntry !== ""){
@@ -56,7 +54,6 @@ function Home() {
             // get request to back end
             axios.get(endPoint+searchEntry, config)
                 .then(res => {
-                    console.log(res.data)
                     setAnimals(res.data)
                 })
                 .catch(err => {
@@ -68,7 +65,6 @@ function Home() {
 
 
         if (!animals.length) {
-            console.log("searching on initial animal list");
             search();
         }
 

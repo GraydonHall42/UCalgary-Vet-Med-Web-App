@@ -42,7 +42,7 @@ const AnimalSearchResult = (props) =>  {
                         {email}
                     </td>
                     <td>
-                        {getRoles(roles)}
+                        {user.blocked ? <p>BLOCKED</p> : getRoles(roles)}
                     </td>
                     <td>
                         <Button variant="warning" onClick={() => handleClick(user)}>

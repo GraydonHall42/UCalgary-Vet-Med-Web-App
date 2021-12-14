@@ -54,7 +54,16 @@ public class AnimalServiceImpl implements AnimalService {
 
 		existingAnimal.setAnimalName(animal.getAnimalName());
 		existingAnimal.setAnimalType(animal.getAnimalType());
+		existingAnimal.setSex(animal.getSex());
+		existingAnimal.setProfilePhoto(animal.getProfilePhoto());
+		existingAnimal.setBirthDate(animal.getBirthDate());
+		existingAnimal.setColor(animal.getColor());
+		existingAnimal.setActive(animal.getActive());
+		existingAnimal.setMicrochipNum(animal.getMicrochipNum());
+		existingAnimal.setBreed(animal.getBreed());
+		existingAnimal.setLastCheckup(animal.getLastCheckup());
 		existingAnimal.setStatus(animal.getStatus());
+		existingAnimal.setLocation(animal.getLocation());
 		// save existing employee to DB
 		animalRepository.save(existingAnimal);
 		return existingAnimal;

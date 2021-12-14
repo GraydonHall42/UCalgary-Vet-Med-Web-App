@@ -15,7 +15,10 @@ const UserProfilePage = (props) =>  {
     const [email, setEmail] = useState("");
     const [phone, setPhone] = useState("");
     const [message, setMessage] = useState("");
+    const [openFields, setOpenFields] = useState(0);
     const getAccessToken = useAuthorization();
+
+
 
     const updateUser = () => {
         
@@ -56,11 +59,19 @@ const UserProfilePage = (props) =>  {
                 <Row>
                     <Col>
                         <Card.Header className={"UserInfoTitle"}>User Information</Card.Header>
-                        <UserProfileField fieldLabel="First Name" fieldName={"FirstName"} fieldValue={user.firstName} setValue={setFirstName}/>
-                        <UserProfileField fieldLabel="Last Name" fieldName={"LastName"} fieldValue={user.lastName} setValue={setLastName}/>
-                        <UserProfileField fieldLabel="Email" fieldName={"Email"} fieldValue={user.email} setValue={setEmail}/>
-                        <UserProfileField fieldLabel="Phone Number" fieldName={"PhoneNum"} fieldValue={user.phone} setValue={setPhone}/>
-                        <Button className={"mt-2"} variant={"success"} onClick={updateUser} >Submit Changes</Button>
+                        <UserProfileField fieldLabel="First Name" fieldName={"FirstName"} fieldValue={user.firstName} setValue={setFirstName} openFields={openFields} setOpenFields={setOpenFields}/>
+                        <UserProfileField fieldLabel="Last Name" fieldName={"LastName"} fieldValue={user.lastName} setValue={setLastName} openFields={openFields} setOpenFields={setOpenFields}/>
+                        <UserProfileField fieldLabel="Email" fieldName={"Email"} fieldValue={user.email} setValue={setEmail} openFields={openFields} setOpenFields={setOpenFields}/>
+                        <UserProfileField fieldLabel="Phone Number" fieldName={"PhoneNum"} fieldValue={user.phone} setValue={setPhone} openFields={openFields} setOpenFields={setOpenFields}/>
+                        
+                        {
+                            openFields === 0
+                            ?
+                            <Button className={"mt-2"} variant={"success"} onClick={updateUser} >Submit Changes</Button>
+                            :
+                            <Button className={"mt-2"} variant={"success"} disabled >Submit Changes</Button>
+                        }
+                        
                         <p className='message'>{message}</p>
                     </Col>
                 </Row>

@@ -9,12 +9,12 @@ function UserManagementModal(props) {
 
     const {selectedUser} = props;
 
-    const [firstName, setFirstName] = useState(selectedUser.firstName);
-    const [lastName, setLastName] = useState(selectedUser.lastName);
-    const [email, setEmail] = useState(selectedUser.email);
-    const [phone, setPhone] = useState(selectedUser.phone);
-    const [roles, setRoles] = useState(selectedUser.roles);
-
+    const [firstName, setFirstName] = useState(null);
+    const [lastName, setLastName] = useState(null);
+    const [email, setEmail] = useState(null);
+    const [phone, setPhone] = useState(null);
+    const [roleName, setRoleName] = useState(null);
+    const [isBlocked, setIsBlocked] = useState(null);
     const getAccessToken = useAuthorization();
     
     useEffect(() => {
@@ -22,41 +22,87 @@ function UserManagementModal(props) {
         setLastName(selectedUser.lastName);
         setEmail(selectedUser.email);
         setPhone(selectedUser.phone);
-        setRoles(selectedUser.roles);
-    })
-    // const submitBookingRequest = () => {
-    //     console.log("Requested!")
-    //     console.log(selectedUser);
+        if(selectedUser.roles) setRoleName(selectedUser.roles[0].name);
+        setIsBlocked(selectedUser.blocked);
+    }, [selectedUser])
 
-    //     const userRequest = {
-    //         "bookingDate": date,
-    //         "startTime": startTime,
-    //         "returnTime": endTime,
-    //         "adminAppStatus": "Pending",
-    //         "animalId": props.selectedAnimal,
-    //         "teacherId": user,
-    //         "techAppStatus": "Pending"
-    //     }
-
-    //     let config = { headers: {'Authorization': getAccessToken() }}
-    //     axios.post("http://localhost:8080/api/bookings", bookingRequest, config)
-    //         .then((res)=> console.log(res))
-    //         .catch((err) => console.log(err))
-
-    //     props.onHide()
-    //     setDate(null)
-    //     setDescription(null)
-    //     setStartTime(null)
-    //     setEndTime(null)
-    // }
+    const updateUser = () => {
+        console.log("Requested!")
+        console.log(selectedUser);
+        console.log(selectedUser.userId);
+        if(selectedUser.userId === undefined){
+            console.log("ADD NEW USER");
+            let url = "http://localhost:8080/api/user/save";
+            let newUser = {
+                "firstName": firstName,
+                "lastName": lastName,
+                "email": email,
+                "phone": phone,
+                "password": "password",
+                "blocked": isBlocked,
+            }
+            let config = { headers: {'Authorization': getAccessToken() }}
+            
+            axios.post(url, newUser, config)
+                .then(res => {
+                    console.log(res.data);
+                    let urlRole = "http://localhost:8080/api/role/save";
+                    console.log(res.data.userId);
+                    console.log(roleName);
+                    let newRole = {
+                        "userId": res.data.userId,
+                        "name": roleName
+                    }
+                    return axios.post(urlRole, newRole, config);
+                })
+                .then(res => {
+                    console.log(res.data);
+                })
+                .catch(err => {
+                    console.log(err);
+                });
+   
+        }
+        else {
+            console.log("UPDATE USER");
+            let url = "http://localhost:8080/api/user/update/" + selectedUser.userId;
+            let updatedUser = {
+                "userId": selectedUser.userId,
+                "firstName": firstName,
+                "lastName": lastName,
+                "email": email,
+                "phone": phone,
+                "password": "password",
+                "blocked": isBlocked,
+            }
+            let config = { headers: {'Authorization': getAccessToken() }}
+            axios.put(url, updatedUser, config)
+                .then(res => {
+                    console.log(res.data);
+                    console.log(selectedUser.roles[0].roleId)
+                    let urlRole = "http://localhost:8080/api/role/update/" + selectedUser.roles[0].roleId;
+                    let updatedRole = {
+                        "userId": res.data.userId,
+                        "name": roleName
+                    }
+                    return axios.put(urlRole, updatedRole, config);
+                }).then(res => {
+                    console.log(res.data);
+                })
+                .catch(err => {
+                    console.log(err);
+                })
+        }
+        props.onHide()
+    }
 
     const closeModal = () => {
-        setFirstName(null)
-        setLastName(null)
-        setPhone(null)
-        setEmail(null)
-        setRoles(null)
-        props.onHide()
+        // setFirstName(null);
+        // setLastName(null);
+        // setPhone(null);
+        // setEmail(null);
+        // setRoles([{name: ""}]);
+        props.onHide();
     }
 
     return (
@@ -114,10 +160,39 @@ function UserManagementModal(props) {
                             type="email"
                             placeholder="Enter email" />
                     </Form.Group>
+                    <Form.Group className="mb-3" controlId="formBasicPassword">
+                        <Form.Label>Role (Drop down)</Form.Label>
+                        <Form.Control 
+                                    as="select" 
+                                    value={roleName} 
+                                    onChange={e => {
+                                        console.log(e.target.value);
+                                        setRoleName(e.target.value);
+                                    }}>
+                            <option>Select users role</option>
+                            <option value={"ADMIN"}>Admin</option>
+                            <option value={"HEALTH_TECH"}>Health Tech</option>
+                            <option value={"CARE_ATTENDANT"}>Care Attendant</option>
+                            <option value={"TEACHING_TECH"}>Teaching Tech</option>
+                            <option value={"STUDENT"}>Student</option>
+                        </Form.Control>
+                    </Form.Group>
+                    <Form.Group className="mb-3">
+                        <Form.Check
+                            type="switch"
+                            id="isBlocked"
+                            label="Block User"
+                            checked={isBlocked}
+                            onClick={(e) => {
+                                console.log(e.target.value)
+                                setIsBlocked(!isBlocked)
+                            }}
+                        />
+                    </Form.Group>
                 </Form>
             </Modal.Body>
             <Modal.Footer>
-                <Button variant={"warning"} >Submit Request</Button>
+                <Button variant={"warning"} onClick={updateUser}>Submit Request</Button>
                 <Button variant={"danger"} onClick={closeModal}>Close</Button>
             </Modal.Footer>
         </Modal>

@@ -19,7 +19,7 @@ const AnimalSearchResult = (props) =>  {
             return (
                 <tr key={animalId} className={"align-middle"}>
                     {/*<td><Image src={profilePhoto} fluid roundedCircle className={"animalSearchImage"}/></td>*/}
-                    <td><Image src={profilePhoto} fluid roundedCircle className={"animalSearchImage"}/></td>
+                    <td><Image src={profilePhoto} roundedCircle className={"animalSearchImage"}/></td>
                     <td>
                         {animalName}
                     </td>
@@ -37,7 +37,7 @@ const AnimalSearchResult = (props) =>  {
                         </Link>
                         <br />
                         <Button
-                            disabled={user.userType!=='Teaching Technician'}
+                            disabled={user.roles[0].name !=='TEACHING_TECH'}
                             className={"searchResultBtn"}
                             variant={"warning"}
                             onClick={()=>handleClick(animal)}

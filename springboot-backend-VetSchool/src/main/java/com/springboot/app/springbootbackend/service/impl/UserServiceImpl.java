@@ -62,19 +62,6 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 	}
 
 	@Override
-	public Role saveRole(Role role) {
-		return roleRepository.save(role);
-	}
-
-	@Override
-	public void addRoleToUser(String email, String roleName) {
-		User user = userRepository.findByEmail(email);
-		Role role = roleRepository.findByName(roleName);
-		user.getRoles().add(role);
-		userRepository.save(user);
-	}
-
-	@Override
 	public User getUserByEmail(String email) {
 		return userRepository.findByEmail(email);
 	}
@@ -105,6 +92,28 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 		userRepository.deleteById(id);
 	}
 
+	@Override
+	public Role getRoleById(int roleId) {
+		return roleRepository.findById(roleId).orElseThrow(() ->
+				new ResourceNotFoundException("Role", "Id", roleId));
+	}
+
+	@Override
+	public Role saveRole(Role role) {
+		return roleRepository.save(role);
+	}
+
+	@Override
+	public Role updateRole(Role role, int roleId) {
+		Role existingRole = roleRepository.findById(roleId).orElseThrow(
+				() -> new ResourceNotFoundException("Role", "Id", roleId));
+
+		existingRole.setName(role.getName());
+
+		// save existing role to DB
+		roleRepository.save(existingRole);
+		return existingRole;
+	}
 
 
 }
