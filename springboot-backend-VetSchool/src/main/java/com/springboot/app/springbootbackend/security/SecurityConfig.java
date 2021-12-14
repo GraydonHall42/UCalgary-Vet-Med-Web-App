@@ -47,9 +47,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().antMatchers("/api/token/refresh").permitAll();
 
         // only let certain roles do certain things
-        http.authorizeRequests().antMatchers(GET, "/api/user/save").hasAnyAuthority("ADMIN");
+        http.authorizeRequests().antMatchers(POST, "/api/user/save").hasAnyAuthority("ADMIN");
         http.authorizeRequests().antMatchers(PUT, "/api/user/update/**").hasAnyAuthority("ADMIN");
-        http.authorizeRequests().antMatchers(POST, "/api/users").hasAnyAuthority("ADMIN");
+        http.authorizeRequests().antMatchers(GET, "/api/users").hasAnyAuthority("ADMIN");
         http.authorizeRequests().antMatchers(PUT, "/api/bookings/**").hasAnyAuthority("ADMIN", "HEALTH_TECH");
         http.authorizeRequests().antMatchers(POST, "/api/bookings").hasAnyAuthority("TEACHING_TECH");
         http.authorizeRequests().anyRequest().authenticated();
