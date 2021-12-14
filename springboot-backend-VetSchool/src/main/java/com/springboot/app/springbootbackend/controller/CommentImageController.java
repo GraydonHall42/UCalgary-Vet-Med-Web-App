@@ -5,7 +5,9 @@ import com.springboot.app.springbootbackend.service.CommentImageService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
 import java.util.List;
 
 @CrossOrigin(origins = "http://localhost:3000")
@@ -59,7 +61,20 @@ public class CommentImageController {
 
         commentImageService.deleteCommentImage(id);
 
-        return new ResponseEntity<String>("Weight deleted successfully!", HttpStatus.OK);
+        return new ResponseEntity<String>("Comment image deleted successfully!", HttpStatus.OK);
+    }
+
+    // Experimental file upload
+    @PostMapping("/upload")
+    public ResponseEntity<?> handleFileUpload(@RequestParam("file") MultipartFile file) {
+        String fileName = file.getOriginalFilename();
+
+        try {
+            file.transferTo(new File("C:\\Users\\deyli\\Documents\\School\\ENSF 607\\Newer Project\\final-project-uofeng607-248\\react-frontend-vetschool\\public\\images\\commentImages\\" + fileName));
+        } catch(Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+        return ResponseEntity.ok("File uploaded successfully.");
     }
 
 }

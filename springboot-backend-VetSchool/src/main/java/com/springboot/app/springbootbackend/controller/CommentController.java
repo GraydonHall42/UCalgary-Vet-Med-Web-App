@@ -2,6 +2,7 @@ package com.springboot.app.springbootbackend.controller;
 
 import com.springboot.app.springbootbackend.model.Comment;
 import com.springboot.app.springbootbackend.model.MedicalIssue;
+import com.springboot.app.springbootbackend.model.ProfileImage;
 import com.springboot.app.springbootbackend.service.CommentService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -49,5 +50,12 @@ public class CommentController {
         commentService.deleteComment(id);
 
         return new ResponseEntity<String>("Comment deleted successfully!.", HttpStatus.OK);
+    }
+
+    // build get comments by medical issue id REST API
+    // http://localhost:8080/api/comments/medicalIssue/1
+    @GetMapping("/medicalIssue/{id}")
+    public List<Comment> findCommentsByMedicalIssueId(@PathVariable("id") int id) {
+        return commentService.findCommentsByMedicalIssueId(id);
     }
 }

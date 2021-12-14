@@ -26,7 +26,7 @@ public class Comment {
     @Column(name = "description")
     private String description;
 
-    @OneToMany(mappedBy = "commentId")
+    @OneToMany(mappedBy = "commentId", cascade = CascadeType.REMOVE)
     List<CommentImage> commentImages;
 
     @ManyToOne()

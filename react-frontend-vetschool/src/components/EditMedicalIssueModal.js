@@ -1,10 +1,6 @@
 import {Button, FloatingLabel, Form, Modal} from "react-bootstrap";
-import React, {useContext, useEffect, useState} from "react";
-import {useParams} from "react-router-dom";
-import {UserContext} from "../UserContext";
+import React, {useEffect, useState} from "react";
 import axios from "axios";
-import individualMedicalIssueSet from "./IndividualMedicalIssueSet";
-import {renderToString} from "react-dom/server";
 import useAuthorization from '../hooks/useAuthorization';
 
 
@@ -20,12 +16,12 @@ function EditMedicalIssueModal(props) {
     const getAccessToken = useAuthorization();
 
     const setDefaults = () => {
-        setAnimalId(animalId ? animalId : props.medicalIssues.animalId);
-        setIssueName(issueName ? issueName : props.medicalIssues.issueName);
-        setCurrentStatus(currentStatus ? currentStatus : props.medicalIssues.currentStatus);
-        setOpenDate(openDate ? openDate : props.medicalIssues.openDate);
-        setCloseDate(closed ? (closeDate ? closeDate : props.medicalIssues.closeDate) : null);
-        setDescription(description ? description : props.medicalIssues.description)
+        setAnimalId(animalId ? animalId : props.issues.animalId);
+        setIssueName(issueName ? issueName : props.issues.issueName);
+        setCurrentStatus(currentStatus ? currentStatus : props.issues.currentStatus);
+        setOpenDate(openDate ? openDate : props.issues.openDate);
+        setCloseDate(closed ? (closeDate ? closeDate : props.issues.closeDate) : null);
+        setDescription(description ? description : props.issues.description)
     }
 
     function formatDate(string){
@@ -37,8 +33,8 @@ function EditMedicalIssueModal(props) {
     })
 
     useEffect (() => {
-        setClosed(props.medicalIssues.closeDate ? true : false)
-    },[props.medicalIssues.closeDate])
+        setClosed(!!props.issues.closeDate)
+    },[props.issues.closeDate])
 
     const submitMedicalIssue = () => {
         console.log("Requested!")
@@ -62,7 +58,7 @@ function EditMedicalIssueModal(props) {
 
         let config = { headers: {'Authorization': getAccessToken() }}
 
-        axios.put("http://localhost:8080/api/medical/" + props.medicalIssues.medicalIssueId, medicalIssue, config)
+        axios.put("http://localhost:8080/api/medical/" + props.issues.medicalIssueId, medicalIssue, config)
             .then((res)=> console.log(res))
             .catch((err) => console.log(err))
 
@@ -72,6 +68,7 @@ function EditMedicalIssueModal(props) {
         setCloseDate(null);
         setDescription(null);
         props.onHide()
+        window.location.reload()
     }
 
 
@@ -103,7 +100,7 @@ function EditMedicalIssueModal(props) {
                     <Form.Group className="mb-3">
                         <Form.Label>Medical Issue</Form.Label>
                         <Form.Control
-                            defaultValue={props.medicalIssues.issueName}
+                            defaultValue={props.issues.issueName}
                             onChange={e => {setIssueName(e.target.value)}}
                             type="text"
                             placeholder={"Issue Name"}
@@ -114,7 +111,7 @@ function EditMedicalIssueModal(props) {
                     <Form.Group className="mb-3">
                         <Form.Label>Severity</Form.Label>
                         <Form.Select aria-label="Severity drop down"
-                                     defaultValue={props.medicalIssues.currentStatus}
+                                     defaultValue={props.issues.currentStatus}
                                      onChange={e => {
                                          setCurrentStatus(e.target.value) }}>
                             <option>Select Severity</option>
@@ -128,7 +125,7 @@ function EditMedicalIssueModal(props) {
                     <Form.Group className="mb-3">
                         <Form.Label>Issue Start Date</Form.Label>
                         <Form.Control
-                            defaultValue={props.medicalIssues.openDate ? formatDate(props.medicalIssues.openDate) : null}
+                            defaultValue={props.issues.openDate ? formatDate(props.issues.openDate) : null}
                             onChange={e => {setOpenDate(e.target.value)}}
                             type="date"
                             placeholder="Date" />
@@ -139,11 +136,11 @@ function EditMedicalIssueModal(props) {
                             id="issueStatus"
                             label="Issue Closed"
                             onChange={e => setClosed(e.target.checked)}
-                            defaultChecked={props.medicalIssues.closeDate ? true : false}
+                            defaultChecked={!!props.issues.closeDate}
                         />
                         <Form.Label>Issue Close Date</Form.Label>
                         <Form.Control id="closeDate"
-                            defaultValue={props.medicalIssues.closeDate ? formatDate(props.medicalIssues.closeDate) : null}
+                            defaultValue={props.issues.closeDate ? formatDate(props.issues.closeDate) : null}
                             onChange={e => {setCloseDate(e.target.value)}}
                             type="date"
                             placeholder="Date"
@@ -156,7 +153,7 @@ function EditMedicalIssueModal(props) {
                                 as="textarea"
                                 placeholder="Leave a comment here"
                                 style={{ height: '100px' }}
-                                defaultValue={props.medicalIssues.description}
+                                defaultValue={props.issues.description}
                                 onChange={e => {setDescription(e.target.value)}}
                             />
                         </FloatingLabel>

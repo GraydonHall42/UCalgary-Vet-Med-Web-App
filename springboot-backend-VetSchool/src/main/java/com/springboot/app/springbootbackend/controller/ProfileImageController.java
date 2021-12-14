@@ -7,7 +7,9 @@ import com.springboot.app.springbootbackend.service.ProfileImageService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
 import java.util.List;
 
 @CrossOrigin(origins = "http://localhost:3000")
@@ -24,7 +26,7 @@ public class ProfileImageController {
 
     // CREATE new profile image
     @PostMapping()
-    public ResponseEntity<ProfileImage> saveMedicalIssue(@RequestBody ProfileImage profileImage){
+    public ResponseEntity<ProfileImage> saveProfileImage(@RequestBody ProfileImage profileImage){
         return new ResponseEntity<ProfileImage>(
                 profileImageService.saveProfileImage(profileImage),
                 HttpStatus.CREATED);
@@ -66,5 +68,18 @@ public class ProfileImageController {
         profileImageService.deleteProfileImage(id);
 
         return new ResponseEntity<String>("Weight deleted successfully!", HttpStatus.OK);
+    }
+
+    // Experimental file upload
+    @PostMapping("/upload")
+    public ResponseEntity<?> handleFileUpload(@RequestParam("file") MultipartFile file) {
+        String fileName = file.getOriginalFilename();
+
+        try {
+            file.transferTo(new File("C:\\Users\\deyli\\Documents\\School\\ENSF 607\\Newer Project\\final-project-uofeng607-248\\react-frontend-vetschool\\public\\images\\profileImages\\" + fileName));
+        } catch(Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+        return ResponseEntity.ok("File uploaded successfully.");
     }
 }

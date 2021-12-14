@@ -40,13 +40,13 @@ function AnimalProfileContent(props) {
                         <Col lg={9}>
                             <WeightGraph weightData={props.weightData}/>
                         </Col>
-                        <Col lg={3} class = 'card p-3 bg-light' >
+                        <Col lg={3} className = 'card p-3 bg-light' >
                             <AddWeightForm addWeightData={props.addWeightData}/>
                         </Col>
                     </Row>
                 </Tab>
                 <Tab className="profileTab" eventKey="images" title="Images">
-                    <ImageSet />
+                    <ImageSet animal={animal}/>
                 </Tab>
             </Tabs>
         </Container>

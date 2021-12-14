@@ -41,7 +41,7 @@ function MedicalIssueList(props) {
 
     function Item(issue){
         return (
-            <Link to={"/medical/"+issue.medicalIssueId}>
+            <Link key={issue.medicalIssueId} to={"/medical/"+issue.medicalIssueId}>
                 <Button variant="light" className="medicalIssueItem">
                     <Row>
                         <Col className="medicalIssueItemLeft">

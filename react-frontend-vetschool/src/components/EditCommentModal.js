@@ -12,16 +12,17 @@ function EditCommentModal(props) {
     const [title, setTitle] = useState(null);
     const [date, setDate] = useState(null);
     const [description, setDescription] = useState(null);
-    const [image, setImage] = useState(null);
     const [commentId, setCommentId] = useState(null);
     const getAccessToken = useAuthorization();
+
+    let imageList = [];
+    let fileList = [];
 
     const setDefaults = () => {
         setMedicalIssueId(medicalIssueId ? medicalIssueId : props.comment.animalId);
         setTitle(title ? title : props.comment.title);
         setDate(date ? date : props.comment.date);
         setDescription(description ? description : props.comment.description);
-        setImage(image ? image : props.comment.commentImages[0].image);
         setCommentId(commentId ? commentId : props.comment.commentId);
     }
 
@@ -39,51 +40,78 @@ function EditCommentModal(props) {
         console.log(title)
         console.log(date)
         console.log(description)
-        console.log(image)
 
         const comment = {
             "medicalIssueId": medicalIssueId,
             "title": title,
             "date": date,
             "description": description,
-            "author": user
+            "commentImages":[]
         }
 
         let commentImage = {
             "commentId": commentId,
-            "image": image
+            "image": null
         }
+
 
         let config = { headers: {'Authorization': getAccessToken() }}
 
-        let commentRes = await axios.put("http://localhost:8080/api/comments/"+props.comment.commentId, comment,config)
+        let commentRes = await axios.put("http://localhost:8080/api/comments/" + props.comment.commentId, comment,config)
             .then((res)=> {
-                console.log(res)
+                setCommentId(res.data.commentId)
+                commentImage.commentId = res.data.commentId
+                console.log("HELLO")
             })
             .catch((err) => console.log(err))
 
+        imageList.map(async (imageObject) => {
 
-        let imageRes = await axios.put("http://localhost:8080/api/treatment-images/"+props.comment.commentImages[0].commentPhotoId, commentImage, config)
-            .then((res) => console.log(res.data))
-            .catch((err) => console.log(err))
+            commentImage.image = imageObject
 
+            console.log(commentImage)
+
+            let imageRes = await axios.post("http://localhost:8080/api/treatment-images", commentImage, config)
+                .then((res) => console.log(res.data))
+                .catch((err) => console.log(err))
+        })
+
+        fileList.map(async (fileObject) => {
+        let formData = new FormData()
+
+            formData.append('file',fileObject)
+
+            let imageUploadRes = await axios.post("http://localhost:8080/api/treatment-images/upload", formData, config)
+                .then((res) => console.log(res.data))
+                .catch((err) => console.log(err))
+        })
+
+        imageList = [];
+        fileList = [];
         setMedicalIssueId(null)
         setTitle(null)
         setDate(null)
         setDescription(null)
-        setImage(null)
         props.onHide()
-        window.location.reload()
     }
 
 
     const closeModal = () => {
+        imageList = [];
+        fileList = [];
         setMedicalIssueId(null)
         setTitle(null)
         setDate(null)
         setDescription(null)
-        setImage(null)
         props.onHide()
+    }
+
+    const prepareImages = (e) => {
+        for (let i = 0; i < e.target.files.length; i++) {
+            fileList.push(e.target.files.item(i))
+            imageList.push("/images/commentImages/" + e.target.files.item(i).name)
+        }
+
     }
 
     useEffect(() => {
@@ -136,16 +164,14 @@ function EditCommentModal(props) {
                             />
                         </FloatingLabel>
                     </Form.Group>
-                    <Form.Group className="mb-3">
-                        <Form.Label>Image Pathway</Form.Label>
+                    <Form.Group className="position-relative mb-3">
+                        <Form.Label>Comment Image</Form.Label>
                         <Form.Control
-                            onChange={e => {setImage(e.target.value)}}
-                            type="text"
-                            placeholder="/images/commentImages/sickpuppy1.jpg"
-                            defaultValue={props.comment.commentImages[0].image}
+                            multiple
+                            type="file"
+                            name="Profile Images"
+                            onChange={e => prepareImages(e)}
                         />
-                        <Form.Text className="text-muted">
-                        </Form.Text>
                     </Form.Group>
                 </Form>
             </Modal.Body>

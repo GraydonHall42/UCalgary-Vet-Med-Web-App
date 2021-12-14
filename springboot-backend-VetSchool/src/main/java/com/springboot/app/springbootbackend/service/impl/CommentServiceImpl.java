@@ -52,4 +52,10 @@ public class CommentServiceImpl implements CommentService {
         commentRepository.deleteById(id);
 
     }
+
+    @Override
+    public List<Comment> findCommentsByMedicalIssueId(int id) {
+        return commentRepository.findCommentsByMedicalIssueId(id).orElseThrow(() ->
+                new ResourceNotFoundException("Comment", "Id", id));
+    }
 }

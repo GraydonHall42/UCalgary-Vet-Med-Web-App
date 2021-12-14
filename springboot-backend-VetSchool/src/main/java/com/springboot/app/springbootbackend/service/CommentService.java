@@ -11,5 +11,6 @@ public interface CommentService {
     List<Comment> getAllComments();
     Comment updateComment(Comment comment, int id);
     void deleteComment(int id);
+    List<Comment> findCommentsByMedicalIssueId(int id);
 
 }

@@ -1,7 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import {Button, Card, Col, Container, FloatingLabel, Image, Row, Form} from "react-bootstrap";
-// import puppyPhoto from '../assets/puppy.jpg';
-import puppyPhoto from '../assets/spud.jpg';
+import {Button, Card, Col, Container, Image, Row, Form} from "react-bootstrap";
 import "../styles/AnimalProfileCard.css"
 import axios from "axios";
 import AnimalStatusButton from "./AnimalStatusButton";
@@ -12,7 +10,6 @@ const MedicalIssueProfileCard = (props) =>  {
 
     const [animal, setAnimal] = useState("");
     const [modalShow, setModalShow] = useState(null);
-    const [medicalIssueState, setMedicalIssueState] = useState(null);
     const [isLoading, setLoading] = useState(true);
     const getAccessToken = useAuthorization();
 
@@ -21,7 +18,6 @@ const MedicalIssueProfileCard = (props) =>  {
         const res = await axios.get("http://localhost:8080/api/animals/"+animalId+"?fields", config)
             .then(response => {
                 setAnimal(response.data)
-                console.log("hello from obtainanimalbyID")
                 console.log(response.data)
                 setLoading(false);
             })
@@ -34,11 +30,10 @@ const MedicalIssueProfileCard = (props) =>  {
 
     const handleHide = () => {
         setModalShow(false);
-        window.location.reload();
     }
 
     useEffect(() => {
-        obtainAnimalById(props.medicalIssue.animalId);
+        obtainAnimalById(props.medicalIssue.animalId)
     },[props.medicalIssue])
 
     useEffect(() => {
@@ -62,7 +57,7 @@ const MedicalIssueProfileCard = (props) =>  {
                     <Row >
                         <Row>
                             <Col xs={3}>
-                                <Image src={puppyPhoto} fluid thumbnail className={"animalImage"}/>
+                                <Image src={animal.profilePhoto} fluid thumbnail className={"animalImage"}/>
                             </Col>
                             <Col>
                             <Row>
@@ -98,7 +93,7 @@ const MedicalIssueProfileCard = (props) =>  {
                             </Row>
                             </Col>
                             <EditMedicalIssueModal
-                                medicalIssues={props.medicalIssue}
+                                issues={props.medicalIssue}
                                 show={modalShow}
                                 onHide={() => handleHide(props)}/>
 

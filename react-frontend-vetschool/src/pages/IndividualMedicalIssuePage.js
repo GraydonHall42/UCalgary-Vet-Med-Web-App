@@ -37,6 +37,10 @@ const IndividualMedicalIssuePage = (props) => {
         obtainMedicalIssueById(medicalIssueId);
     },[])
 
+    useEffect(() => {
+        obtainMedicalIssueById(medicalIssueId);
+    },[modalShow])
+
     if(loading) {
         return <div>Loading...</div>
     }

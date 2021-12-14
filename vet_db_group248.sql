@@ -219,28 +219,28 @@ CREATE TABLE PROFILE_IMAGES(
     photo_id         int auto_increment,
     animal_id        int not null,
     date            datetime,
-    image          varchar(10) not null,
+    image          varchar(60) not null,
     primary key (photo_id),
     foreign key (animal_id) references ANIMAL(animal_id)
 );
 
 INSERT INTO PROFILE_IMAGES (animal_id, date, image)
-VALUES (1, '2021-09-01', 'img1.jpg'),
-       (1, '2021-09-01', 'img2.jpg'),
-       (1, '2021-09-01', 'img3.jpg'),
-       (1, '2021-09-01', 'img4.jpg'),
-       (2, '2021-09-01', 'img5.jpg'),
-       (2, '2021-09-01', 'img6.jpg'),
-       (2, '2021-09-01', 'img7.jpg'),
-       (2, '2021-09-01', 'img8.jpg'),
-       (3, '2021-09-01', 'img9.jpg'),
-       (3, '2021-09-01', 'img10.jpg'),
-       (3, '2021-09-01', 'img11.jpg'),
-       (3, '2021-09-01', 'img12.jpg'),
-       (4, '2021-09-01', 'img13.jpg'),
-       (4, '2021-09-01', 'img14.jpg'),
-       (4, '2021-09-01', 'img15.jpg'),
-       (4, '2021-09-01', 'img16.jpg');
+VALUES (1, '2021-09-01', '/images/profileImages/profileImage16.jpg'),
+       (1, '2021-09-01', '/images/profileImages/profileImage2.jpg'),
+       (1, '2021-09-01', '/images/profileImages/profileImage3.jpg'),
+       (1, '2021-09-01', '/images/profileImages/profileImage4.jpg'),
+       (2, '2021-09-01', '/images/profileImages/profileImage5.jpg'),
+       (2, '2021-09-01', '/images/profileImages/profileImage6.jpg'),
+       (2, '2021-09-01', '/images/profileImages/profileImage7.jpg'),
+       (2, '2021-09-01', '/images/profileImages/profileImage8.jpg'),
+       (3, '2021-09-01', '/images/profileImages/profileImage9.jpg'),
+       (3, '2021-09-01', '/images/profileImages/profileImage10.jpg'),
+       (3, '2021-09-01', '/images/profileImages/profileImage11.jpg'),
+       (3, '2021-09-01', '/images/profileImages/profileImage12.jpg'),
+       (4, '2021-09-01', '/images/profileImages/profileImage13.jpg'),
+       (4, '2021-09-01', '/images/profileImages/profileImage14.jpg'),
+       (4, '2021-09-01', '/images/profileImages/profileImage15.jpg'),
+       (4, '2021-09-01', '/images/profileImages/profileImage1.jpg');
 
 
 DROP TABLE IF EXISTS MEDICAL_ISSUES;
@@ -315,11 +315,11 @@ CREATE TABLE COMMENT(
 
 # INSERT INTO TREATMENT (animalID, medicalIssueID, authorID, title, date, description)
 INSERT INTO COMMENT (medical_issue_id, author_id, title, date, description)
-VALUES (1, 1, 'Give Stitches', '2020-09-01', 'Gave sally stitches for her cut ear'),
-       (1, 1, 'Remove Stitches', '2020-09-05', 'Took out stitches for sally, issue resolved'),
-       (2, 1, 'Splint broken leg', '2021-09-01', 'Gave sally splint for leg. Follow up to check healing in 2 months'),
-       (2, 1, 'Change splint dressing', '2021-10-01', 'Changed dressing for Sallys splint'),
-       (3, 1, 'Administer stomach medication', '2020-12-01', 'Gave Jimmy stomach meds to ease stomach issues'),
+VALUES (1, 1, 'Give Stitches', '2020-09-01', 'Gave Spud stitches for her cut ear'),
+       (1, 1, 'Remove Stitches', '2020-09-05', 'Took out stitches for Spud, issue resolved'),
+       (2, 1, 'Splint broken leg', '2021-09-01', 'Gave Spud splint for leg. Follow up to check healing in 2 months'),
+       (2, 1, 'Change splint dressing', '2021-10-01', 'Changed dressing for Spud splint'),
+       (3, 1, 'Administer stomach medication', '2020-12-01', 'Gave Spud stomach meds to ease stomach issues'),
        (4, 1, 'Pull tooth', '2020-11-10', 'Pulled Jimmys infected tooth. Follow up in one week');
         # going to leave out last 2 issues... we will assume the issue has been created, but the animals have not yet been seen.
 
@@ -336,16 +336,16 @@ CREATE TABLE COMMENT_IMAGES(
 INSERT INTO COMMENT_IMAGES (comment_id, image)
 VALUES (1, '/images/commentImages/sickpuppy1.jpg'),
        (1, '/images/commentImages/sickpuppy2.jpg'),
-       (2, 'img15.jpg'),
-       (2, 'img16.jpg'),
-       (3, 'img17.jpg'),
-       (3, 'img18.jpg'),
-       (4, 'img19.jpg'),
-       (4, 'img20.jpg'),
-       (5, 'img21.jpg'),
-       (5, 'img22.jpg'),
-       (6, 'img23.jpg'),
-       (6, 'img24.jpg');
+       (2, '/images/commentImages/sickpuppy3.jpg'),
+       (2, '/images/commentImages/sickpuppy4.jpg'),
+       (3, '/images/commentImages/sickpuppy1.jpg'),
+       (3, '/images/commentImages/sickpuppy1.jpg'),
+       (4, '/images/commentImages/sickpuppy1.jpg'),
+       (4, '/images/commentImages/sickpuppy1.jpg'),
+       (5, '/images/commentImages/sickpuppy1.jpg'),
+       (5, '/images/commentImages/sickpuppy1.jpg'),
+       (6, '/images/commentImages/sickpuppy1.jpg'),
+       (6, '/images/commentImages/sickpuppy1.jpg');
 
 DROP TABLE IF EXISTS CLASSROOM_BOOKINGS;
 CREATE TABLE CLASSROOM_BOOKINGS(
