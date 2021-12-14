@@ -11,6 +11,10 @@ const UserProfileField = (props) =>  {
         // If edit gets locked
         if(editable) {
             props.setValue(value);
+            props.setOpenFields(props.openFields - 1)
+        }
+        else {
+            props.setOpenFields(props.openFields + 1)
         }
         
         setEditable(!editable)
