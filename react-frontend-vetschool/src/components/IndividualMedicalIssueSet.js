@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import {Container, Row, Col, Image, Modal, Button, Form} from 'react-bootstrap';
+import {Container, Row, Col, Image, Form} from 'react-bootstrap';
 import '../styles/ImageSet.css';
 import {AiOutlineEdit, AiOutlineDelete, AiFillCloseCircle} from "react-icons/all";
 import axios from "axios";

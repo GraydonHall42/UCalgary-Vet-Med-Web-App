@@ -1,5 +1,5 @@
-import React, {useState, useEffect, useContext} from 'react'
-import {Tabs, Tab, Container, Row, Col, Button, ButtonGroup} from "react-bootstrap";
+import React, {useState, useEffect} from 'react'
+import {Tabs, Tab, Container, Row, Col, Button} from "react-bootstrap";
 import '../styles/MedicalIssuesList.css';
 import MedicalIssueModal from "./MedicalIssueModal";
 import {Link} from "react-router-dom";

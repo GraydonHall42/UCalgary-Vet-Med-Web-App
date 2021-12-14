@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import {Container, Row, Col, Image, Modal, Button, CloseButton, ImageProps} from 'react-bootstrap';
+import {Container, Row, Col, Image, Button} from 'react-bootstrap';
 import '../styles/ImageSet.css';
 import '../styles/HighMarginRight.css';
 import ProfileImageModal from "./ProfileImageModal";

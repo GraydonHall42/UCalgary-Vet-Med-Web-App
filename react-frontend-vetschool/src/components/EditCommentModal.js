@@ -8,7 +8,6 @@ function EditCommentModal(props) {
 
     const { user, setUser } = useContext(UserContext);
     const [medicalIssueId, setMedicalIssueId] = useState(null);
-    const [authorId, setAuthorId] = useState(null);
     const [title, setTitle] = useState(null);
     const [date, setDate] = useState(null);
     const [description, setDescription] = useState(null);
