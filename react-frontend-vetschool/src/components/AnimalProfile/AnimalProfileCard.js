@@ -22,7 +22,6 @@ const AnimalProfileCard = (props) =>  {
                             <h2>{animal.animalName}</h2><br/>
                             <b>Animal Type: </b>{animal.animalType}<br/>
                             <b>Last Checkup: </b>{animal.lastCheckup} <br/><br/>
-                            <Button variant="warning">Request Visit</Button>
                         </Col>
                         <Col md={2} className="text-sm-center m-auto">
                             <h4>Animal Status: </h4>

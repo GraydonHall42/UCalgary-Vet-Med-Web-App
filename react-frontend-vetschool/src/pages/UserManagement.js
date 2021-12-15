@@ -16,7 +16,8 @@ function UserManagement() {
     const { user, setUser } = useContext(UserContext);
     const getAccessToken = useAuthorization();
 
-    
+
+
     const getAllUsers = () => {
         let config = { headers: {'Authorization': getAccessToken() }}
         let url = 'http://localhost:8080/api/users';
@@ -27,11 +28,11 @@ function UserManagement() {
             .catch(err => {
                 console.log(err);
             })
-
     }
 
 
     useEffect(() => {
+        console.log("Hello?")
         getAllUsers();
     }, [isModalShowing]);
 

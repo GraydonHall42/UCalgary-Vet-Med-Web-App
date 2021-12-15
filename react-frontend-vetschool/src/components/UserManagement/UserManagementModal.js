@@ -57,6 +57,7 @@ function UserManagementModal(props) {
                 })
                 .then(res => {
                     console.log(res.data);
+                    props.onHide()
                 })
                 .catch(err => {
                     console.log(err);
@@ -88,12 +89,13 @@ function UserManagementModal(props) {
                     return axios.put(urlRole, updatedRole, config);
                 }).then(res => {
                     console.log(res.data);
+                    props.onHide()
                 })
                 .catch(err => {
                     console.log(err);
                 })
         }
-        props.onHide()
+
     }
 
     const closeModal = () => {
