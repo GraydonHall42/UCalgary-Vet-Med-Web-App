@@ -70,7 +70,8 @@ public class CommentImageController {
         String fileName = file.getOriginalFilename();
 
         try {
-            file.transferTo(new File("C:\\Users\\deyli\\Documents\\School\\ENSF 607\\Newer Project\\final-project-uofeng607-248\\react-frontend-vetschool\\public\\images\\commentImages\\" + fileName));
+            String path = System.getProperty("user.dir") + "\\react-frontend-vetschool\\public\\images\\commentImages\\";
+            file.transferTo(new File(path + fileName));
         } catch(Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }

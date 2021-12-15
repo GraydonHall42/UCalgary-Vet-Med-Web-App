@@ -50,7 +50,7 @@ create table ANIMAL
 	sex             varchar(255) not null,
 	birth_date      date,
 	color           varchar(255) not null,
-	active          boolean not null,
+	active          boolean,
 	microchip_num   int,
 	breed           varchar(255),
 	last_checkup    date,

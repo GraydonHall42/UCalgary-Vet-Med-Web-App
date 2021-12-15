@@ -1,22 +1,28 @@
-# Group 248 Vet school Application
+# Group 248 Vet School Application
 This is our final project for ENSF 607 and 608. It is a full stack application built
 for the University of Calgary School of Veterinary medicine.
 
-## Project Sprint 2 - Wireframes
+## Full Video Demo: https://youtu.be/c4xvzu-GU7c
+
+## Wireframes
 The following document gives all the wireframes our team generated using Figma, in the process of planning
 the front end of our application.<br>
 [Wireframes](MarkdownAndImages/Wireframes.md)<br>
 
-## Project Sprint 3 - API
+## API
 The following document outlines details regarding our API for the project.
 It is built using the Spring Boot Framework, and connecting to a MySQL database.<br>
 [Project API Documentation](MarkdownAndImages/API.md)<br>
 
-## Project Hackathon - Animal Booking Logic
+## Animal Booking Logic
 As apart of a hackathon related to this project, we implemented detailed
 logic for booking animals for classroom visits. This process is outlined in the following document.<br>
 [Animal Booking Workflow](MarkdownAndImages/animalBooking.md)<br>
 
-## Project Sprint 4 - Front End
+## Front End
 The following document shows our completed front end, written in React.js.<br>
 [Front End](MarkdownAndImages/FrontEnd.md)<br>
+
+## Database Design
+The following document outlines our database design.<br>
+[Database Design](MarkdownAndImages/DatabaseDesign.md)<br>

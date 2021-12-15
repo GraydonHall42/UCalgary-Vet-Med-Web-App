@@ -57,7 +57,7 @@ public class ClassroomBookingController {
 		// delete employee from DB
 		bookingService.deleteBooking(id);
 
-		return new ResponseEntity<String>("User deleted successfully!.", HttpStatus.OK);
+		return new ResponseEntity<String>("Booking deleted successfully!.", HttpStatus.OK);
 	}
 
 
