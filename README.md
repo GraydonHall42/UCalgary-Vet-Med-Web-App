@@ -2,7 +2,8 @@
 This is our final project for ENSF 607 and 608. It is a full stack application built
 for the University of Calgary School of Veterinary medicine.
 
-## Full Video Demo: https://youtu.be/c4xvzu-GU7c
+## Full Video Demo: 
+https://youtu.be/c4xvzu-GU7c
 
 ## Wireframes
 The following document gives all the wireframes our team generated using Figma, in the process of planning
