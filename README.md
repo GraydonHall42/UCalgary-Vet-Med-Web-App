@@ -33,7 +33,7 @@ The following document outlines our database design.<br>
 [Database Design](MarkdownAndImages/DatabaseDesign.md)<br>
 
 ## Login Credentials
-If you wish to try out our app, here is a list of login credentials you can use.
-* Instructor_1: pass: pt@123
-* Admin_1: pass: pa
-* Technician: pass: pe
+If you wish to try out our app, here is a list of login credentials you can use for testing purposes.
+* username: Instructor_1: password: pt@123
+* username: Admin_1: password: pa
+* username: Technician: password: pe
