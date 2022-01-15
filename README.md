@@ -31,3 +31,9 @@ logic for booking animals for classroom visits. This process is outlined in the 
 ## Database Design
 The following document outlines our database design.<br>
 [Database Design](MarkdownAndImages/DatabaseDesign.md)<br>
+
+## Login Credentials
+If you wish to try out our app, here is a list of login credentials you can use.
+* Instructor_1: pass: pt@123
+* Admin_1: pass: pa
+* Technician: pass: pe
