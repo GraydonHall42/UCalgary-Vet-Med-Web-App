@@ -12,10 +12,8 @@ Overview of project/capabilities:
 * Medical issue page outlining treatment history for issue
 * User management page
 * Animal medical issue dashboard (to see all active issue in one location)
-* Animal classroom visit dashboard (used for professors to schedule classroom visits for animals)
-A video demonstration of our project can be found at: [http://www.youtube.com/watch?v=c4xvzu-GU7c](http://www.youtube.com/watch?v=c4xvzu-GU7c)<br>
-[![Video Demonstration Link](http://img.youtube.com/vi/c4xvzu-GU7c/0.jpg)](http://www.youtube.com/watch?v=c4xvzu-GU7c "Video Title")<br>
-Video w
+* Animal classroom visit dashboard (used for professors to schedule classroom visits for animals)<br>
+The following brief gif gives an overview of some of our projects main pages. A full video demonstration can be found at [http://www.youtube.com/watch?v=c4xvzu-GU7c](http://www.youtube.com/watch?v=c4xvzu-GU7c)
 
 ## Front End
 The following document shows screenshots of our completed front end, written in React.js.<br>
