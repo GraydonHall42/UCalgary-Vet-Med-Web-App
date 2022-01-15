@@ -6,13 +6,13 @@ with MySQL.
 
 ## Project Overview
 Overview of project/capabilities:
-* Log in/log out
-* Home screen for searching animals
-* Animal profile with animals medical issues, information, weight, and images
-* Medical issue page outlining treatment history for issue
-* User management page
-* Animal medical issue dashboard (to see all active issue in one location)
-* Animal classroom visit dashboard (used for professors to schedule classroom visits for animals)<br>
+  * Log in/log out
+  * Home screen for searching animals
+  * Animal profile with animals medical issues, information, weight, and images
+  * Medical issue page outlining treatment history for issue
+  * User management page
+  * Animal medical issue dashboard (to see all active issue in one location)
+  * Animal classroom visit dashboard (used for professors to schedule classroom visits for animals)<br>
 The following brief gif gives an overview of some of our projects main pages. A full video demonstration can be found at [http://www.youtube.com/watch?v=c4xvzu-GU7c](http://www.youtube.com/watch?v=c4xvzu-GU7c)
 
 ## Front End
