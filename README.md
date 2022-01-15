@@ -11,15 +11,15 @@ with MySQL. <br>
 
 Overview of project/capabilities:
   * Log in/log out
-  * Home screen for searching animals
-  * Animal profile with animals medical issues, information, weight, and images
-  * Medical issue page outlining treatment history for issue
-  * User management page
-  * Animal medical issue dashboard (to see all active issue in one location)
+  * Home page for searching animals
+  * Animal profile page with animal medical issues, information, weight, and images
+  * Medical issue page with treatment history for a given issue
+  * User management page (for admins)
+  * Animal medical issue dashboard (so vets can see all active medical issues)
   * Animal classroom visit dashboard (used for professors to schedule classroom visits for animals)
 
 The following brief GIF gives an overview of some of our projects main pages.<br>
-![](vetDemoGif.gif)<br>
+![demoGif](vetDemoGif.gif)<br>
 
 ## Front End
 The following document shows screenshots of our completed front end, written in React.js.<br>
