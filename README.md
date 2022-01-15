@@ -1,10 +1,11 @@
 # Group 248 Vet School Application
 This is our final project for ENSF 607 and 608. It is a full stack application built
-for the University of Calgary School of Veterinary medicine.
+for the University of Calgary School of Veterinary medicine. The front end of this project is 
+built using React (Javascript), the API is built Spring Boot (Java), and the database is built
+with MySQL. 
 
 ## Video Walkthrough ([http://www.youtube.com/watch?v=c4xvzu-GU7c](http://www.youtube.com/watch?v=c4xvzu-GU7c)):
 [![Video L](http://img.youtube.com/vi/c4xvzu-GU7c/0.jpg)](http://www.youtube.com/watch?v=c4xvzu-GU7c "Video Title")
-
 
 ## Wireframes
 The following document gives all the wireframes our team generated using Figma, in the process of planning
