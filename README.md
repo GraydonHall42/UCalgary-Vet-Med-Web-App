@@ -2,9 +2,13 @@
 This is our final project for ENSF 607 and 608. It is a full stack application built
 for the University of Calgary School of Veterinary medicine. The front end of this project is 
 built using React (Javascript), the API is built Spring Boot (Java), and the database is built
-with MySQL. 
+with MySQL. <br>
+
 
 ## Project Overview
+**A full video demonstration can be found at 
+[http://www.youtube.com/watch?v=c4xvzu-GU7c](http://www.youtube.com/watch?v=c4xvzu-GU7c)** <br>
+
 Overview of project/capabilities:
   * Log in/log out
   * Home screen for searching animals
@@ -14,7 +18,8 @@ Overview of project/capabilities:
   * Animal medical issue dashboard (to see all active issue in one location)
   * Animal classroom visit dashboard (used for professors to schedule classroom visits for animals)
 
-The following brief gif gives an overview of some of our projects main pages. **A full video demonstration can be found at [http://www.youtube.com/watch?v=c4xvzu-GU7c](http://www.youtube.com/watch?v=c4xvzu-GU7c)**
+The following brief GIF gives an overview of some of our projects main pages.<br>
+![](vetDemoGif.gif)<br>
 
 ## Front End
 The following document shows screenshots of our completed front end, written in React.js.<br>
