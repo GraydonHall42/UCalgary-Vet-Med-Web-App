@@ -4,7 +4,15 @@ for the University of Calgary School of Veterinary medicine. The front end of th
 built using React (Javascript), the API is built Spring Boot (Java), and the database is built
 with MySQL. 
 
-## Project Demonstration
+## Project Overview
+Overview of project/capabilities:
+* Log in/log out
+* Home screen for searching animals
+* Animal profile with animals medical issues, information, weight, and images
+* Medical issue page outlining treatment history for issue
+* User management page
+* Animal medical issue dashboard (to see all active issue in one location)
+* Animal classroom visit dashboard (used for professors to schedule classroom visits for animals)
 A video demonstration of our project can be found at: [http://www.youtube.com/watch?v=c4xvzu-GU7c](http://www.youtube.com/watch?v=c4xvzu-GU7c)<br>
 [![Video Demonstration Link](http://img.youtube.com/vi/c4xvzu-GU7c/0.jpg)](http://www.youtube.com/watch?v=c4xvzu-GU7c "Video Title")<br>
 Video w
@@ -33,7 +41,7 @@ The following document outlines our database design.<br>
 [Database Design](MarkdownAndImages/DatabaseDesign.md)<br>
 
 ## Login Credentials
-If you wish to try out our app, here is a list of login credentials you can use for testing purposes.
-* username: Instructor_1: password: pt@123
-* username: Admin_1: password: pa
-* username: Technician: password: pe
+If you wish to try out our app, here is a list of login credentials you can use for testing purposes. The password for all accounts is "password".
+* username: graydon@gmail.com
+* username: jared@gmail.com
+* username: deylin@gmail.com
